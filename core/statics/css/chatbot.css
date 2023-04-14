@@ -1,0 +1,121 @@
+/* :root{
+    --header-height: 204px;
+} */
+
+#chatbot .chatbox{
+    width: 100%;
+    height: 100%;
+}
+
+
+#chatbot .fixed{
+    clear:both;
+    height: 70px;
+}
+
+
+#chatbot .mssg {
+    /* display: flex; */
+    clear: both;
+    float: left;
+    max-width: 60%;
+    padding: 15px 10px 15px;
+    /* border-radius: 10px 10px 10px 0; */
+    border-radius: 10px;
+    /* background: #248A52; */
+    background: #2572874d;
+    /* background: rgba(37, 114, 135, 0.3); */
+    /* background: rgba(0, 0, 0, 0.3); */
+    margin: 8px 0;
+    /* font-size: 11px; */
+    /* line-height: 1.4; */
+    /* margin-left: 35px; */
+    position: relative;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+#chatbot .mssg.personal-message {
+    float: right;
+    text-align: right;
+    background: #257287;
+    /* background: linear-gradient(120deg, #248A52, #257287); */
+    border-radius: 10px 10px 0 10px;
+}
+
+#chatbot .input-wrapper{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left:0;
+    background: var(--bot-bg-message);
+}
+
+
+#chatbot .input-wrapper .input-mssg-area{
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
+}
+
+#chatbot .input-wrapper .input-mssg-area::placeholder {
+    color: white;
+  }
+
+#chatbot .input-wrapper .input-mssg-area:focus{
+    outline: none;
+}
+
+#chatbot .spinner-grow-sm {
+    --bs-spinner-width: 0.5rem;
+    --bs-spinner-height: 0.5rem;
+}
+
+#chatbot .mssg.loading{
+    border-radius: 10px 10px 10px 0;
+}
+
+
+#chatbot .mssg .loading-message span:nth-child(2){
+    animation-delay: 0.1s;
+}
+#chatbot .mssg .loading-message span:nth-child(3){
+    animation-delay: 0.2s;
+}
+
+#chatbot .mssg.new{
+    transform: scale(0);
+    transform-origin: 0 0;
+    animation: bounce 500ms linear both;
+}
+
+#chatbot .send-mssg-btn i{
+    /* width: 100px; */
+    font-size: 1rem;
+    margin-right: 10px;
+}
+/* #chatbot .send-mssg-btn:hover{
+    color: rgb(176, 176, 176);
+    transform: scale(1.2);
+    transition: transform 0.3s
+} */
+
+
+
+
+@keyframes bounce { 
+    0% { transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    4.7% { transform: matrix3d(0.45, 0, 0, 0, 0, 0.45, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    9.41% { transform: matrix3d(0.883, 0, 0, 0, 0, 0.883, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    14.11% { transform: matrix3d(1.141, 0, 0, 0, 0, 1.141, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    18.72% { transform: matrix3d(1.212, 0, 0, 0, 0, 1.212, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    24.32% { transform: matrix3d(1.151, 0, 0, 0, 0, 1.151, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    29.93% { transform: matrix3d(1.048, 0, 0, 0, 0, 1.048, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    35.54% { transform: matrix3d(0.979, 0, 0, 0, 0, 0.979, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    41.04% { transform: matrix3d(0.961, 0, 0, 0, 0, 0.961, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    52.15% { transform: matrix3d(0.991, 0, 0, 0, 0, 0.991, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    63.26% { transform: matrix3d(1.007, 0, 0, 0, 0, 1.007, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    85.49% { transform: matrix3d(0.999, 0, 0, 0, 0, 0.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+    100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+  }
+  

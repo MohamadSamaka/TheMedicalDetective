@@ -1,0 +1,59 @@
+{% extends 'client/layouts/base.html'%}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    
+    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+    
+{% endblock %}
+
+{% block title %}ChatBot{% endblock %}
+
+
+{% block content %}
+{% comment %} <div>
+    <section>
+
+    </section>
+    <section>
+        
+    </section>
+</div>
+<div>
+
+</div> {% endcomment %}
+<div id="chatbot" class="chat-wrapper container">
+{% comment %} <div id="chatbot" class="chat-wrapper container d-flex flex-column align-items-center"> {% endcomment %}
+    <div class="chatbox d-inline-block">
+        <div class="mssg new">
+            <p class="mssg-content m-0">Hi Mohamad my name is Sam, how can i help you?</p>
+        </div>
+        {% comment %} <div class="mssg personal-message">
+            <p class="mssg-content m-0">Hi Sam, it looks like i'm sick.</p>
+        </div>
+        <div class="mssg">
+            <p class="mssg-content m-0">Uh oh, sorry to here this, what symptoms you faceing?</p>
+        </div>
+        <div class="mssg personal-message">
+            <p class="mssg-content m-0">I have been experiencing dischromic patches, nodal skin eruptions, a skin rash, and itching for about a month now. The dischromic patches are light-colored and are located on my arms and legs. The nodal skin eruptions are small bumps that appeared around the same time as the patches, and the rash is very itchy and has been spreading.</p>
+        </div>
+        <div class="mssg">
+            <p class="mssg-content m-0">Thank you for letting me know. Based on what you've told me, it's possible that you have a condition called pityriasis rosea. This is a common skin rash that usually starts with a larger "herald" patch, followed by smaller patches that can spread. It's usually accompanied by mild itching, which can be managed with antihistamines or topical creams. However, we'll need to do some tests to rule out other conditions as well.</p>
+        </div>
+        <div class="mssg loading badge badge-primary">
+            <div class="loading-message">
+                <span class="spinner-grow spinner-grow-sm" role="status"></span>
+                <span class="spinner-grow spinner-grow-sm" role="status"></span>
+                <span class="spinner-grow spinner-grow-sm" role="status"></span>
+            </div>
+        </div> {% endcomment %}
+        <div class="fixed">
+        </div>
+    </div>
+    <div class="input-wrapper d-flex align-items-center p-2 container p-0 position-fixed rounded">
+        <textarea class="input-mssg-area rounded bg-transparent  m-0 w-100 border-0" tabindex="0" rows="1" placeholder="Describe your case..."></textarea>
+        <span class="send-mssg-btn "><i class="bi bi-send"></i></span>
+    </div>
+</div>
+{% endblock %}
