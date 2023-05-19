@@ -10,38 +10,54 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from dotenv import load_dotenv
 from pathlib import Path
-from secret import KEY
-import os
+from os import getenv
 
-PARENT_CORE_DIR = Path(__file__).resolve().parent.parent.parent
+load_dotenv() #loading my .env file
+
+ABSOLUTE_CORE_PARENT_DIR = Path(__file__).resolve().parent.parent.parent
 CORE_DIR = Path(__file__).resolve().parent.parent
-
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = KEY
+
+SECRET_KEY = getenv('KEY')
+
+VERIFICATION_CODE_TIMEOUT = getenv('VERIFICATION_CODE_TIMEOUT')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (getenv('DEBUG', "False") == 'TRUE')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
+# ALLOWED_HOSTS = []
 
 # Application definition
 
+
+
 INSTALLED_APPS = [
+    # 'core',
+    # 'core.chatbot',
+    # 'jazzmin',
+    # 'admin_argon.apps.AdminArgonConfig',
+    # 'admin_corporate.apps.AdminCorporateConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'livereload',
+    'core.core.apps.CoreConfig',
+    'core.authentication.apps.AuthenticationConfig',
+    'core.myAdmin.apps.MyadminConfig',
+    'core.healthcare.apps.HealthcareConfig',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,8 +67,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'livereload.middleware.LiveReloadScript'
 ]
+
+
 
 ROOT_URLCONF = 'core.project.urls'
 
@@ -79,11 +96,14 @@ WSGI_APPLICATION = 'core.project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': PARENT_CORE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'the-medical-detective',
+        'USER': 'root',
+        'PASSWORD': '2000',
+        'PORT': 3306,
+        'HOST': 'localhost',        
     }
 }
 
@@ -122,7 +142,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'statics/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -130,5 +150,27 @@ STATIC_URL = 'statics/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [
-    CORE_DIR / "statics"
+    CORE_DIR / "statics",
 ]
+
+AUTH_USER_MODEL = 'core.CustomUser'
+
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mhmdkais20@gmail.com'
+# EMAIL_HOST_USER = 'mhmd_dragon1@hotmail.com'
+EMAIL_HOST_PASSWORD = 'xhaugdkjklzcuorz'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = True
+
+CACHES = {
+    "default": {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        "LOCATION": "my_cache_table",
+    }
+}
+
+STATIC_ROOT = CORE_DIR / 'staticfiles'
+# print(f"{CORE_DIR} / staticfiles")

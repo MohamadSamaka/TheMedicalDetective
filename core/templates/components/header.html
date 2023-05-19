@@ -1,0 +1,49 @@
+<header id="header" class="container">
+    <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
+      <div class="container-fluid">
+        <div class="navbar-left">
+          <a href="">Logo</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Offcanvas</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-primary navbar-nav mx-auto gap-2">
+              <li class="navbar-item {% if url_name == 'home' %}active-page{% endif %}">
+                <a href="{% url 'home' %}" class="nav-link active d-inline-block">Home</a>
+              </li>
+              <li class="navbar-item {% if url_name == 'about' %}active-page{% endif %}">
+                <a href="" class="nav-link d-inline-block">About</a>
+              </li>
+              <li class="navbar-item {% if url_name == 'chatbot' %}active-page{% endif %}">
+                <a href="{% url 'chatbot' %}" class="nav-link d-inline-block">Chat Bot</a>
+              </li>
+              <li class="navbar-item {% if url_name == 'clinics' %}active-page{% endif %}">
+                <a href="" class="nav-link d-inline-block">Clinics</a>
+              </li>
+            </ul>
+            <ul class="navbar-right navbar-nav">
+             {% if request.user.is_authenticated %}
+              <li class="me-0">
+                <a href="{% url 'logout' %}" class="nav-link">Log out</a>
+              </li>
+            {% else %}
+              <li class="me-0">
+                <a href="{% url 'login' %}" class="nav-link">Log In</a>
+              </li>
+              <li>
+                <a href="{% url 'signup' %}" class="nav-link">Sign Up</a>                
+              </li>
+            {% endif %}
+             
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>

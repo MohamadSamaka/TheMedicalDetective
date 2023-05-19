@@ -1,0 +1,147 @@
+{% extends 'authentication/layouts/base.html'%}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}"/>
+{% endblock %}
+
+{% block title %}Log In - The Medical Detective{% endblock %}
+
+
+{% block scripts %}
+    {{ block.super }}
+    <script>
+        const formType = 0;
+    </script>
+    <script src="{% static 'js/authentication/log-in.js' %}"></script>
+{% endblock %}
+
+
+{% comment %} {% block content %}
+    <div id="log-in" class="form-wrapper container d-flex flex-column align-items-center gap-lg-5">
+        <h1 class="form-title">Log In</h1>
+        <form class="form d-flex flex-column gap-3" action="">
+            <div>
+                <label id="email-label" class="label d-block" for="email">Username</label>
+                <input type="text" name="name" id="name" class="form-control">
+            </div>
+            <div>
+                <label id="email-label" class="label d-block" for="pass" >Password</label>
+                <input type="password" name="pass" id="pass" class="form-control">
+            </div>
+            <button type="submit" id="submit-btn" class="btn">Log in</button>
+        </form>
+    </div>
+{% endblock %} {% endcomment %}
+
+
+
+{% block left_side %}
+    <div class="steps-content">
+        <div class="step-number-content active">
+            <h1 class="pb-4">Welcome!</h1>
+            <h6 class="pb-3">we are have to see you join us!. By logging In you will be able to: </h6>
+            <ul class="perks-list">
+                <li class="perk-item">use our effcient chatbot.</li>
+                <li class="perk-item">book appointments with the best hospitals.</li>
+            </ul>
+        </div>
+        <div class="step-number-content">
+            <h2 class="pb-4">Forgot your password?</h2>
+            <h6>Don't freak out, we got you. only few steps and you are good to go.</h6>
+        </div>
+    </div>
+{% endblock %}
+
+{% block right_side %}
+    {% comment %} <div  class="form-wrapper main active container d-flex flex-column align-items-center gap-lg-5"> {% endcomment %}
+    <div class="main active container d-flex flex-column align-items-center gap-4">
+        <h1 class="form-title">Log In</h1>
+        <div class="form d-flex flex-column gap-3" action="">
+            <div>
+                <label id="email-label" class="label d-block" for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" required require>
+            </div>
+            <div>
+                <label id="email-label" class="label d-block" for="pass" >Password</label>
+                <input type="password" name="pass" id="pass" class="form-control" required require>
+            </div>
+            <span id="forgot-password-btn" role="button" class="next_button link-primary">Forgot password?</span>
+            <button type="submit" id="login-btn" class="btn">Log in</button>
+        </div>
+    </div>
+    <div class="main container d-flex flex-column align-items-center gap-4">
+        <h1 class="form-title">Reset Password</h1>
+        <div class="form d-flex flex-column gap-3" action="">
+            <div>
+                <label id="email-label" class="label d-block" for="email">Email</label>
+                <input type="email" name="email" id="reset-password-email" class="form-control" required require>
+            </div>
+            <div class="buttons button_space">
+                <button class="back_button">Back</button>
+                <button id="send-code-btn" class="next_button">Send Code</button>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="text">
+            <h2>Verification</h2>
+            <p>Check your email for your verification code!</p>
+        </div>
+        <div class="input-text">
+            <span id="invalid-code" class="text-danger pb-4 opacity-0">Code is invalid</span>
+            <div class="input-div">
+                <div class="ver-code-wraper row">
+                    <input type="number" pattern="[0-9]*"  value="" inputtype="numeric" autocomplete="one-time-code" class="ver-code-digit form-control col" id="otc-1" required require>
+                    <span class="digit-splitter"></span>
+                    <input type="number" pattern="[0-9]*"  value="" inputtype="numeric" autocomplete="one-time-code" class="ver-code-digit form-control col" required require>
+                    <span class="digit-splitter"></span>
+                    <input type="number" pattern="[0-9]*"  value="" inputtype="numeric" autocomplete="one-time-code" class="ver-code-digit form-control col" required require>
+                    <span class="digit-splitter"></span>
+                    <input type="number" pattern="[0-9]*"  value="" inputtype="numeric" autocomplete="one-time-code" class="ver-code-digit form-control col" required require>
+                </div>
+            </div>
+        </div>
+        <div class="input-text">
+            <div class="input-div">
+                <span id="verification-timer" class="text-muted"></span>
+            </div>
+        </div>
+        <div id="signup-btn" class="buttons button_space row">
+            <button class="back_button">Back</button>
+            <button id="verify-code-btn" ></button>
+        </div>
+    </div>
+    <div class="main container d-flex flex-column align-items-center gap-4">
+        <h1 class="form-title">Reset Your Password</h1>
+        <div class="form d-flex flex-column gap-3" action="">
+            <div>
+                <label id="pass-label" class="label d-block" for="pass">New password</label>
+                <input type="password" name="pass" id="reset-password-pass" class="form-control" required require>
+            </div>
+            <div>
+                <label id="pass-label" class="label d-block" for="pass">Re-enter your new password</label>
+                <input type="password" name="confirm-pass" id="reset-confirm-password-pass" class="form-control" required require>
+            </div>
+            <div class="buttons button_space">
+                <button id="reset-password-btn" class="next_button">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="text">
+            <h3>You'are all set, your password has been successfully reset.</h3>
+        </div>
+        <div class="input-text">
+            <span>
+                <span id="redirection-timer"></span>
+            <span>if you haven't been redirected automatically to login you can
+                 <a id="redirect-btn" href="">
+                    click here.
+                 </a>
+            </span>
+            </span>
+        </div>
+    </div>
+{% endblock %}

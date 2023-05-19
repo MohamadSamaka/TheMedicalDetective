@@ -1,0 +1,23 @@
+[
+    {
+        "model": "core.City",
+        "pk": 1,
+        "fields": {
+            "name" : "Jenin"
+        }
+    },
+    {
+        "model": "core.City",
+        "pk": 2,
+        "fields": {
+            "name" : "Nablus"
+        }
+    },
+    {
+        "model": "core.City",
+        "pk": 3,
+        "fields": {
+            "name" : "Salem"
+        }
+    }
+]

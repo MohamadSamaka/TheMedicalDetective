@@ -1,0 +1,210 @@
+{% extends 'authentication/layouts/base.html'%}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}"/>
+    {% comment %} <link rel="stylesheet" href="style.css"> {% endcomment %}
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    {{ block.super }}
+    <script>
+        const formType = 1;
+    </script>
+    <script src="{% static 'js/authentication/sign-up.js' %}"></script>
+{% endblock %}
+
+
+
+{% block title %}Sign Up - The Medical Detective{% endblock %}
+
+
+
+{% block content %}
+{% endblock %}
+
+{% block left_side %}
+
+
+    <div class="steps-content">
+        <h3>Step <span class="step-number">1</span></h3>
+        <p class="step-number-content active">Enter your personal information to get closer to companies.</p>
+        <p class="step-number-content">Get to know better by adding your diploma,certificate and education life.</p>
+        <p class="step-number-content">Verifying your account</p>
+    </div>
+    <ul class="progress-bar pb-3">
+        <li class="active">Personal Information</li>
+        <li>Medical Record</li>
+        <li>Verifying</li>
+    </ul>
+{% endblock %}
+
+{% block right_side %}
+
+    <div class="main active">
+        {% comment %} <small><i class="fa fa-smile-o"></i></small> {% endcomment %}
+        <div class="text">
+            <h2>Your Personal Information</h2>
+            <p>Enter your personal information please.</p>
+        </div>
+        <div class="input-text d-flex">
+            <div class="input-div">
+
+                <span>First Name</span>
+                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Your first name should be at max 25 chars.">
+                    <input type="text" id="fname-input" class="form-control" required require name="fname" id="user_name">
+                </span>
+            </div>
+            <div class="input-div"> 
+                
+                <span>Last Name</span>
+                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Your last name should be at max 25 chars.">
+                    <input type="text" id="lname-input" class="form-control" name="lname" required require>
+                </span>
+            </div>
+        </div>
+        <div class="input-text d-flex">
+            <div class="input-div">
+                <span>E-mail Address</span>
+                <input type="email" id="email-input" class="form-control" name="email" required require>
+                <p class="text-danger pt-2"></p>
+            </div>
+            <div class="input-div">
+                <span>Phone number</span>
+                <input type="number" id="phone-num-input" class="form-control" name="phone-num" required require>
+            </div>
+            
+        </div>
+        <div class="input-text d-flex">
+            <div class="input-div">
+                <span>Password</span>
+                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Your password should at least 10 chars long and a mix of at least 1 lower char and 1 upper char mixed with numbers, symbols are allowed">
+                    <input type="password" id="pass-input" class="form-control" name="pass" required require>
+                </span>
+            </div>
+            <div class="input-div">
+                <span>Re-Enter password</span>
+                {% comment %} <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Your password should be at least 10 characters long."> {% endcomment %}
+                <input type="password" id="conf-pass-input" class="form-control" name="confirm-pass" required require>
+                {% comment %} </span> {% endcomment %}
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="next_button">Next Step</button>
+        </div>
+    </div>
+    <div class="main">
+        <div class="text">
+            <h2>Your Personal Healthcare Informations</h2>
+            <p>Provide us with your healthcare information please.</p>
+        </div>
+        <div class="input-text d-flex">
+            <div class="input-div">
+                <span>Height (cm)</span>
+                <input type="number" id="height-input" name="height" class="form-control" required require>
+            </div>
+            <div class="input-div"> 
+                <span>Weight (kg)</span>
+                <input type="number" id="weight-input" name="weight" class="form-control" required require>
+            </div>
+        </div>
+        <div class="input-text d-flex">
+            <div class="input-div">
+                <span class="d-block">Brithday</span>
+                <input type="date" class="form-control" name="bdate" id="bday-input" required require>
+            </div>
+            <div class="input-div align-self-end">
+                <span class="d-block">Blood Type</span>
+                <select class="form-select" id="blood-type-input" name="blood-type" required require>
+                    <option value="" disabled selected>Select Blood Type</option>
+                    <option value="1">A+</option>
+                    <option value="2">A-</option>
+                    <option value="3">B+</option>
+                    <option value="4">B-</option>
+                    <option value="5">O+</option>
+                    <option value="6">O-</option>
+                    <option value="7">AB+</option>
+                    <option value="8">AB-</option>
+                </select>
+            </div>
+        </div>
+        <div class="input-text d-flex">
+            {% comment %} <div class="input-div d-flex flex-column justify-content-between"> {% endcomment %}
+            <div class="input-div">
+                <span class="d-block">Gender</span>
+                <select class="form-select" id="gender-input" name="gender" required require>
+                    <option value="" disabled selected>Select Gender</option>
+                    {% for gen in gender%}
+                        <option value="{{ gen.id }}">{{ gen.name }}</option>
+                    {% endfor %}
+                </select>
+           </div>
+           <div class="input-div lign-self-end">
+            <span class="d-block">City</span>
+            <select class="form-select" id="city-input" name="city" required require>
+                <option value="" disabled selected>Select City</option>
+                {% for city in cities %}
+                    <option value="{{ city.id }}">{{ city.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        </div>
+        <div class="buttons button_space">
+            <button class="back_button">Back</button>
+            <button id="send-code-btn" class="next_button">Next</button>
+        </div>
+    </div>
+    <div class="main">
+        <div class="text">
+            <h2>Verification</h2>
+            <p>Check your email for your verification code!</p>
+        </div>
+        <div class="input-text">
+            <span id="invalid-code" class="text-danger pb-4 opacity-0">Code is invalid</span>
+            <div class="input-div">
+                <div class="ver-code-wraper row">
+                    <input type="number" pattern="[0-9]*"  value="" inputtype="numeric" autocomplete="one-time-code" class="ver-code-digit form-control col" id="otc-1" required require>
+                    <span class="digit-splitter"></span>
+                    <input type="number" pattern="[0-9]*"  value="" inputtype="numeric" autocomplete="one-time-code" class="ver-code-digit form-control col" required require>
+                    <span class="digit-splitter"></span>
+                    <input type="number" pattern="[0-9]*"  value="" inputtype="numeric" autocomplete="one-time-code" class="ver-code-digit form-control col" required require>
+                    <span class="digit-splitter"></span>
+                    <input type="number" pattern="[0-9]*"  value="" inputtype="numeric" autocomplete="one-time-code" class="ver-code-digit form-control col" required require>
+                </div>
+            </div>
+        </div>
+        <div class="input-text">
+            <div class="input-div">
+                <span id="verification-timer" class="text-muted"></span>
+            </div>
+        </div>
+        <div id="signup-btn" class="buttons button_space row">
+            <button class="back_button">Back</button>
+            <button id="verify-code-btn"></button>
+        </div>
+    </div>
+    <div class="main">
+        <div class="text">
+            <h3>You'are all set, your have been registeres successfully.</h3>
+        </div>
+        <div class="input-text">
+            <span>
+                <span id="redirection-timer"></span>
+            <span>if you haven't been redirected automatically to login page you can
+                 <a id="redirect-btn" href="">
+                    click here.
+                 </a>
+            </span>
+            </span>
+        </div>
+    </div>
+        {% comment %} <div class="main">                                
+           <div class="text congrats">
+               <h2>Congratulations!</h2>
+               <p>Thanks Mr./Mrs. <span class="shown_name"></span> your information have been submitted successfully for the future reference we will contact you soon.</p>
+           </div>
+       </div>             {% endcomment %}
+{% endblock %}

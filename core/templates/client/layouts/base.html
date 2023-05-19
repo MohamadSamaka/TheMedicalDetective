@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"> {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}"/>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"/>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-icons.css' %}"/>
     <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
@@ -18,27 +17,45 @@
 </head>
 <body>
     <div id="root">
-        <header id="header" class="container">
-            <nav class="nav-bar-wrapper align-items-center d-flex">
-                <a href="">Logo</a>
-                {% comment %} <img id="logo" src="{% static 'images/logo.png' %}" alt="the-medical-detective-logo"> {% endcomment %}
-                <ul class="main-navbar m-0 h-100 align-items-center list-unstyled d-flex justify-content-center w-100">
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link">Home</a>
+        {% include 'components/header.html' %}
+        {% comment %} <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+        </div>
+        </div> {% endcomment %}
+
+
+
+        {% comment %} <header id="header" class="container">
+            <nav class="navbar-wrapper align-items-center justify-content-between d-flex">
+                <div class="navbar-left">
+                    <a href="">Logo</a>
+                </div>
+                <ul class="navbar-primary m-0 h-100 align-items-center list-unstyled d-flex">
+                    <li class="navbar-item {% if url_name == 'home' %}active-page{% endif %}">
+                        <a href="{% url 'home' %}" class="navbar-link">Home</a>
                     </li>
-                    <li class="navbar-item">
+                    <li class="navbar-item {% if url_name == 'about' %}active-page{% endif %}">
                         <a href="" class="navbar-link">About</a>
                     </li>
-                    <li class="navbar-item">
-                        <a href="" class="navbar-link">Chat Bot</a>
+                    <li class="navbar-item {% if url_name == 'chatbot' %}active-page{% endif %}">
+                        <a href="{% url 'chatbot' %}" class="navbar-link">Chat Bot</a>
                     </li>
-                    <li class="navbar-item">
+                    <li class="navbar-item {% if url_name == 'clinics' %}active-page{% endif %}">
                         <a href="" class="navbar-link">Clinics</a>
                     </li>
                 </ul>
-                <a href="">Login</a>
+                <div class="navbar-right">
+                    <a href="{% url 'log-in' %}">Log In</a>
+                    <a href="{% url 'sign-up' %}">Sign Up</a>                
+                </div> 
             </nav>
-        </header>
+        </header> {% endcomment %}
         <main id="main-content" class="position-relative">{% block content %}{% endblock %}</main>
         {% comment %} <footer id="footer">
             <h1>footer is here</h1>

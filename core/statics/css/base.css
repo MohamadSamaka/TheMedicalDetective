@@ -3,13 +3,14 @@
     /* --bgcolor: #141C26; */
     /* --bgcolor: #01060D; */
     --bgcolor: #17212B;
+    --secondary-color: #0E1621;
     --bot-bg-message: #1B3947;
     --header-height: 70px;
 }
 
-*{
+/* *{
     color:white;
-}
+} */
 
 body{
     background-color: var(--bgcolor) !important;
@@ -41,59 +42,64 @@ body{
     color: white;
 }
 
+#header .offcanvas{
+    background-color: #0E1621;
+}
 
-#header .nav-bar-wrapper{
+
+#header .navbar-wrapper{
     height: 100%;
 }
 
 
-#header .main-navbar .navbar-item{
-    padding-left: 10px;
-    padding-right: 10px;
+
+.navbar-item.active-page{
+    border-radius: 20px;
+    padding-left: 7px;
+    padding-right: 7px;
+    background: #0075FF;
 }
 
-#header .main-navbar .navbar-item .navbar-link{
-    transition: all 0.3s;
-}
 
-#header .main-navbar .navbar-item .navbar-link:after{
+#header .navbar-primary .navbar-item .nav-link:after{
     content: "";
     display: block;
     height: 3px;
     width: 100%;
-    /* background-color: #70C4A8; */
-    background-color:#259CD8;
+    /* background-color:#259CD8; */
+    background-color: #0075FF;
     transform: scaleX(0);
-    transition: all 0.3s ease-out;
-
+    transition: transform 0.3s ease-out;
 }
 
-#header .main-navbar .navbar-item.active-page .navbar-link:after,
-#header .main-navbar .navbar-item:hover .navbar-link:after
+#header .navbar-primary .navbar-item.active-page .nav-link:after,
+#header .navbar-primary .navbar-item:hover .nav-link:after
 {
     transform: scaleX(1);
 }
 
 
-/* #header .main-navbar .navbar-item:hover .navbar-link:after{
-    transform: scaleX(1);
+
+/* .navbar-left{
+    width: 170px;
+} */
+
+#main-content{
+    min-height: 90%;
+}
+.navbar-toggler{
+    background: white !important;
+}
+/* #footer{
+    margin-bottom: -50px;
+    height: 50px;
 } */
 
 
 
-
-#logo{
-    width: 100px;
-}
-
-#main-content{
-    /* min-height: 100%; */
-}
-
-#footer{
-    margin-bottom: -50px;
-    height: 50px;
-}
-
-
-
+@media screen and (max-width: 768px) {
+    /* @media screen and (max-width: 576px) { */
+        #header{
+            height: 30px;
+        }
+    }
