@@ -12,6 +12,7 @@ createcachetable:
 .PHONY: init-data
 init-data:
 	python3 -m core.manage loaddata core
+	python3 -m core.manage loaddata groups
 	python3 -m core.manage loaddata diseases
 	python3 -m core.manage loaddata symptoms
 	python3 -m core.manage loaddata hospitals
