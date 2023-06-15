@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView
 from django.core.cache import cache
 from ..services.email import EmailVerificationManager
-from core.core.models import CustomUser
+from core.my_admin.models import CustomUser
 
 
 
@@ -16,7 +16,7 @@ class MyLoginView(LoginView, EmailVerificationManager):
     message = f"Your reset password is: {EmailVerificationManager.code}"
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated and request.user.is_superuser:
+        if request.user.is_authenticated and request.user.is_superuser or request.user.is_staff:
             # User is already logged in, redirect them to the admin index page
             return HttpResponseRedirect(reverse('admin:index'))
         elif request.user.is_authenticated:

@@ -1,3 +1,5 @@
-from django.contrib import admin
+from .models import BotDiagnoses
+from core.my_admin.views import my_admin_site
 
-# Register your models here.
+
+my_admin_site.register(BotDiagnoses)

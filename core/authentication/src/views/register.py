@@ -5,7 +5,8 @@ from django.urls import reverse
 from django.shortcuts import render
 from django.core.cache import cache
 from ..services.email import EmailVerificationManager
-from core.core.models import City, CustomUser
+from core.core.models import City
+from core.my_admin.models import CustomUser
 from ..forms.register import SignUpForm
 
 
@@ -51,16 +52,10 @@ class MyRegistrationView(TemplateView, EmailVerificationManager):
         form = SignUpForm(form_data)
         if not form.is_valid():
             # return the errors in the form
-            return HttpResponse(form.errors.as_json(), 400)
+            return HttpResponse(form.errors.as_json(), status=400)
         if not session_key:
             request.session.cycle_key()
             session_key = request.session.session_key
-
-        # processed_inputs = {}
-        # for key in validationRules.keys():
-        #     processed_inputs[key] = sent_inputs[key]
-        #     # request.session[key] = sent_inputs[key]
-
 
 
         # cache.set(session_key, sent_inputs, timeout=180)
@@ -78,7 +73,7 @@ class MyRegistrationView(TemplateView, EmailVerificationManager):
         if form.is_valid():
             return form.save()
         else:
-            return HttpResponse(form.errors.as_json(), 400)    
+            return HttpResponse(form.errors.as_json(), status=400)    
 
 
     def email_exists(self, request):

@@ -25,11 +25,11 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('core.home.urls')),
+    path('', include('core.authentication.urls')),
+    path('', include('core.my_admin.urls')),
     path('home/', include('core.home.urls')),
     path('chatbot/', include('core.chatbot.urls')),
-    # path('', include('core.chatbot.urls')),
-    path('', include('core.authentication.urls')),
-    path('', include('core.myAdmin.urls')),
+    path('booking/', include('core.booking.urls')),
 
 
 

@@ -1,6 +1,7 @@
 from django.urls import path
-from . import views
+from .views import ChatbotView, initChatbotView
 
 urlpatterns = [
-    path('', views.index, name="chatbot"),
+    path('', ChatbotView.as_view(), name='chatbot'),
+    path('diagnose/', initChatbotView.run_diagnosis, name='diagnose'),
 ]

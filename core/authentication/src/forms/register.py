@@ -38,7 +38,8 @@ validationRules = {
 
 
 class SignUpForm(forms.Form):
-    from core.core.models import City, CustomUser
+    from core.core.models import City
+    from core.my_admin.models import CustomUser
     from core.healthcare.models import UsersMeicalRecord, BLOOD_TYPE_CHOICES
     email = forms.EmailField()
     password = forms.CharField(min_length=10, widget=forms.PasswordInput)
