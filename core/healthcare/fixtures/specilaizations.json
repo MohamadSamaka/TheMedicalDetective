@@ -1,0 +1,72 @@
+[
+    {
+      "model": "healthcare.Specializations",
+      "pk": 1,
+      "fields": {
+        "name": "Specialization 1"
+      }
+    },
+    {
+      "model": "healthcare.Specializations",
+      "pk": 2,
+      "fields": {
+        "name": "Specialization 2"
+      }
+    },
+    {
+      "model": "healthcare.Specializations",
+      "pk": 3,
+      "fields": {
+        "name": "Specialization 3"
+      }
+    },
+    {
+      "model": "healthcare.Specializations",
+      "pk": 4,
+      "fields": {
+        "name": "Specialization 4"
+      }
+    },
+    {
+      "model": "healthcare.Specializations",
+      "pk": 5,
+      "fields": {
+        "name": "Specialization 5"
+      }
+    },
+    {
+      "model": "healthcare.Specializations",
+      "pk": 6,
+      "fields": {
+        "name": "Specialization 6"
+      }
+    },
+    {
+      "model": "healthcare.Specializations",
+      "pk": 7,
+      "fields": {
+        "name": "Specialization 7"
+      }
+    },
+    {
+      "model": "healthcare.Specializations",
+      "pk": 8,
+      "fields": {
+        "name": "Specialization 8"
+      }
+    },
+    {
+      "model": "healthcare.Specializations",
+      "pk": 9,
+      "fields": {
+        "name": "Specialization 9"
+      }
+    },
+    {
+      "model": "healthcare.Specializations",
+      "pk": 10,
+      "fields": {
+        "name": "Specialization 10"
+      }
+    }
+  ]

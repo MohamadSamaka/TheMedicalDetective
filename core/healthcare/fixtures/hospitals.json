@@ -1,0 +1,35 @@
+[
+    {
+      "model": "healthcare.Hospitals",
+      "pk": 1,
+      "fields": {
+        "name": "Hospital 1",
+        "address": "Address 1",
+        "city": 1,
+        "phone": "1234567890",
+        "email": "hospital1@example.com"
+      }
+    },
+    {
+      "model": "healthcare.Hospitals",
+      "pk": 2,
+      "fields": {
+        "name": "Hospital 2",
+        "address": "Address 2",
+        "city": 1,
+        "phone": "9876543210",
+        "email": "hospital2@example.com"
+      }
+    },
+    {
+      "model": "healthcare.Hospitals",
+      "pk": 3,
+      "fields": {
+        "name": "Hospital 3",
+        "address": "Address 3",
+        "city": 2,
+        "phone": "5555555555",
+        "email": "hospital3@example.com"
+      }
+    }
+  ]

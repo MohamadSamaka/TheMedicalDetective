@@ -1,0 +1,926 @@
+[
+    {
+        "fields": {
+            "name": "itching"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "name": "skin_rash"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "name": "nodal_skin_eruptions"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "name": "continuous_sneezing"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "name": "shivering"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "name": "chills"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "name": "joint_pain"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "name": "stomach_pain"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 8
+    },
+    {
+        "fields": {
+            "name": "acidity"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "name": "ulcers_on_tongue"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 10
+    },
+    {
+        "fields": {
+            "name": "muscle_wasting"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 11
+    },
+    {
+        "fields": {
+            "name": "vomiting"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 12
+    },
+    {
+        "fields": {
+            "name": "burning_micturition"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 13
+    },
+    {
+        "fields": {
+            "name": "spotting_ urination"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "name": "fatigue"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 15
+    },
+    {
+        "fields": {
+            "name": "weight_gain"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 16
+    },
+    {
+        "fields": {
+            "name": "anxiety"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 17
+    },
+    {
+        "fields": {
+            "name": "cold_hands_and_feets"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 18
+    },
+    {
+        "fields": {
+            "name": "mood_swings"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 19
+    },
+    {
+        "fields": {
+            "name": "weight_loss"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 20
+    },
+    {
+        "fields": {
+            "name": "restlessness"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 21
+    },
+    {
+        "fields": {
+            "name": "lethargy"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 22
+    },
+    {
+        "fields": {
+            "name": "patches_in_throat"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 23
+    },
+    {
+        "fields": {
+            "name": "irregular_sugar_level"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 24
+    },
+    {
+        "fields": {
+            "name": "cough"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 25
+    },
+    {
+        "fields": {
+            "name": "high_fever"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 26
+    },
+    {
+        "fields": {
+            "name": "sunken_eyes"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 27
+    },
+    {
+        "fields": {
+            "name": "breathlessness"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 28
+    },
+    {
+        "fields": {
+            "name": "sweating"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 29
+    },
+    {
+        "fields": {
+            "name": "dehydration"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 30
+    },
+    {
+        "fields": {
+            "name": "indigestion"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 31
+    },
+    {
+        "fields": {
+            "name": "headache"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 32
+    },
+    {
+        "fields": {
+            "name": "yellowish_skin"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 33
+    },
+    {
+        "fields": {
+            "name": "dark_urine"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 34
+    },
+    {
+        "fields": {
+            "name": "nausea"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 35
+    },
+    {
+        "fields": {
+            "name": "loss_of_appetite"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 36
+    },
+    {
+        "fields": {
+            "name": "pain_behind_the_eyes"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 37
+    },
+    {
+        "fields": {
+            "name": "back_pain"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 38
+    },
+    {
+        "fields": {
+            "name": "constipation"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 39
+    },
+    {
+        "fields": {
+            "name": "abdominal_pain"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 40
+    },
+    {
+        "fields": {
+            "name": "diarrhoea"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 41
+    },
+    {
+        "fields": {
+            "name": "mild_fever"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 42
+    },
+    {
+        "fields": {
+            "name": "yellow_urine"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 43
+    },
+    {
+        "fields": {
+            "name": "yellowing_of_eyes"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 44
+    },
+    {
+        "fields": {
+            "name": "acute_liver_failure"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 45
+    },
+    {
+        "fields": {
+            "name": "fluid_overload"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 46
+    },
+    {
+        "fields": {
+            "name": "swelling_of_stomach"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 47
+    },
+    {
+        "fields": {
+            "name": "swelled_lymph_nodes"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 48
+    },
+    {
+        "fields": {
+            "name": "malaise"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 49
+    },
+    {
+        "fields": {
+            "name": "blurred_and_distorted_vision"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 50
+    },
+    {
+        "fields": {
+            "name": "phlegm"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 51
+    },
+    {
+        "fields": {
+            "name": "throat_irritation"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 52
+    },
+    {
+        "fields": {
+            "name": "redness_of_eyes"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 53
+    },
+    {
+        "fields": {
+            "name": "sinus_pressure"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 54
+    },
+    {
+        "fields": {
+            "name": "runny_nose"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 55
+    },
+    {
+        "fields": {
+            "name": "congestion"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 56
+    },
+    {
+        "fields": {
+            "name": "chest_pain"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 57
+    },
+    {
+        "fields": {
+            "name": "weakness_in_limbs"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 58
+    },
+    {
+        "fields": {
+            "name": "fast_heart_rate"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 59
+    },
+    {
+        "fields": {
+            "name": "pain_during_bowel_movements"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 60
+    },
+    {
+        "fields": {
+            "name": "pain_in_anal_region"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 61
+    },
+    {
+        "fields": {
+            "name": "bloody_stool"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 62
+    },
+    {
+        "fields": {
+            "name": "irritation_in_anus"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 63
+    },
+    {
+        "fields": {
+            "name": "neck_pain"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 64
+    },
+    {
+        "fields": {
+            "name": "dizziness"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 65
+    },
+    {
+        "fields": {
+            "name": "cramps"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 66
+    },
+    {
+        "fields": {
+            "name": "bruising"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 67
+    },
+    {
+        "fields": {
+            "name": "obesity"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 68
+    },
+    {
+        "fields": {
+            "name": "swollen_legs"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 69
+    },
+    {
+        "fields": {
+            "name": "swollen_blood_vessels"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 70
+    },
+    {
+        "fields": {
+            "name": "puffy_face_and_eyes"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 71
+    },
+    {
+        "fields": {
+            "name": "enlarged_thyroid"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 72
+    },
+    {
+        "fields": {
+            "name": "brittle_nails"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 73
+    },
+    {
+        "fields": {
+            "name": "swollen_extremeties"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 74
+    },
+    {
+        "fields": {
+            "name": "excessive_hunger"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 75
+    },
+    {
+        "fields": {
+            "name": "extra_marital_contacts"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 76
+    },
+    {
+        "fields": {
+            "name": "drying_and_tingling_lips"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 77
+    },
+    {
+        "fields": {
+            "name": "slurred_speech"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 78
+    },
+    {
+        "fields": {
+            "name": "knee_pain"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 79
+    },
+    {
+        "fields": {
+            "name": "hip_joint_pain"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 80
+    },
+    {
+        "fields": {
+            "name": "muscle_weakness"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 81
+    },
+    {
+        "fields": {
+            "name": "stiff_neck"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 82
+    },
+    {
+        "fields": {
+            "name": "swelling_joints"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 83
+    },
+    {
+        "fields": {
+            "name": "movement_stiffness"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 84
+    },
+    {
+        "fields": {
+            "name": "spinning_movements"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 85
+    },
+    {
+        "fields": {
+            "name": "loss_of_balance"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 86
+    },
+    {
+        "fields": {
+            "name": "unsteadiness"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 87
+    },
+    {
+        "fields": {
+            "name": "weakness_of_one_body_side"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 88
+    },
+    {
+        "fields": {
+            "name": "loss_of_smell"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 89
+    },
+    {
+        "fields": {
+            "name": "bladder_discomfort"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 90
+    },
+    {
+        "fields": {
+            "name": "foul_smell_of urine"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 91
+    },
+    {
+        "fields": {
+            "name": "continuous_feel_of_urine"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 92
+    },
+    {
+        "fields": {
+            "name": "passage_of_gases"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 93
+    },
+    {
+        "fields": {
+            "name": "internal_itching"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 94
+    },
+    {
+        "fields": {
+            "name": "toxic_look_(typhos)"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 95
+    },
+    {
+        "fields": {
+            "name": "depression"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 96
+    },
+    {
+        "fields": {
+            "name": "irritability"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 97
+    },
+    {
+        "fields": {
+            "name": "muscle_pain"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 98
+    },
+    {
+        "fields": {
+            "name": "altered_sensorium"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 99
+    },
+    {
+        "fields": {
+            "name": "red_spots_over_body"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 100
+    },
+    {
+        "fields": {
+            "name": "belly_pain"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 101
+    },
+    {
+        "fields": {
+            "name": "abnormal_menstruation"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 102
+    },
+    {
+        "fields": {
+            "name": "dischromic _patches"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 103
+    },
+    {
+        "fields": {
+            "name": "watering_from_eyes"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 104
+    },
+    {
+        "fields": {
+            "name": "increased_appetite"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 105
+    },
+    {
+        "fields": {
+            "name": "polyuria"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 106
+    },
+    {
+        "fields": {
+            "name": "family_history"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 107
+    },
+    {
+        "fields": {
+            "name": "mucoid_sputum"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 108
+    },
+    {
+        "fields": {
+            "name": "rusty_sputum"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 109
+    },
+    {
+        "fields": {
+            "name": "lack_of_concentration"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 110
+    },
+    {
+        "fields": {
+            "name": "visual_disturbances"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 111
+    },
+    {
+        "fields": {
+            "name": "receiving_blood_transfusion"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 112
+    },
+    {
+        "fields": {
+            "name": "receiving_unsterile_injections"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 113
+    },
+    {
+        "fields": {
+            "name": "coma"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 114
+    },
+    {
+        "fields": {
+            "name": "stomach_bleeding"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 115
+    },
+    {
+        "fields": {
+            "name": "distention_of_abdomen"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 116
+    },
+    {
+        "fields": {
+            "name": "history_of_alcohol_consumption"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 117
+    },
+    {
+        "fields": {
+            "name": "fluid_overload.1"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 118
+    },
+    {
+        "fields": {
+            "name": "blood_in_sputum"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 119
+    },
+    {
+        "fields": {
+            "name": "prominent_veins_on_calf"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 120
+    },
+    {
+        "fields": {
+            "name": "palpitations"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 121
+    },
+    {
+        "fields": {
+            "name": "painful_walking"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 122
+    },
+    {
+        "fields": {
+            "name": "pus_filled_pimples"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 123
+    },
+    {
+        "fields": {
+            "name": "blackheads"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 124
+    },
+    {
+        "fields": {
+            "name": "scurring"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 125
+    },
+    {
+        "fields": {
+            "name": "skin_peeling"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 126
+    },
+    {
+        "fields": {
+            "name": "silver_like_dusting"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 127
+    },
+    {
+        "fields": {
+            "name": "small_dents_in_nails"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 128
+    },
+    {
+        "fields": {
+            "name": "inflammatory_nails"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 129
+    },
+    {
+        "fields": {
+            "name": "blister"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 130
+    },
+    {
+        "fields": {
+            "name": "red_sore_around_nose"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 131
+    },
+    {
+        "fields": {
+            "name": "yellow_crust_ooze"
+        },
+        "model": "healthcare.Symptoms",
+        "pk": 132
+    }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "model": "healthcare.DoctorsInformation",
+    "pk": 1,
+    "fields": {
+      "user": 2,
+      "hospitals": 1,
+      "specialization": 1,
+      "phone": "1111111111"
+    }
+  },
+  {
+    "model": "healthcare.DoctorsInformation",
+    "pk": 2,
+    "fields": {
+      "user": 3,
+      "hospitals": 1,
+      "specialization": 2,
+      "phone": "2222222222"
+    }
+  },
+  {
+    "model": "healthcare.DoctorsInformation",
+    "pk": 3,
+    "fields": {
+      "user": 4,
+      "hospitals": 3,
+      "specialization": 2,
+      "phone": "2222222222"
+    }
+  },
+  {
+    "model": "healthcare.DoctorsInformation",
+    "pk": 4,
+    "fields": {
+      "user": 5,
+      "hospitals": 3,
+      "specialization": 2,
+      "phone": "2222222222"
+    }
+  },
+  {
+    "model": "healthcare.DoctorsInformation",
+    "pk": 5,
+    "fields": {
+      "user": 6,
+      "hospitals": 1,
+      "specialization": 3,
+      "phone": "2222222222"
+    }
+  },
+  {
+    "model": "healthcare.DoctorsInformation",
+    "pk": 6,
+    "fields": {
+      "user": 7,
+      "hospitals": 3,
+      "specialization": 2,
+      "phone": "2222222222"
+    }
+  },
+  {
+    "model": "healthcare.DoctorsInformation",
+    "pk": 7,
+    "fields": {
+      "user": 8,
+      "hospitals": 2,
+      "specialization": 1,
+      "phone": "2222222222"
+    }
+  },
+  {
+    "model": "healthcare.DoctorsInformation",
+    "pk": 8,
+    "fields": {
+      "user": 9,
+      "hospitals": 3,
+      "specialization": 3,
+      "phone": "2222222222"
+    }
+  },
+  {
+    "model": "healthcare.DoctorsInformation",
+    "pk": 9,
+    "fields": {
+      "user": 10,
+      "hospitals": 2,
+      "specialization": 2,
+      "phone": "2222222222"
+    }
+  }
+]

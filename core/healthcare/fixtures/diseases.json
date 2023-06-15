@@ -1,0 +1,289 @@
+[
+    {
+        "fields": {
+            "name": "(vertigo) Paroymsal  Positional Vertigo"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "name": "AIDS"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "name": "Acne"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "name": "Alcoholic hepatitis"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "name": "Allergy"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "name": "Arthritis"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "name": "Bronchial Asthma"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "name": "Cervical spondylosis"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 8
+    },
+    {
+        "fields": {
+            "name": "Chicken pox"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "name": "Chronic cholestasis"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 10
+    },
+    {
+        "fields": {
+            "name": "Common Cold"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 11
+    },
+    {
+        "fields": {
+            "name": "Dengue"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 12
+    },
+    {
+        "fields": {
+            "name": "Diabetes "
+        },
+        "model": "healthcare.Diseases",
+        "pk": 13
+    },
+    {
+        "fields": {
+            "name": "Dimorphic hemmorhoids(piles)"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "name": "Drug Reaction"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 15
+    },
+    {
+        "fields": {
+            "name": "Fungal infection"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 16
+    },
+    {
+        "fields": {
+            "name": "GERD"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 17
+    },
+    {
+        "fields": {
+            "name": "Gastroenteritis"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 18
+    },
+    {
+        "fields": {
+            "name": "Heart attack"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 19
+    },
+    {
+        "fields": {
+            "name": "Hepatitis B"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 20
+    },
+    {
+        "fields": {
+            "name": "Hepatitis C"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 21
+    },
+    {
+        "fields": {
+            "name": "Hepatitis D"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 22
+    },
+    {
+        "fields": {
+            "name": "Hepatitis E"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 23
+    },
+    {
+        "fields": {
+            "name": "Hypertension "
+        },
+        "model": "healthcare.Diseases",
+        "pk": 24
+    },
+    {
+        "fields": {
+            "name": "Hyperthyroidism"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 25
+    },
+    {
+        "fields": {
+            "name": "Hypoglycemia"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 26
+    },
+    {
+        "fields": {
+            "name": "Hypothyroidism"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 27
+    },
+    {
+        "fields": {
+            "name": "Impetigo"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 28
+    },
+    {
+        "fields": {
+            "name": "Jaundice"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 29
+    },
+    {
+        "fields": {
+            "name": "Malaria"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 30
+    },
+    {
+        "fields": {
+            "name": "Migraine"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 31
+    },
+    {
+        "fields": {
+            "name": "Osteoarthristis"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 32
+    },
+    {
+        "fields": {
+            "name": "Paralysis (brain hemorrhage)"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 33
+    },
+    {
+        "fields": {
+            "name": "Peptic ulcer diseae"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 34
+    },
+    {
+        "fields": {
+            "name": "Pneumonia"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 35
+    },
+    {
+        "fields": {
+            "name": "Psoriasis"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 36
+    },
+    {
+        "fields": {
+            "name": "Tuberculosis"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 37
+    },
+    {
+        "fields": {
+            "name": "Typhoid"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 38
+    },
+    {
+        "fields": {
+            "name": "Urinary tract infection"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 39
+    },
+    {
+        "fields": {
+            "name": "Varicose veins"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 40
+    },
+    {
+        "fields": {
+            "name": "hepatitis A"
+        },
+        "model": "healthcare.Diseases",
+        "pk": 41
+    }
+]
