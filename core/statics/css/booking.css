@@ -1,0 +1,164 @@
+#booking{
+    color:black;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    overflow-y: scroll;
+    /* background-color:#08122A */
+}
+
+/* #booking .doctor-wrapper{
+    flex-basis: auto;
+}
+
+
+#booking .doctor-wrapper .basic-info{
+
+}
+
+
+
+#booking .doctor-wrapper .detailed-info{
+    color:white;
+    background-color: #08122A;
+    min-width: 350px;
+} */
+
+/*
+for full width use flex-grow-1 on card more-info
+and the doctor-wrapper of it use flex-basis 100%
+*/
+
+/* #booking .doctor-wrapper .detailed-info.hidden{
+    width: 0;
+    overflow: hidden;
+    visibility: hidden;
+    flex-shrink: 0;
+    display: none !important;
+} */
+
+/*
+add flex-fill or fill-flex to doctor-wrapper when hidden is removed
+
+*/
+
+#booking {
+    height: 90%;
+    min-height: 90%;
+}
+
+#booking .left-side{
+    width: 250px;
+}
+
+#booking #div_id_specialization{
+    height: 190px;
+    /* max-height: 35%; */
+    overflow-y: scroll;
+}
+
+
+
+
+
+
+#booking .right-side{
+    padding-left: calc(var(--bs-gutter-x,.75rem) * 3);
+}
+
+#booking .doctor-image{
+    width: 100px;
+    height: 100px;
+}
+
+#booking .doctor-wrapper{
+    flex-basis: calc(100% / 4);
+    overflow: hidden;
+    transition: flex-basis 0.4s ease-out, background-color 0.6s ease, color 0.6s ease
+}
+
+#booking .doctor-wrapper.active{
+    background-color: #08122A;
+    color:white;
+    flex-basis: calc(100% / 2);
+}
+
+
+#booking .doctor-wrapper .basic-info{
+    position: relative;
+    min-width: 100%;
+    background-color: transparent;
+}
+
+/* #booking .doctor-wrapper.active .more-info:before{
+    content : "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 70%;
+    width: 20px; 
+    border-left:1px solid black;
+} */
+
+#booking .doctor-wrapper.active .basic-info{
+    /* width: calc(100% / 2); */
+    min-width: calc(100% / 2);
+    transition: min-width 0.2s ease;
+
+}
+
+#booking .doctor-wrapper .more-info{
+    background-color: transparent;
+    opacity: 0;
+    pointer-events:none;
+    transition: opacity 0.2s ease;
+}
+
+#booking .doctor-wrapper.active .more-info{
+    opacity: 1;
+    pointer-events: all;
+}
+
+
+
+
+.disabled-minute {
+    background-color: #f2f2f2; /* Change to the desired styling */
+    color: #999999; /* Change to the desired styling */
+    cursor: not-allowed;
+}
+
+
+
+#confirm-appointment-btn{
+    min-height: 38px;
+    transition: all 1s ease;
+}
+
+#confirm-appointment-btn .btn-text {
+    transition: font-size 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+#confirm-appointment-btn.processing-state .btn-text {
+    transform: scaleX(0);
+    transform-origin: left;
+    font-size: 0;
+}
+
+#confirm-appointment-btn .spinner-border,
+#confirm-appointment-btn .bi-check-circle
+{
+    display: none;
+}
+
+#confirm-appointment-btn.processing-state .spinner-border,
+#confirm-appointment-btn.success-state .bi-check-circle
+{
+    display: block;
+}
+
+
+/* #confirm-appointment-btn.confirmed-state .btn-text{
+
+} */
+
