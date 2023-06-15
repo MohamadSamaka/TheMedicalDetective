@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+import sys
 
 
 class ChatbotConfig(AppConfig):
@@ -6,7 +7,8 @@ class ChatbotConfig(AppConfig):
     name = 'core.chatbot'
 
     def ready(self):
-        from core.model_managment.src.models.diagnoser import DiagnoserModel
-        from core.model_managment.src.models.NER import NERModel
-        self.ner_model, self.tokenizer = NERModel.Model.load_model(), NERModel.Tokenizer.load_tokenizer()
-        self.diagnoser_model = DiagnoserModel.Model.load_model()
+        if 'runserver' in sys.argv:
+            from core.model_managment.src.models.diagnoser import DiagnoserModel
+            from core.model_managment.src.models.NER import NERModel
+            self.ner_model, self.tokenizer = NERModel.Model.load_model(), NERModel.Tokenizer.load_tokenizer()
+            self.diagnoser_model = DiagnoserModel.Model.load_model()
