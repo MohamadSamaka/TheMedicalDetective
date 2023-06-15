@@ -120,12 +120,6 @@ function sendMssg(event){
     }
 }
 
-let something;
-
-
-
-
-
 function send_case(userCase){
     const formdata = new FormData();
     formdata.append('case', userCase)
