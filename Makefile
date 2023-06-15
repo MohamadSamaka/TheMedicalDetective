@@ -1,5 +1,5 @@
 .PHONY: init-app
-init-app: install migrations migrate loaddata super-user
+init-app: install migrations migrate init-data super-user
 
 .PHONY: install
 install:
@@ -9,17 +9,22 @@ install:
 createcachetable:
 	python3 -m core.manage createcachetable
 
-.PHONY: loaddata
-loaddata:
+.PHONY: init-data
+init-data:
 	python3 -m core.manage loaddata core
-	
+	python3 -m core.manage loaddata diseases
+	python3 -m core.manage loaddata symptoms
+	python3 -m core.manage loaddata hospitals
+	python3 -m core.manage loaddata specilaizations
+	python3 -m core.manage loaddata doctors_information
+
 .PHONY: run-server
 run-server:
 	python3 -m core.manage runserver
 
-.PHONY: unmigrate-all
-unmigrate-all:
-	python -m core.manage unapply_all_migrations
+.PHONY: unmigrate-delete-all
+unmigrate-delete-all:
+	python -m core.manage unmigrate-delete-all
 
 .PHONY: migrate
 migrate: createcachetable
