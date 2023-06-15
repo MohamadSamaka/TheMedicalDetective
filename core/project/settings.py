@@ -27,8 +27,6 @@ CORE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = getenv('KEY')
 
-VERIFICATION_CODE_TIMEOUT = getenv('VERIFICATION_CODE_TIMEOUT')
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (getenv('DEBUG', "False") == 'TRUE')
 
@@ -43,7 +41,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 INSTALLED_APPS = [
     # 'core',
     # 'core.chatbot',
-    # 'jazzmin',
+    'jazzmin',
     # 'admin_argon.apps.AdminArgonConfig',
     # 'admin_corporate.apps.AdminCorporateConfig',
     'django.contrib.admin',
@@ -53,9 +51,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.core.apps.CoreConfig',
+    'core.my_admin.apps.MyadminConfig',
     'core.authentication.apps.AuthenticationConfig',
-    'core.myAdmin.apps.MyadminConfig',
     'core.healthcare.apps.HealthcareConfig',
+    'core.chatbot.apps.ChatbotConfig',
+    'core.booking.apps.BookingConfig',
+    "bootstrap5",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "bootstrap_datepicker_plus",
+    # "django_flatpickr",
+    
 ]
 
 
@@ -67,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.core.src.middlewares.flash_data.FlashDataMiddleware'
 ]
 
 
@@ -153,7 +160,7 @@ STATICFILES_DIRS = [
     CORE_DIR / "statics",
 ]
 
-AUTH_USER_MODEL = 'core.CustomUser'
+AUTH_USER_MODEL = 'my_admin.CustomUser'
 
 
 
@@ -172,5 +179,20 @@ CACHES = {
     }
 }
 
+
+MAX_SEQUENCE_LENGTH = int(getenv('MAX_SEQUENCE_LENGTH'))
+VERIFICATION_CODE_TIMEOUT = getenv('VERIFICATION_CODE_TIMEOUT')
+
+#crispy settings
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
 STATIC_ROOT = CORE_DIR / 'staticfiles'
-# print(f"{CORE_DIR} / staticfiles")
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = CORE_DIR / 'media'
+
+DATASETS_DIR = MEDIA_ROOT / 'datasets'
+MODELS_DIR = MEDIA_ROOT / 'models'
+TOKENIZERS_DIR = MEDIA_ROOT / 'tokenizers'
