@@ -5,7 +5,7 @@
           <a href="">Logo</a>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
-          <span class="navbar-toggler-icon"></span>
+          <span class="bi-list"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
           <div class="offcanvas-header">
@@ -25,6 +25,9 @@
               </li>
               <li class="navbar-item {% if url_name == 'clinics' %}active-page{% endif %}">
                 <a href="" class="nav-link d-inline-block">Clinics</a>
+              </li>
+              <li class="navbar-item {% if url_name == 'booking' %}active-page{% endif %}">
+                <a href="{% url 'booking:index' %}" class="nav-link d-inline-block">Booking</a>
               </li>
             </ul>
             <ul class="navbar-right navbar-nav">
