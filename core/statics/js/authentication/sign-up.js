@@ -1,5 +1,5 @@
 let num = document.querySelector(".step-number");
-let stepsList = document.querySelectorAll(".progress-bar li");
+let stepsList = document.querySelectorAll(".progress-point li");
 
 function redirectToLogin(e){
 	clearInterval(redireactionCountDown);
