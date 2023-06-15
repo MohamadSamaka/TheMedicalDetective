@@ -2,16 +2,67 @@
     --header-height: 204px;
 } */
 
-#chatbot .chatbox{
+/* #root{
+    height: 100vw;
+    max-height: 100vw;
+    overflow: hidden;
+} */
+
+#chatbot #chatlog{
     width: 100%;
-    height: 100%;
+    /* height: 90vh; */
+    /* max-height: 90%; */
+    max-height: calc(100vh - 204px);
+    overflow: auto;
+    overflow-x: hidden;
+    padding-left: 25px;
+    padding-right: 25px;
+
 }
 
 
-#chatbot .fixed{
+#chatlog {
+    scrollbar-width: thin;
+    scrollbar-color: #e5e5e5 #f0f0f0;
+  }
+  
+#chatlog::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+
+}
+  
+#chatlog::-webkit-scrollbar-thumb {
+    background-color: #e5e5e5;
+    border-radius: 10px;
+    /* border-radius: 50%; */
+
+}
+  
+#chatlog {
+scrollbar-color: #e5e5e5 #f0f0f0;
+}
+  
+#chatlog::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+  
+#chatlog::-webkit-scrollbar-thumb {
+    background-color: #e5e5e5;
+    border-radius: 10px;
+    /* border-radius: 50%; */
+}
+  
+#chatlog::-webkit-scrollbar-thumb:hover {
+background-color: #ccc;
+}
+
+/* #chatbot .fixed{
     clear:both;
     height: 70px;
-}
+} */
 
 #chatbot *{
     color: white;
@@ -20,8 +71,13 @@
 
 #chatbot .mssg {
     /* display: flex; */
+    width: fit-content;
+
+/* 
     clear: both;
-    float: left;
+    float: left; */
+
+
     max-width: 60%;
     padding: 15px 10px 15px;
     /* border-radius: 10px 10px 10px 0; */
@@ -46,6 +102,11 @@
     border-radius: 10px 10px 0 10px;
 }
 
+
+#chatbot .mssg .mssg-content{
+    text-align: left;
+}
+
 #chatbot .input-wrapper{
     position: fixed;
     bottom: 0;
@@ -62,6 +123,16 @@
     resize: none;
 }
 
+#chatbot #user-input{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    resize: none; 
+    max-height: 5em; 
+
+}
+
 #chatbot .input-wrapper .input-mssg-area::placeholder {
     color: white;
   }
@@ -70,9 +141,9 @@
     outline: none;
 }
 
-#chatbot .spinner-grow-sm {
-    --bs-spinner-width: 0.5rem;
-    --bs-spinner-height: 0.5rem;
+.spinner-grow-sm{
+    width: 0.5rem;
+    height: 0.5rem;
 }
 
 #chatbot .mssg.loading{

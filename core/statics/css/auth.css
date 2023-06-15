@@ -98,7 +98,7 @@
     padding:20px 30px;
 }
 
-.progress-bar{
+.progress-point{
     list-style:none;
     margin-top:30px;
     font-size:13px;
@@ -106,7 +106,7 @@
     counter-reset:container 0;
 }
 
-.progress-bar li{
+.progress-point li{
     position:relative;
     margin-left:40px;
     margin-top:50px;
@@ -115,7 +115,7 @@
     transition: all 1s ease ;
 }
 
-.progress-bar li::before{
+.progress-point li::before{
     content:counter(container);
     line-height:25px;
     text-align:center;
@@ -131,7 +131,7 @@
     transition: all 1s ease;
 }
 
-.progress-bar li::after{
+.progress-point li::after{
     content: '';
     position: absolute;
     height: 90px;
@@ -144,22 +144,22 @@
 
 }
 
-.progress-bar li.active::after{
+.progress-point li.active::after{
     background-color: #fff;
 
 }
 
-.progress-bar li:first-child:after{
+.progress-point li:first-child:after{
   display:none;
 }
 
-.progress-bar li.active::before{
+.progress-point li.active::before{
     color:#fff;
     border:1px solid #fff;
     
 }
 
-.progress-bar li.active{
+.progress-point li.active{
     color:#fff;
 
 }
