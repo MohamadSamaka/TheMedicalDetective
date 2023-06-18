@@ -7,6 +7,9 @@ from django.contrib.auth.views import LoginView
 from django.core.cache import cache
 from ..services.email import EmailVerificationManager
 from core.my_admin.models import CustomUser
+from core.core.src.utls.helpers import redirect_to_user_or_doc_page
+
+
 
 
 
@@ -17,8 +20,7 @@ class MyLoginView(LoginView, EmailVerificationManager):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated and request.user.is_superuser or request.user.is_staff:
-            # User is already logged in, redirect them to the admin index page
-            return HttpResponseRedirect(reverse('admin:index'))
+            return redirect_to_user_or_doc_page(request.user)
         elif request.user.is_authenticated:
             return HttpResponseRedirect(reverse('home'))
         # else:
@@ -32,8 +34,9 @@ class MyLoginView(LoginView, EmailVerificationManager):
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(self.request, user)
-            # return HttpResponseRedirect(reverse('admin:index'))
-            return HttpResponseRedirect(reverse('admin:index'))
+            if not user.is_superuser and not user.is_staff and not user.is_admin:
+                return HttpResponseRedirect(reverse('home'))
+            return redirect_to_user_or_doc_page(user)
         else:
             # Authentication failed
             return self.form_invalid(form)
