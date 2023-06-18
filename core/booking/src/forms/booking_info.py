@@ -12,10 +12,10 @@ class BookingInfoForm(forms.Form):
         # print("disabled: ", booked_appointments)
         super().__init__(*args, **kwargs)
         self.fields['doc'].choices = self.get_all_doc_ids()
-        if booked_appointments:
-                print("origin: ", [datetime.now().isoformat(), (datetime.now() + timedelta(hours=48)).isoformat()])
-                print("booked:", booked_appointments)
-                print("converted:", booked_appointments[:2])
+        if True:
+                # print("origin: ", [datetime.now().isoformat(), (datetime.now() + timedelta(hours=48)).isoformat()])
+                # print("booked:", booked_appointments)
+                # print("converted:", booked_appointments[:2])
                 # default_options = self.fields['appointment_date_time'].widget.options
                 # default_options={
                 #       'format': 'YYYY-MM-DD hh:mm A',
@@ -23,7 +23,7 @@ class BookingInfoForm(forms.Form):
                 #         'minDate': datetime.now(),
                 #         # 'disabledTimeIntervals': booked_appointments[:2]
                 # }
-                print(booked_appointments[:2][::-1])
+                # print(booked_appointments[:2][::-1])
                 self.fields['appointment_date_time'].widget = DateTimePickerInput(
                     options={
                         'format': 'YYYY-MM-DD hh:mm A',
@@ -32,7 +32,7 @@ class BookingInfoForm(forms.Form):
                         'disabledTimeIntervals':[
                             #  ['2023-06-15T00:38:51.511211', '2023-06-24T00:38:51.511211'],
                             # booked_appointments[:2]
-                            [datetime.now().isoformat(), (datetime.now() + timedelta(days=4, hours=1)).isoformat()]
+                            # [datetime.now().isoformat(), (datetime.now() + timedelta(days=4, hours=1)).isoformat()]
                         ]
                     }
                 )
