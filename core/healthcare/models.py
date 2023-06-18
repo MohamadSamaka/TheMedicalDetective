@@ -57,7 +57,7 @@ class Symptoms(models.Model):
     name = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.name
+        return self.name.replace('_', ' ')
 
 class Diseases(models.Model):
     name = models.CharField(max_length=45)
