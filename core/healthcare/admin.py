@@ -10,12 +10,9 @@ class MyDoctorSite(BaseAdminSite):
     site_header = 'Doctor Dashboard'
     site_title = 'Doctor Dashboard'
     index_title = 'Doctor Dashboard'
-    
 
-# my_admin_site.register(UsersMeicalRecord)
+
 my_admin_site.register(Symptoms)
 my_admin_site.register(Diseases)
 
 my_doctor_site = MyDoctorSite(name="adminpage-doctor")
-# my_doctor_site.register(Booking)
-# my_doctor_site.register(DiagnosticCorrector)
