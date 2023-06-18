@@ -23,22 +23,7 @@ class ChatbotView(View):
         context = {'url_name': request.resolver_match.url_name}
         context['greeting'] = self.get_random_response('greeting')
         return render(request, self.template_name, context=context)  
-
-    # def post(self, request):
-    #     explanation = request.POST.get('explanation')
-    #     # Process the explanation and extract symptoms
-
-    #     # Pass the symptoms to the prediction model and get the predicted disease
-
-    #     # Recommend a hospital based on the predicted disease
-
-    #     # Prepare the chatbot response
-    #     response = {
-    #         'message': 'Chatbot response goes here',
-    #         'stage': 'current stage of the conversation'
-    #     }
-
-    #     return JsonResponse(response)
+    
     
     def run_diagnosis(self, request):
         from core.model_managment.src.models.NER import NERModel, MissingModelOrTokenizer
@@ -63,11 +48,12 @@ class ChatbotView(View):
             request.session['flash_data'] = diagnosis_id
 
         except MissingModelOrTokenizer as e:
-            e.log_error()
+            print(str(e))
             return JsonResponse({"status": "error", "message": f"Symptom extraction failed: {str(e)}"}, status=500)
         except Exception as e:
+            print(str(e))
             return JsonResponse({"status": "error", "message": f"Symptom extraction failed: {str(e)}"}, status=500)
-            
+        print("success!!!!")
         return JsonResponse({"status": "success", "result": {"symptoms": list(symptoms), "diagnosis": diagnosis_result}})
     
     @transaction.atomic

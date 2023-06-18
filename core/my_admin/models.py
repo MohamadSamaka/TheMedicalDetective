@@ -50,16 +50,11 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    # from core.healthcare.models import UsersMeicalRecord
-    # class Meta:
-    #     permissions = [
-    #         ("can_view_appointments", "Can view appointments"),
-    #     ]
+
     """Model represetation for a user"""
     first_name = models.CharField(max_length= 25, verbose_name="First Name")
     last_name = models.CharField(max_length= 25, verbose_name="Lase Name")
     email = models.EmailField(max_length= 50, unique=True, verbose_name="Email")
-    # phone_num = models.CharField(max_length= 10, verbose_name="Phone Number")
     is_active = models.BooleanField(default=True, verbose_name="Is Active")
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -69,7 +64,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = [
         'first_name',
         'last_name',
-        # 'is_active'
         ]
     
     USERNAME_FIELD = 'email'
@@ -81,7 +75,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
-        # return super().__str__()
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.get_full_name()
+    
+
+
