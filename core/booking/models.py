@@ -2,6 +2,17 @@ from django.db import models
 from django.conf import settings
 
 class Booking(models.Model):
+    class Meta:
+        constraints = [
+        models.UniqueConstraint(
+            fields=['appointment_date_time', 'doctor_id'],
+            name='unique_appointment_doctor'
+        ),
+        models.UniqueConstraint(
+            fields=['appointment_date_time', 'subject_id'],
+            name='unique_appointment_subject'
+        ),
+    ]
 
     subject = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -36,16 +47,5 @@ class Booking(models.Model):
     )
 
     def __str__(self):
-        return f'{self.subject.first_name} {self.subject.last_name}'
-    
-    class Meta:
-        constraints = [
-        models.UniqueConstraint(
-            fields=['appointment_date_time', 'doctor_id'],
-            name='unique_appointment_doctor'
-        ),
-        models.UniqueConstraint(
-            fields=['appointment_date_time', 'subject_id'],
-            name='unique_appointment_subject'
-        ),
-    ]
+        return "%s %s"%(self.subject.first_name, self.subject.first_name)
+
