@@ -26,8 +26,8 @@ class ChatbotView(View):
     
     
     def run_diagnosis(self, request):
-        from core.model_managment.src.models.NER import NERModel, MissingModelOrTokenizer
-        from core.model_managment.src.models.diagnoser import DiagnoserModel
+        from core.chatbot_models_manager.src.models.NER import NERModel, MissingModelOrTokenizer
+        from core.chatbot_models_manager.src.models.diagnoser import DiagnoserModel
         from django.apps import apps
 
         if(request.method != "POST"):
