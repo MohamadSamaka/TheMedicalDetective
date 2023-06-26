@@ -10,6 +10,7 @@ class MyDoctorSite(BaseAdminSite):
     site_header = 'Doctor Dashboard'
     site_title = 'Doctor Dashboard'
     index_title = 'Doctor Dashboard'
+    site_name = 'doctor-site'  # Unique namespace for the doctor admin site
 
 
 my_admin_site.register(Symptoms)
