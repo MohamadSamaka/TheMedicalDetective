@@ -1,0 +1,105 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+
+{% block page_content %}
+<div class="content border-bottom mb-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-auto d-flex flex-grow-1 align-items-center">
+                <h1 class="h4 m-0 pr-3 mr-3 border-right"> Diagnosers </h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/chatbot_models_manager/">Chatbot_Models_Manager</a></li>
+                    <li class="breadcrumb-item">
+                        <a href="/admin/chatbot_models_manager/diagnoser/" class="active">Diagnosers</a>
+                    </li>
+                    <li class="breadcrumb-item active"> Add diagnoser</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="container-fluid">
+        <div class="card tab-content align-self-center justify-content-center">
+            <div id="spinner" class="spinner-border m-5 align-self-center d-none position-absolute" role="status"></div>
+            <div id="training" class="card-body tab-pane fade col-12">
+                <div class="">
+                    <div class="form-group row w-100">
+                        <div class="w-100">
+                            <div class="row">
+                                <div class="card-body">
+                                    <div>
+                                        <table class="table">
+                                            <thead class="thead-dark">
+                                              <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Accuracy</th>
+                                                <th scope="col">Loss</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">1</th>
+                                                <td id="accuracy">0</td>
+                                                <td id="loss">0</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div id="jazzy-actions" class="">
+                                    <div class="form-group">
+                                        <button id="submit-btn-faker" class="btn btn-success form-control mb-3">Save</button>
+                                        <a id="go-to-add-info-btn" data-toggle="pill" href="#add-model">
+                                            <button id="cancel-training-btn" class="btn btn-danger form-control">Cancel</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex  align-items-center flex-column tab-pane fade show active card-body" id="add-model">
+                <div class="col-6">
+                    <form id="diagnoser-form" action="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.media }}
+                        {{ form|crispy }}
+                    </form>
+                    <div>
+                        <div id="jazzy-actions" class="">
+                            <a id="go-to-training-btn" data-toggle="pill" href="#training" class="active">
+                                <button class="btn btn-success form-control" id="save-button">Train</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+{% block extrahead %}
+    {{ block.super }}
+  <style>
+    .container-fluid .card{
+        min-Height: 500px
+    }
+  </style>
+{% endblock %}
+    
+
+{% block extrajs %}
+    {{ block.super }}
+    <script src="{% static 'js/admin/diagnoser/add_page.js' %}"></script>
+{% endblock %}

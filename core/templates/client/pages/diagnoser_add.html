@@ -1,0 +1,61 @@
+{% extends "admin/change_form.html" %}
+
+{% block submit_buttons_bottom %}
+    <a id="go-to-training-btn" data-toggle="pill" href="#training">
+        <button class="btn btn-success form-control" id="save-button">Train</button>
+    </a>
+{% endblock %} 
+
+{% block content %}
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="tab-content mt-3">
+                    <div class="tab-pane fade show active" id="add-model">
+                        {{ block.super }}
+                    </div>
+                    <div class="tab-pane fade" id="training">
+                        <div class="form-group row w-100">
+                            <div class="col-12 col-lg-9 mb-3">
+                                <div class="row">
+                                    <div class="card-body">
+                                        <div class="col-sm-3 text-left">
+                                            <p>progress:</p>
+                                            <ul>
+                                                <li id="accuracy">
+                                                    
+                                                </li>
+                                                <li id="loss">
+                                                    
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <div id="jazzy-actions" class="">
+                                    <div class="form-group">
+                                        <button id="submit-btn-faker" class="btn btn-success form-control mb-3">Save</button>
+                                        <a id="go-to-add-info-btn" data-toggle="pill" href="#add-model">
+                                            <button class="btn btn-danger form-control">Cancel</button>
+                                        </a>
+                                    </div>
+                                </div>                      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 
+
+
+
+{% block content %}
+    {{block.super}}
+    <button class="btn btn-success form-control" id="save-button">Train</button>
+{% endblock  %}
+    

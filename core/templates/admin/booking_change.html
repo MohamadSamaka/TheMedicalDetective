@@ -1,30 +1,37 @@
 {% extends "admin/change_form.html" %}
 
 
+
+
+
 {% block content %}
-  <div class="module">
-    <h2>User's Medical Record</h2>
-    <ul>
-      <li>Height: {{ users_medical_record.height }}</li>
-      <li>Weight: {{ users_medical_record.weight }}</li>
-      <li>Blood Type: {{ users_medical_record.get_blood_type_display }}</li>
-      <li>Gender: {% if users_medical_record.gender %}Male{% else %}Female{% endif %}</li>
-      <li>Phone Number: {{ users_medical_record.phone_num }}</li>
-    </ul>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12 col-lg-9">
+        <div class="card">
+          <div class="card-body">
+            <h4>User's Medical Record</h4>
+            <ul>
+              <li>Height: {{ users_medical_record.height }}</li>
+              <li>Weight: {{ users_medical_record.weight }}</li>
+              <li>Blood Type: {{ users_medical_record.get_blood_type_display }}</li>
+              <li>Gender: {% if users_medical_record.gender %}Male{% else %}Female{% endif %}</li>
+              <li>Phone Number: {{ users_medical_record.phone_num }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <form class="module">
-    
-  </form>
-  
   {{ block.super }}
 {% endblock %}
 
 
 
 {% block submit_buttons_bottom %}
-  <div class="form-group">
+  {% comment %} <div class="form-group">
     <input type="submit" value="Save" class="btn btn-success form-control" name="_save">
-  </div>
+  </div> {% endcomment %}
   {{ block.super }}
 {% endblock %} 
 
