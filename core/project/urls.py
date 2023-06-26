@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 # from django.contrib.auth import views as auth_views #new
-from django.urls import path, include
-
+from django.urls import path, include, re_path
+# from core.home.views import Consumer
 # from ..healthcare.models import UsersPersonalMecicalInfomatrion
-
+from core.home.consumers import Consumer
+from django.conf import settings
+from django.conf.urls.static import static
 
 # admin.register(UsersPersonalMecicalInfomatrion)
 
@@ -27,6 +29,7 @@ urlpatterns = [
     path('', include('core.home.urls')),
     path('', include('core.authentication.urls')),
     path('', include('core.my_admin.urls')),
+    re_path(r'ws/socket-server/', Consumer),
     path('home/', include('core.home.urls')),
     path('chatbot/', include('core.chatbot.urls')),
     path('booking/', include('core.booking.urls')),
@@ -39,4 +42,4 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     # path('login/', MyLoginView.as_view(), name='login'),
     # path('myadmin/', my_admin_site.urls)
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
