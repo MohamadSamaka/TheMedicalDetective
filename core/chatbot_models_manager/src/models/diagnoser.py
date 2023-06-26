@@ -2,6 +2,25 @@ from django.conf import settings
 import tensorflow as tf
 import pandas as pd
 import numpy as np
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
+
+def send_progress_update(logs, num):
+    channel_layer = get_channel_layer()
+    async_to_sync(channel_layer.group_send)(
+        "train",
+        {
+            # 'type': 'send_progress_update',
+            'type': 'progress_update',
+            'info': {
+                'loss': logs['loss'],
+                'accuracy': logs['accuracy'],
+                'val_loss': logs['val_loss'],
+                'num': num
+            },
+        }
+    )
+
 
 class ModelNotFound(Exception):
     def __init__(self, message):
@@ -86,11 +105,25 @@ class DiagnoserModel:
                 DiagnoserModel.iterations = iterations
 
         def train_model(self):
+            # from channels.layers import get_channel_layer
+            # progress = 0
+            # for i in range(10):
+            #     progress += 10
+
+            #     # Send progress update to all connected consumers
+            #     channel_layer = get_channel_layer()
+            #     await channel_layer.group_send(
+            #         "train",
+            #         {
+            #             'type': 'send_progress_update',
+            #             'progress': progress,
+            #         }
+            #     )
             self.model.train_model(self.training_data, self.validation_data)
             # self.model.train_model()
 
         def save_model(self, model_name="default_model"):
-            self.model.save_model(model_name)
+             self.model.save_model(model_name)
 
     
     class Model:
@@ -181,10 +214,41 @@ class DiagnoserModel:
             return normalized_symps_list
 
         def train_model(self, training_data, validation_data):
-        # def train_model(self):
+            import threading
+            import asyncio
+
             self.build_complie_model()
-            self.model.fit(*training_data, epochs=DiagnoserModel.iterations, validation_data=validation_data)
+            class LossHistoryCallback(tf.keras.callbacks.Callback):
+                def __init__(self):
+                    self.num = 0
+                def on_epoch_end(self, epoch, logs=None):
+                    # thread = threading.Thread(target=self.run_async, args=(logs,))
+                    # thread.start()
+                    self.num+=1
+                    send_progress_update(logs, self.num)
+
+                # def run_async(self, logs):
+                #     loop = asyncio.new_event_loop()
+                #     asyncio.set_event_loop(loop)
+                #     loop.run_until_complete(send_progress_update(logs))
+                    
+            loss_history_callback = LossHistoryCallback()
+            self.model.fit(*training_data, epochs=DiagnoserModel.iterations, validation_data=validation_data, callbacks=[loss_history_callback])
             return self.model
+        
+        # async def test(self):
+        #     from channels.layers import get_channel_layer
+        #     progress = 0
+        #     for i in range(10):
+        #         progress += 10
+        #         channel_layer = get_channel_layer()
+        #         await channel_layer.group_send(
+        #             "train",
+        #             {
+        #                 'type': 'send_progress_update',
+        #                 'progress': progress,
+        #             }
+        #         )
 
         def save_model(self, model_name):
             import pickle
