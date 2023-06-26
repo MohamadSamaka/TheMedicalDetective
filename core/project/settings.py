@@ -41,6 +41,8 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 INSTALLED_APPS = [
     # 'core',
     # 'core.chatbot',
+    'daphne',
+    'channels',
     'jazzmin',
     # 'admin_argon.apps.AdminArgonConfig',
     # 'admin_corporate.apps.AdminCorporateConfig',
@@ -56,6 +58,7 @@ INSTALLED_APPS = [
     'core.healthcare.apps.HealthcareConfig',
     'core.chatbot.apps.ChatbotConfig',
     'core.booking.apps.BookingConfig',
+    'core.chatbot_models_manager.apps.ChatbotModelsManagerConfig',
     "bootstrap5",
     "crispy_forms",
     "crispy_bootstrap5",
@@ -65,7 +68,10 @@ INSTALLED_APPS = [
 ]
 
 
+
+
 MIDDLEWARE = [
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,6 +85,13 @@ MIDDLEWARE = [
 
 
 ROOT_URLCONF = 'core.project.urls'
+ASGI_APPLICATION = 'core.core.routing.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+} 
 
 TEMPLATES = [
     {
@@ -188,11 +201,30 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
-STATIC_ROOT = CORE_DIR / 'staticfiles'
+STATIC_ROOT = CORE_DIR / Path('staticfiles')
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = CORE_DIR / 'media'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = CORE_DIR / MEDIA_URL
+
+PROTECTED_MEDIA_URL = MEDIA_URL / Path("protected")
+PROTECTED_MEDIA_ABSOLUTE_URL = MEDIA_ROOT /  Path("protected")
+
 
 DATASETS_DIR = MEDIA_ROOT / 'datasets'
 MODELS_DIR = MEDIA_ROOT / 'models'
 TOKENIZERS_DIR = MEDIA_ROOT / 'tokenizers'
+
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'root': {
+#         'handlers': ['console'],
+#         'level': 'DEBUG',  # Set the desired log level here
+#     },
+# }
