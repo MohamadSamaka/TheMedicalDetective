@@ -10,42 +10,166 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse, path
 # from core.authentication.src.views.login import MyLoginView
 from core.core.admin import BaseAdminSite
+from django.http import Http404, FileResponse
+from django.contrib.admin.views.decorators import staff_member_required
+from django.conf import settings
+import os
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
+import asyncio
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
+
+# def func():
+#     import time
+#     progress = 0
+#     for i in range(10):
+#         progress += 10
+#         # Send progress update to all connected consumers
+#         channel_layer = get_channel_layer()
+#         async_to_sync(channel_layer.group_send)(
+#             "train",
+#             {
+#                 'type': 'send_progress_update',
+#                 'progress': progress,
+#             }
+#         )
+#         time.sleep(1)  # Wait for 1 second before sending the next progress update
+
+
 
 
 class MyAdminSite(BaseAdminSite):
     site_header = 'Admin Dashboard'
     site_title = 'Admin Dashboard'
     index_title = 'Admin Dashboard'
-    # logout_template = 'client/pages/home.html'
+    site_name = 'admin-site'  # Unique namespace for the admin site
+    
     def get_urls(self):
+        # from core.chatbot_models_manager.admin import DiagnoserAdmin
         urls = super().get_urls()
 
-        # Remove the change password URL
-        # urls = [url for url in urls if not url.name == 'logout']
-    
         custom_urls = [
+            path("media/protected/<path:file_path>/", self.admin_view(self.protected_files_provider)),
             path('train-NER/', self.admin_view(self.NER_trainer), name='train_ner_model'),
-            path('train-diagnoser/', self.admin_view(self.diagnose_trainer), name='train_diagnoser_model'),
+            # path('train-diagnoser/', self.diagnose_trainer, name='das'),
         ]
-
         return custom_urls + urls
+    
+    # def custom_add_view(self, request):
+    #     from django.template.response import TemplateResponse
+    #     from django.template.loader import render_to_string
+    #     from django.http import JsonResponse
+    #     if request.method == 'POST':
+    #         # Perform form submission
+    #         form = self.get_form(request)
+    #         if form.is_valid():
+    #             # Process the form data (e.g., save to database)
+    #             form.save()
+    #             return JsonResponse({'success': True})
+    #         else:
+    #             # Return the form errors
+    #             error_html = render_to_string('admin/diagnoser/diagnoser_add.html', {'errors': form.errors})
+    #             return JsonResponse({'success': False, 'error_html': error_html})
+    #     else:
+    #         # Render the custom add form
+    #         context = self.admin_site.each_context(request)
+    #         return TemplateResponse(request, self.change_form_template, context)
+    
+    # @staff_member_required
+    def protected_files_provider(self, request, file_path):
+        from pathlib import Path
+        # print("hello!!!")
+        # if not request.user.is_staff:
+        #     raise Http404()
+
+        # # Construct the absolute path to the requested file
+        # absolute_file_path = os.path.join(settings.MEDIA_ROOT, file_path)
+        # print("path is: ", absolute_file_path)
+
+        # # Check if the file exists
+        # if not os.path.exists(absolute_file_path):
+        #     raise Http404()
+
+        # # Serve the file as a response
+        # response = FileResponse(open(absolute_file_path, 'rb'))
+        # return response
+        print("working")
+        absolute_path = Path.joinpath(settings.PROTECTED_MEDIA_ABSOLUTE_URL, file_path)
+        print("path: ", settings.PROTECTED_MEDIA_ABSOLUTE_URL)
+        print("real path: ", absolute_path)
+
+        # Check if the file exists
+        if os.path.exists(absolute_path):
+            # Open the file and create a FileResponse
+            file = open(absolute_path, 'rb')
+            response = FileResponse(file)
+
+            # Set the appropriate content type
+            file_extension = os.path.splitext(file_path)[1]
+            content_type = f'application/{file_extension}'
+            response['Content-Type'] = content_type
+            return response
+        raise Http404('File not found.')
 
     
         
     def NER_trainer(self, request):
-        from core.model_managment.src.models.NER import NERModel
+        from core.chatbot_models_manager.src.models.NER import NERModel
         trainer = NERModel.Trainer()
         trainer.train_model()
         trainer.save_model()
         trainer.save_tokenizer()
         return HttpResponse("Training Done")
     
-    def diagnose_trainer(self, request):
-        from core.model_managment.src.models.diagnoser import DiagnoserModel
-        trainer = DiagnoserModel.Trainer()
-        trainer.train_model()
-        trainer.save_model()
+    # def diagnose_trainer(self, request):
+    #     import tempfile
+    #     import threading
+    #     from core.chatbot_models_manager.src.models.diagnoser import DiagnoserModel
+    #     trainer = DiagnoserModel.Trainer(dense1_n_neurons=64, dense2_n_neurons = 32, iterations=5)
+    #     trainer.train_model()
+    #     return HttpResponse("Training Done")
+    
+    # @method_decorator(csrf_exempt)  # Apply the csrf_exempt decorator
+    # def dispatch(self, request, *args, **kwargs):
+    #     return super().dispatch(request, *args, **kwargs)
+    
+    async def test(self, request):
+        from channels.layers import get_channel_layer
+        progress = 0
+        for i in range(10):
+            progress += 10
+
+            # Send progress update to all connected consumers
+            channel_layer = get_channel_layer()
+            await channel_layer.group_send(
+                "train",
+                {
+                    'type': 'send_progress_update',
+                    'progress': progress,
+                }
+            )
         return HttpResponse("Training Done")
+
+    
+    # async def test(self, request):
+    #     from channels.layers import get_channel_layer
+    #     progress = 0
+    #     for i in range(10):
+    #         progress += 10
+
+    #         # Send progress update to all connected consumers
+    #         channel_layer = get_channel_layer()
+    #         await channel_layer.group_send(
+    #             "train",
+    #             {
+    #                 'type': 'send_progress_update',
+    #                 'progress': progress,
+    #             }
+    #         )
+    
+    
 
 
 # Create an instance of the custom AdminSite class
