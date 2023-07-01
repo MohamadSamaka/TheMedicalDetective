@@ -7,7 +7,7 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 
 from django.http import HttpResponseRedirect, HttpResponse
-from django.urls import reverse, path
+from django.urls import reverse, path, re_path
 # from core.authentication.src.views.login import MyLoginView
 from core.core.admin import BaseAdminSite
 from django.http import Http404, FileResponse
@@ -19,6 +19,8 @@ from asgiref.sync import async_to_sync
 import asyncio
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.admin import AdminSite
+
 
 
 # def func():
@@ -37,6 +39,11 @@ from django.views.decorators.csrf import csrf_exempt
 #         )
 #         time.sleep(1)  # Wait for 1 second before sending the next progress update
 
+# class MyAdminSite(AdminSite):
+#     site_header = 'User Dashboard'
+#     site_title = 'User Dashboard'
+#     index_title = 'User Dashboard'
+    
 
 
 
@@ -51,7 +58,7 @@ class MyAdminSite(BaseAdminSite):
         urls = super().get_urls()
 
         custom_urls = [
-            path("media/protected/<path:file_path>/", self.admin_view(self.protected_files_provider)),
+            re_path(r"^media/protected/(?P<file_path>.+)/$", self.admin_view(self.protected_files_provider), name="protected-media"),
             path('train-NER/', self.admin_view(self.NER_trainer), name='train_ner_model'),
             # path('train-diagnoser/', self.diagnose_trainer, name='das'),
         ]
@@ -80,26 +87,8 @@ class MyAdminSite(BaseAdminSite):
     # @staff_member_required
     def protected_files_provider(self, request, file_path):
         from pathlib import Path
-        # print("hello!!!")
-        # if not request.user.is_staff:
-        #     raise Http404()
-
-        # # Construct the absolute path to the requested file
-        # absolute_file_path = os.path.join(settings.MEDIA_ROOT, file_path)
-        # print("path is: ", absolute_file_path)
-
-        # # Check if the file exists
-        # if not os.path.exists(absolute_file_path):
-        #     raise Http404()
-
-        # # Serve the file as a response
-        # response = FileResponse(open(absolute_file_path, 'rb'))
-        # return response
-        print("working")
         absolute_path = Path.joinpath(settings.PROTECTED_MEDIA_ABSOLUTE_URL, file_path)
-        print("path: ", settings.PROTECTED_MEDIA_ABSOLUTE_URL)
-        print("real path: ", absolute_path)
-
+        print('absolute path is: ', absolute_path)
         # Check if the file exists
         if os.path.exists(absolute_path):
             # Open the file and create a FileResponse
@@ -134,23 +123,6 @@ class MyAdminSite(BaseAdminSite):
     # @method_decorator(csrf_exempt)  # Apply the csrf_exempt decorator
     # def dispatch(self, request, *args, **kwargs):
     #     return super().dispatch(request, *args, **kwargs)
-    
-    async def test(self, request):
-        from channels.layers import get_channel_layer
-        progress = 0
-        for i in range(10):
-            progress += 10
-
-            # Send progress update to all connected consumers
-            channel_layer = get_channel_layer()
-            await channel_layer.group_send(
-                "train",
-                {
-                    'type': 'send_progress_update',
-                    'progress': progress,
-                }
-            )
-        return HttpResponse("Training Done")
 
     
     # async def test(self, request):
@@ -173,6 +145,9 @@ class MyAdminSite(BaseAdminSite):
 
 
 # Create an instance of the custom AdminSite class
+
+my_user_site = MyAdminSite(name='user-page')
+
 my_admin_site = MyAdminSite(name='adminpage-admin')
 
 
@@ -187,4 +162,4 @@ for model in all_models:
         my_admin_site.register(model)
 
 my_admin_site.register(CustomUser)
-
+# my_user_site.register(CustomUser)
