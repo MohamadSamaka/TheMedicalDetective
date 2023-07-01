@@ -53,15 +53,11 @@ class SymptomsListNotFound(Exception):
 
 
 class DiagnoserModel:
-    # training_data_fname = "default_training.csv"
-    # testing_data_fname = "default_testing.csv"
     iterations = 100
     dense1_n_neurons = 64
     dense2_n_neurons = 32
 
     def pre_proccessing(training_file, testing_file):
-        # encode training labels
-        # training = pd.read_csv(settings.DATASETS_DIR / 'diagnoser'/ training_data)
         training_data = pd.read_csv(training_file)
         DiagnoserModel.cols = training_data.columns[:-1]
         x = training_data[DiagnoserModel.cols].values
@@ -96,10 +92,6 @@ class DiagnoserModel:
             self.model = DiagnoserModel.Model()
 
         def initialize_defaults(self, dense1_n_neurons, dense2_n_neurons, iterations):
-            # if training_file:
-            #     DiagnoserModel.training_file = training_file
-            # if testing_file:
-            #     DiagnoserModel.testing_file = testing_file
             if dense1_n_neurons:
                 DiagnoserModel.dense1_n_neurons = dense1_n_neurons
             if dense2_n_neurons:
@@ -109,7 +101,6 @@ class DiagnoserModel:
 
         def train_model(self, user_id):
             self.model.train_model(user_id, self.training_data, self.validation_data)
-            # self.model.train_model()
 
         def save_model(self, model_name="default_model"):
              self.model.save_model(model_name)
