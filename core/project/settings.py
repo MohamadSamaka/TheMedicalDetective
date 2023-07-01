@@ -71,7 +71,6 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
-    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,6 +78,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.core.src.middlewares.admin_page_redirector.AdminDoctorMiddleware',
     'core.core.src.middlewares.flash_data.FlashDataMiddleware'
 ]
 
@@ -191,6 +191,9 @@ CACHES = {
         "LOCATION": "my_cache_table",
     }
 }
+
+
+CACHE_BACKEND = "default"
 
 
 MAX_SEQUENCE_LENGTH = int(getenv('MAX_SEQUENCE_LENGTH'))
