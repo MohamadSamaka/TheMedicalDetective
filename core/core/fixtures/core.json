@@ -31,7 +31,7 @@
             "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
             "is_active": true,
             "is_admin": false,
-            "is_staff": false,
+            "is_staff": true,
             "is_superuser": false,
             "groups": [1]
         }
@@ -45,9 +45,9 @@
             "email": "doctor2@example.com",
             "password": "password2",
             "is_active": true,
-            "is_admin": true,
+            "is_admin": false,
             "is_staff": true,
-            "is_superuser": true,
+            "is_superuser": false,
             "groups": [1]
         }
     },
@@ -60,9 +60,9 @@
             "email": "doctor3@example.com",
             "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
             "is_active": true,
-            "is_admin": true,
+            "is_admin": false,
             "is_staff": true,
-            "is_superuser": true,
+            "is_superuser": false,
             "groups": [1]
         }
     },
@@ -75,9 +75,9 @@
             "email": "doctor4@example.com",
             "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
             "is_active": true,
-            "is_admin": true,
+            "is_admin": false,
             "is_staff": true,
-            "is_superuser": true,
+            "is_superuser": false,
             "groups": [1]
         }
     },
@@ -90,9 +90,9 @@
             "email": "doctor5@example.com",
             "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
             "is_active": true,
-            "is_admin": true,
+            "is_admin": false,
             "is_staff": true,
-            "is_superuser": true,
+            "is_superuser": false,
             "groups": [1]
         }
     },
@@ -105,9 +105,9 @@
             "email": "doctor6@example.com",
             "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
             "is_active": true,
-            "is_admin": true,
+            "is_admin": false,
             "is_staff": true,
-            "is_superuser": true,
+            "is_superuser": false,
             "groups": [1]
         }
     },
@@ -120,9 +120,9 @@
             "email": "doctor7@example.com",
             "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
             "is_active": true,
-            "is_admin": true,
+            "is_admin": false,
             "is_staff": true,
-            "is_superuser": true,
+            "is_superuser": false,
             "groups": [1]
         }
     },
@@ -135,9 +135,9 @@
             "email": "doctor8@example.com",
             "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
             "is_active": true,
-            "is_admin": true,
+            "is_admin": false,
             "is_staff": true,
-            "is_superuser": true,
+            "is_superuser": false,
             "groups": [1]
         }
     },
@@ -150,10 +150,70 @@
             "email": "doctor9@example.com",
             "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
             "is_active": true,
-            "is_admin": true,
+            "is_admin": false,
             "is_staff": true,
-            "is_superuser": true,
+            "is_superuser": false,
             "groups": [1]
+        }
+    },
+    {
+        "model": "my_admin.CustomUser",
+        "pk": 12,
+        "fields": {
+            "first_name": "Mohamad",
+            "last_name": "Samka",
+            "email": "user1@gmail.com",
+            "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
+            "is_active": true,
+            "is_admin": false,
+            "is_staff": false,
+            "is_superuser": false,
+            "groups": [2]
+        }
+    },
+    {
+        "model": "my_admin.CustomUser",
+        "pk": 13,
+        "fields": {
+            "first_name": "Mohamad",
+            "last_name": "Tahaine",
+            "email": "user2@gmail.com",
+            "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
+            "is_active": true,
+            "is_admin": false,
+            "is_staff": false,
+            "is_superuser": false,
+            "groups": [2]
+        }
+    },
+    {
+        "model": "my_admin.CustomUser",
+        "pk": 14,
+        "fields": {
+            "first_name": "Ahmad",
+            "last_name": "Tahaine",
+            "email": "user3@gmail.com",
+            "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
+            "is_active": true,
+            "is_admin": false,
+            "is_staff": false,
+            "is_superuser": false,
+            "groups": [2]
+        }
+    },
+    {
+        "model": "my_admin.CustomUser",
+        "pk": 15,
+        "fields": {
+            "first_name": "Ahmad",
+            "last_name": "Tahaine",
+            "email": "user4@gmail.com",
+            "password": "pbkdf2_sha256$600000$T7STpo67bN85ZPqnJENc6H$P4K9EJLddA2/XJyBbNKhITd4uZpDpyOiTxXmz+EshuA=",
+            "is_active": true,
+            "is_admin": false,
+            "is_staff": false,
+            "is_superuser": false,
+            "groups": [2]
         }
     }
 ]
