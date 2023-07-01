@@ -1,36 +1,3 @@
-// // static/admin/js/custom_admin.js
-// const saveButton = document.querySelector('input[name="_save"]');
-// // document.addEventListener('DOMContentLoaded', function() {
-// //     console.log("hello world!")
-
-// //     // Find the save button element
-// //     var saveButton = document.querySelector('input[name="_save"]');
-    
-// //     // Add a click event listener to the save button
-    
-// // });
-
-
-// saveButton.addEventListener('click', function(event) {
-//     // event.preventDefault();
-//     // console.log(saveButton.action)
-//     // console.log('LOL')
-//     // // Add your condition here
-//     // if (yourCondition) {
-//     //     // Allow the default form submission
-//     //     return true;
-//     // } else {
-//     //     // Prevent the default form submission
-//     //     event.preventDefault();
-        
-//     //     // Perform any additional actions or show a message if needed
-//     //     alert('Your condition is not met. Form submission is canceled.');
-        
-//     //     // Return false to prevent the form from being submitted
-//     //     return false;
-//     // }
-// });
-
 let socket;
 let accuracyElm;
 let lossElm;
@@ -46,16 +13,40 @@ function updateTrainingProgress(recievedData){
 
 
 function showTrainningProgress(){
-    console.log("showing right thing")
     spinner.addClass('d-none')
-    $('#training').addClass('active').addClass('show')
-    $('#go-to-training-btn').removeClass('active')
-    $('#add-model').addClass('d-none')
+    $('#training')
+    .addClass('active')
+    .addClass('show')
+    .removeClass('pe-none')
+    $('#add-model')
+    .removeClass('show')
+    .removeClass('active')
+    .addClass('pe-none')
+}
+
+function showAddView(){
+    spinner.addClass('d-none')
+    $('#add-model')
+    .addClass('active')
+    .addClass('show')
+    .removeClass('pe-none')
+    $('#training')
+    .removeClass('show')
+    .removeClass('active')
+    .addClass('pe-none')
 }
 
 function goBackAndClearProgress(){
-    clearProgress()
-    $('diagnoser-form').trigger('reset')
+    fetch('/admin/chatbot_models_manager/diagnoser/cancel_training/',{
+        method: 'POST',
+        headers: {'X-CSRFToken': $('input[name=csrfmiddlewaretoken]').val() },
+        }).then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    location.reload();
 }
 
 
@@ -72,7 +63,6 @@ function socketMessageHandler(data){
     let recievedData = JSON.parse(data.replace(/'/g, '"'))
     switch (recievedData.type) {
         case 'progress_update':
-            console.log(recievedData)
             updateTrainingProgress(recievedData)
             break;
         case 'form_validiation_result':
@@ -93,18 +83,11 @@ function index(){
     let socket = new WebSocket(url);
     accuracyElm = $('#accuracy')
     lossElm = $('#loss')
-    submitFaker = $('#submit-btn-faker')
     spinner = $('#spinner')
     socket.onmessage = function(e){
-        console.log(e.data)
         let recievedData = JSON.parse(e.data.replace(/'/g, '"'))
-        console.log(recievedData)
 
         socketMessageHandler(e.data)
-
-        // updateProgres(recievedData)
-
-        // console.log(recievedData.info.num)
     }
 
     // $('#diagnoser_form .card').removeClass('card')
@@ -136,24 +119,25 @@ function index(){
             headers: {'X-CSRFToken': $('input[name=csrfmiddlewaretoken]').val() },
             body:form,
             }).then(response => {
-                console.log(response);
+                // console.log(response);
                 return Promise.all([response.text(), response.status])
             })
             .then(async ([rawHtml, statusCode]) => {
-                console.log(statusCode)
+                // console.log(statusCode)
                 if(statusCode == 200){
                     // $('#training').remove('d-none')
                     spinner.addClass('d-none')
                     $('#go-to-training-btn').removeClass('active')
+                    $('#goback-training-btn').removeClass('d-none')
+                    $('#cancel-training-btn').remove();
+                    console.log("hello mf!!")
                     return;
                 }
                 let myDoc = new DOMParser();
                 let elm = myDoc.parseFromString(rawHtml, 'text/html')
                 let form = elm.querySelector('body #diagnoser-form')
                 document.querySelector("#diagnoser-form").replaceWith(form)
-                spinner.addClass('d-none')
-                $('#add-model').addClass('show')
-                $('#training').removeClass('show').removeClass('active')
+                showAddView()
 
                 // index()
                 await new Promise(resolve => setTimeout(resolve, 1000));
@@ -164,37 +148,12 @@ function index(){
                 
                 $('#go-to-add-info-btn').click()
             })
-
-
-        // fetch('/admin/chatbot_models_manager/diagnoser/add/',{
-        //     method: 'POST',
-        //     headers: {'X-CSRFToken': $('input[name=csrfmiddlewaretoken]').val() },
-        //     body:form,
-        //     }).then(response => {console.log(response)})
-        //     .catch(error => {
-        //         console.error('Failed to start training:', error);
-        // });
-
-    //   fetch('/admin/chatbot_models_manager/diagnoser',{
-    //     method: 'POST',
-    //     headers: {'X-CSRFToken': $('input[name=csrfmiddlewaretoken]').val() },
-    //     }).then(response => response)
-    //     .then(async data => {
-    //         await new Promise(resolve => setTimeout(resolve, 1000));
-    //         socket.close(); 
-    //         submitFaker.removeClass('d-none')
-    //         console.log("socket closed!")
-    //     })
-    //     .catch(error => {
-    //         console.error('Failed to start training:', error);
-    //     });
    });
 
     $('#go-to-add-info-btn').on('click', function(){
       $(this).removeClass('active')
     });
 
-    $('')
 
     // testingFile.on('change', function(){
     //     if(this.files.length != 0)
@@ -205,10 +164,9 @@ function index(){
 
 
 function setEventListeners(){
-    $('cancel-training-btn').on('click', function(){
-        clearProgress()
-        goBackAndClearProgress()
-    })
+    $('#goback-training-btn').on('click', goBackAndClearProgress)
+    $('#cancel-training-btn').on('click', location.reload)
+
 }
 
 
@@ -216,5 +174,6 @@ function setEventListeners(){
 
 
 $(document).ready(function(){
+    setEventListeners();
     index()
 });
