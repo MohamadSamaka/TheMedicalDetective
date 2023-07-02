@@ -36,7 +36,7 @@ function showAddView(){
     .addClass('pe-none')
 }
 
-function goBackAndClearProgress(){
+function cancelTraining(){
     fetch('/admin/chatbot_models_manager/diagnoser/cancel_training/',{
         method: 'POST',
         headers: {'X-CSRFToken': $('input[name=csrfmiddlewaretoken]').val() },
@@ -164,9 +164,8 @@ function index(){
 
 
 function setEventListeners(){
-    $('#goback-training-btn').on('click', goBackAndClearProgress)
-    $('#cancel-training-btn').on('click', location.reload)
-
+    $('#goback-training-btn').on('click', location.reload)
+    $('#cancel-training-btn').on('click', cancelTraining)
 }
 
 

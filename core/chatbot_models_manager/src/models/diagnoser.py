@@ -81,7 +81,7 @@ class DiagnoserModel:
         
         return (x_train, y_train), (x_validate, y_validate), (x_test, y_test)
 
-    def save_model(self, model_name="default_model"):
+    def save_model(self, model_name):
             self.model.save_model(model_name)
 
     class Trainer:
@@ -190,16 +190,18 @@ class DiagnoserModel:
             return normalized_symps_list
 
         def train_model(self, user_id, training_data, validation_data):
+            from time import sleep
             self.build_complie_model()
             accuracy = None
             
             class LossHistoryCallback(tf.keras.callbacks.Callback):
                 def on_epoch_end(self, epoch, logs=None):
+                    nonlocal accuracy
                     accuracy = logs['accuracy']
                     send_progress_update(logs)
                     cancel_state = cache.get(user_id).get('cancel_flag')
                     if cancel_state:
-                        self.model.stop_training = True       
+                        self.model.stop_training = True  
            
             loss_history_callback = LossHistoryCallback()
             self.model_accuracy = accuracy
