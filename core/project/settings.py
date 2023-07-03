@@ -78,7 +78,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'core.core.src.middlewares.admin_page_redirector.AdminDoctorMiddleware',
+    # 'core.core.src.middlewares.admin_page_redirector.AdminDoctorMiddleware',
     'core.core.src.middlewares.flash_data.FlashDataMiddleware'
 ]
 
@@ -192,6 +192,7 @@ CACHES = {
     }
 }
 
+CACHE_DEBUG = True
 
 CACHE_BACKEND = "default"
 
@@ -216,18 +217,3 @@ PROTECTED_MEDIA_ABSOLUTE_URL = MEDIA_ROOT /  Path("protected")
 DATASETS_DIR = MEDIA_ROOT / 'datasets'
 MODELS_DIR = MEDIA_ROOT / 'models'
 TOKENIZERS_DIR = MEDIA_ROOT / 'tokenizers'
-
-
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     'root': {
-#         'handlers': ['console'],
-#         'level': 'DEBUG',  # Set the desired log level here
-#     },
-# }
