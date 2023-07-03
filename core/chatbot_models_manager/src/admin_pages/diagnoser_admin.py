@@ -63,7 +63,7 @@ class DiagnoserAdmin(admin.ModelAdmin):
             layer2_neurons = form.cleaned_data['neurons_second_layer']
             training_file = form.cleaned_data['training_file']
             testing_file = form.cleaned_data['testing_file']
-            path = Path(settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(model_name))
+            path = Path(settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(f"diagnoser/{model_name}"))
             path.mkdir(parents=True, exist_ok=False)
             user_id = request.user.id
             self.diagnoser_trainer(user_id, model_name, training_file, testing_file, iterations, layer1_neurons ,layer2_neurons)
@@ -85,7 +85,7 @@ class DiagnoserAdmin(admin.ModelAdmin):
         from pathlib import Path
         import pandas as pd
         csv_file = pd.read_csv(file)
-        model_path = settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(model_name) / Path(f'{fname}.csv')
+        model_path = settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(f"diagnoser/{model_name}/{model_name}.csv")
         csv_file.to_csv(model_path, index=False)
         file.seek(0)
 
