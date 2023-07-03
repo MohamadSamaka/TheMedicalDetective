@@ -23,4 +23,10 @@ def delete_dir_with_contents_if_canceled(path, user_id):
         cache.delete(user_id)
         return True
     return False
+
+def delete_dir_with_contents(path):
+    if path.is_dir():
+        shutil.rmtree(path)
+        return True
+    return False
     

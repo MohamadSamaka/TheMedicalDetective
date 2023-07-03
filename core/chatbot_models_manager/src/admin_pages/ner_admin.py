@@ -9,9 +9,10 @@ from django.db import transaction
 from django.db.utils import IntegrityError
 from asgiref.sync import async_to_sync
 from core.chatbot_models_manager.src.tasks.tasks import set_cancel_flag
-from core.core.src.utls.helpers import delete_dir_with_contents_if_canceled
+from core.core.src.utls.helpers import delete_dir_with_contents_if_canceled, delete_dir_with_contents
 from ..forms.ner import NERInfoForm
 from ..widgets.file_download import FileDownloadWidget
+from pathlib import Path
 from time import sleep
 
 
@@ -64,9 +65,14 @@ class NERAdmin(admin.ModelAdmin):
                     file_path.rename(new_file_path)
 
         super().save_model(request, obj, form, change)
-    
 
-        
+
+    def delete_queryset(self, request, queryset):
+        for obj in queryset:
+            print(obj)
+            path = Path(settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(f"ner/{obj.model_name}"))
+            delete_dir_with_contents(path)
+        super().delete_queryset(request, queryset)
 
     
     def send_form_validation_result(self, validity):
@@ -107,7 +113,6 @@ class NERAdmin(admin.ModelAdmin):
 
     @transaction.atomic
     def process_model(self, request, form):
-        from pathlib import Path
         try:
             iterations = form.cleaned_data['iterations']
             iterations = 300
@@ -139,7 +144,6 @@ class NERAdmin(admin.ModelAdmin):
         from core.chatbot_models_manager.src.models.NER import NERModel
         trainer = NERModel.Trainer(training_file, layer1_nuerons, iterations, max_input_len)
         set_cancel_flag.apply_async(args=(user_id, False))
-        sleep(1)
         trainer.train_model(user_id)
         if not cache.get(user_id).get('cancel_flag'):
             trainer.save_model(model_name)
