@@ -1,16 +1,14 @@
-from .models import CustomUser
 from django.apps import apps
-
+from django.contrib.admin import AdminSite
 from django.urls import re_path
-from core.core.admin import BaseAdminSite
 from django.http import Http404, FileResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
+from .models import CustomUser
 import os
-from django.contrib.admin import AdminSite
 
 
-class MyAdminSite(BaseAdminSite):
+class MyAdminSite(AdminSite):
     site_header = 'Admin Dashboard'
     site_title = 'Admin Dashboard'
     index_title = 'Admin Dashboard'
