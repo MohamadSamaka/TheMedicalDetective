@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib import admin
-from .models import BotDiagnoses, DiagnosticCorrector
+from .models import BotDiagnoses, DiagnosticCorrector, ChatbotSettings
 from core.chatbot.models import DiagnosticCorrector
 from core.my_admin.admin import my_admin_site
 from core.healthcare.admin import my_doctor_site
@@ -43,6 +43,7 @@ class BotDiagnosisAdmin(admin.ModelAdmin):
 #admin site
 my_admin_site.register(BotDiagnoses)
 my_admin_site.register(DiagnosticCorrector)
+my_admin_site.register(ChatbotSettings)
 
 
 #doctor site
