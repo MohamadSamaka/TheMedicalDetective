@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
+from pathlib import Path
 
 
 def send_progress_update(logs):
@@ -55,7 +56,7 @@ class SymptomsListNotFound(Exception):
 class DiagnoserModel:
     iterations = 100
     dense1_n_neurons = 64
-    dense2_n_neurons = 32
+    dense2_n_neurons = 64
 
     def pre_proccessing(training_file, testing_file):
         training_data = pd.read_csv(training_file)
@@ -133,10 +134,10 @@ class DiagnoserModel:
                 metrics=['accuracy']
             )
 
-        def load_model(model_name="default_model"):
+        def load_model(model_name):
             import pickle
             try:
-                model_path = settings.MODELS_DIR / "diagnoser" / model_name
+                model_path = settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(f"diagnoser/{model_name}/{model_name}.model")
                 with open(model_path, "rb") as f:
                     return pickle.load(f)
             except (FileNotFoundError, pickle.UnpicklingError):
@@ -190,10 +191,9 @@ class DiagnoserModel:
             return normalized_symps_list
 
         def train_model(self, user_id, training_data, validation_data):
-            from time import sleep
             self.build_complie_model()
             accuracy = None
-            
+    
             class LossHistoryCallback(tf.keras.callbacks.Callback):
                 def on_epoch_end(self, epoch, logs=None):
                     nonlocal accuracy
@@ -204,15 +204,14 @@ class DiagnoserModel:
                         self.model.stop_training = True  
            
             loss_history_callback = LossHistoryCallback()
-            self.model_accuracy = accuracy
             self.model.fit(*training_data, epochs=DiagnoserModel.iterations, validation_data=validation_data, callbacks=[loss_history_callback])
+            self.model_accuracy = accuracy
 
         def save_model(self, model_name):
             import pickle
             import json
-            from pathlib import Path
             try:
-                model_path = settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(model_name)
+                model_path = settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(f'diagnoser/{model_name}')
                 symptoms_map = DiagnoserModel.cols.to_series().reset_index(drop=True).to_dict()
                 id_to_symptom = dict(zip(symptoms_map.values(), symptoms_map.keys()))
                 disease_to_id = {id: disease for id, disease in enumerate(DiagnoserModel.unique_labels)}
@@ -231,7 +230,7 @@ class DiagnoserModel:
                 
                 with open(model_path / Path(f'{model_name}.model'), 'wb') as f:
                     pickle.dump(data_to_pikcle, f)
-                with open(model_path / Path(f'{model_name}.json'), 'w') as f:
+                with open(model_path / "info.json", 'w') as f:
                     json.dump(model_info, f)
                 return True
             except Exception as e:
