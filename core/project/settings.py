@@ -78,7 +78,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'core.core.src.middlewares.admin_page_redirector.AdminDoctorMiddleware',
+    'core.core.src.middlewares.admin_page_redirector.AdminPagesMiddleware',
     'core.core.src.middlewares.flash_data.FlashDataMiddleware'
 ]
 
