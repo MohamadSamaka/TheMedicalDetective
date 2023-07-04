@@ -14,9 +14,9 @@ let dateTimeInputFeild = $('#id_appointment_date_time')
 
 
 // Generate a doctor card from the provided information
-function generateCardFromInfo(id, fname, lname, spec, hospital){
+function generateCardFromInfo(id, fname, lname, spec, hospital, isRecomanded){
     const doctorBluePrint = `
-    <div id="doctor-id-${id}" class="doctor-wrapper pt-3 pb-3 card flex-row justify-content-center ">
+    <div id="doctor-id-${id}" class="doctor-wrapper pt-3 pb-3 card flex-row justify-content-center ${ !isRecomanded? 'd-none': 'active'}">
         <div class="basic-info card text-center border-0">
             <img class="doctor-image shadow-lg rounded-circle card-img-top align-self-center" src="${DJANGO_STATIC_URL}images/default_doctor.png" alt="doctor">
             <h5 class="card-title">${fname} ${lname}</h5>
@@ -25,7 +25,7 @@ function generateCardFromInfo(id, fname, lname, spec, hospital){
         <div class="more-info card justify-content-center border-0">
             <div class="flex flex-column text-nowrap">
                 <span class="info-title fw-bold">Specialization</span>
-                <p class="info-content text-muted ">${spec}</p>
+                <p class="info-content text-muted">${spec}</p>
             </div>
             <div class="flex flex-column text-nowrap">
                 <span class="info-title fw-bold">Hospital</span>
@@ -47,12 +47,15 @@ function generateDocsCards(){
     for(const hospitalId of Object.keys(hospitalsInfo)){
         for(let i = 0; i < hospitalsInfo[hospitalId].docs.length; i++){
             let doc = hospitalsInfo[hospitalId].docs[i]
+            console.log(window.recomanded_doctor == doc.id)
+
             let generatedDoc = generateCardFromInfo(
                 doc.id,
                 doc.f_name,
                 doc.l_name,
                 specelization_map[doc.specialization], 
-                hospitalsInfo[hospitalId].hospital_name
+                hospitalsInfo[hospitalId].hospital_name,
+                window.recomanded_doctor == doc.id
             )
             
             docsCardsList.push(generatedDoc);
@@ -96,6 +99,11 @@ function getAppliedSpecFilter(){
 
 
 generateDocsCards();
+
+$(document).ready(function() {
+    if(window.recomanded_doctor)
+        myModal.modal('show');
+});
 
 
 $('#myModal').on('shown.bs.modal', function () {
@@ -183,7 +191,6 @@ myModal.on('hidden.bs.modal', function () {
 });
 
 
-let test = 200
 function bookAppointment(){
     putInState(102);
     const csrftoken = myModal.find('form input[name=csrfmiddlewaretoken]').val()

@@ -3,10 +3,10 @@
       "model": "healthcare.Hospitals",
       "pk": 1,
       "fields": {
-        "name": "Hospital 1",
-        "address": "Address 1",
+        "name": "Governmental",
+        "address": "Jenin camp",
         "city": 1,
-        "phone": "1234567890",
+        "phone": "2501057",
         "email": "hospital1@example.com"
       }
     },
@@ -14,20 +14,31 @@
       "model": "healthcare.Hospitals",
       "pk": 2,
       "fields": {
-        "name": "Hospital 2",
-        "address": "Address 2",
+        "name": "Alrazi",
+        "address": "Jenin",
         "city": 1,
-        "phone": "9876543210",
-        "email": "hospital2@example.com"
+        "phone": "04 250 5055",
+        "email": "info@alrazi.ps"
+      }
+    },
+    {
+      "model": "healthcare.Hospitals",
+      "pk": 1,
+      "fields": {
+        "name": "Rafedia",
+        "address": "4070, Raffia St, Bellbowrie",
+        "city": 2,
+        "phone": "2501057",
+        "email": "hospital1@example.com"
       }
     },
     {
       "model": "healthcare.Hospitals",
       "pk": 3,
       "fields": {
-        "name": "Hospital 3",
-        "address": "Address 3",
-        "city": 2,
+        "name": "Turkish Govermental",
+        "address": "Tubas",
+        "city": 4,
         "phone": "5555555555",
         "email": "hospital3@example.com"
       }

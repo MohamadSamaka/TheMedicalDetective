@@ -4,8 +4,9 @@
     "pk": 1,
     "fields": {
       "user": 2,
+      "competence": 50,
       "hospitals": 1,
-      "specialization": 1,
+      "specialization": 23,
       "phone": "1111111111"
     }
   },
@@ -14,8 +15,9 @@
     "pk": 2,
     "fields": {
       "user": 3,
+      "competence": 100,
       "hospitals": 1,
-      "specialization": 2,
+      "specialization": 23,
       "phone": "2222222222"
     }
   },
@@ -24,6 +26,7 @@
     "pk": 3,
     "fields": {
       "user": 4,
+      "competence": 66.25,
       "hospitals": 3,
       "specialization": 2,
       "phone": "2222222222"
@@ -34,6 +37,7 @@
     "pk": 4,
     "fields": {
       "user": 5,
+      "competence":55,
       "hospitals": 3,
       "specialization": 2,
       "phone": "2222222222"
@@ -44,6 +48,7 @@
     "pk": 5,
     "fields": {
       "user": 6,
+      "competence": 12,
       "hospitals": 1,
       "specialization": 3,
       "phone": "2222222222"
@@ -54,6 +59,7 @@
     "pk": 6,
     "fields": {
       "user": 7,
+      "competence": 100,
       "hospitals": 3,
       "specialization": 2,
       "phone": "2222222222"
@@ -64,6 +70,7 @@
     "pk": 7,
     "fields": {
       "user": 8,
+      "competence": 100,
       "hospitals": 2,
       "specialization": 1,
       "phone": "2222222222"
@@ -74,6 +81,7 @@
     "pk": 8,
     "fields": {
       "user": 9,
+      "competence": 100,
       "hospitals": 3,
       "specialization": 3,
       "phone": "2222222222"
@@ -84,6 +92,7 @@
     "pk": 9,
     "fields": {
       "user": 10,
+      "competence": 100,
       "hospitals": 2,
       "specialization": 2,
       "phone": "2222222222"

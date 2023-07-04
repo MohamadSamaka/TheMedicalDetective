@@ -14,6 +14,7 @@ init-data:
 	python3 -m core.manage loaddata core
 	python3 -m core.manage loaddata groups
 	python3 -m core.manage loaddata diseases
+	python3 -m core.manage loaddata purifications
 	python3 -m core.manage loaddata symptoms
 	python3 -m core.manage loaddata hospitals
 	python3 -m core.manage loaddata specilaizations

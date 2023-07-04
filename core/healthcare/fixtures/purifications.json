@@ -1,0 +1,681 @@
+[
+    {
+        "model": "healthcare.Purifications",
+        "pk": 1,
+        "fields": {
+            "description": "drink plenty of water"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 2,
+        "fields": {
+            "description": "dont stand still for long"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 3,
+        "fields": {
+            "description": "cover mouth"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 4,
+        "fields": {
+            "description": "avoid oily food"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 5,
+        "fields": {
+            "description": "stop irritation"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 6,
+        "fields": {
+            "description": "use neem in bathing"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 7,
+        "fields": {
+            "description": "take otc pain reliver"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 8,
+        "fields": {
+            "description": "drink papaya leaf juice"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 9,
+        "fields": {
+            "description": "increase vitamin c intake"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 10,
+        "fields": {
+            "description": "reduce stress"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 11,
+        "fields": {
+            "description": "use clean cloths"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 12,
+        "fields": {
+            "description": "stop eating solid food for while"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 13,
+        "fields": {
+            "description": "anti itch medicine"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 14,
+        "fields": {
+            "description": "meditation"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 15,
+        "fields": {
+            "description": "switch to loose cloothing"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 16,
+        "fields": {
+            "description": "keep calm"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 17,
+        "fields": {
+            "description": "drink cranberry juice"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 18,
+        "fields": {
+            "description": "avoid non veg food"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 19,
+        "fields": {
+            "description": "take radioactive iodine treatment"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 20,
+        "fields": {
+            "description": "keep fever in check"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 21,
+        "fields": {
+            "description": "salt baths"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 22,
+        "fields": {
+            "description": "consume witch hazel"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 23,
+        "fields": {
+            "description": "call ambulance"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 24,
+        "fields": {
+            "description": "avoid cold food"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 25,
+        "fields": {
+            "description": "take vaccine"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 26,
+        "fields": {
+            "description": "vaccination"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 27,
+        "fields": {
+            "description": "get proper sleep"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 28,
+        "fields": {
+            "description": "acetaminophen"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 29,
+        "fields": {
+            "description": "massage"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 30,
+        "fields": {
+            "description": "take deep breaths"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 31,
+        "fields": {
+            "description": "try taking small sips of water"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 32,
+        "fields": {
+            "description": "cold baths"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 33,
+        "fields": {
+            "description": "stop bleeding using pressure"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 34,
+        "fields": {
+            "description": "exercise"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 35,
+        "fields": {
+            "description": "medication"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 36,
+        "fields": {
+            "description": "consume alovera juice"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 37,
+        "fields": {
+            "description": "use oinments"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 38,
+        "fields": {
+            "description": "rest"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 39,
+        "fields": {
+            "description": "warm bath with epsom salt"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 40,
+        "fields": {
+            "description": "take vapour"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 41,
+        "fields": {
+            "description": "avoid abrupt head movment"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 42,
+        "fields": {
+            "description": "consume neem leaves"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 43,
+        "fields": {
+            "description": "stop taking drug"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 44,
+        "fields": {
+            "description": "eliminate milk"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 45,
+        "fields": {
+            "description": "use ice to compress itching"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 46,
+        "fields": {
+            "description": "bath twice"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 47,
+        "fields": {
+            "description": "check in pulse"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 48,
+        "fields": {
+            "description": "drink vitamin c rich drinks"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 49,
+        "fields": {
+            "description": "avoid too many products"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 50,
+        "fields": {
+            "description": "eat healthy"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 51,
+        "fields": {
+            "description": "wash hands through"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 52,
+        "fields": {
+            "description": "avoid fatty spicy food"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 53,
+        "fields": {
+            "description": "drink sugary drinks"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 54,
+        "fields": {
+            "description": "antiboitic therapy"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 55,
+        "fields": {
+            "description": "use antibiotics"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 56,
+        "fields": {
+            "description": "keep infected area dry"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 57,
+        "fields": {
+            "description": "wash hands with warm soapy water"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 58,
+        "fields": {
+            "description": "keep mosquitos away"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 59,
+        "fields": {
+            "description": "lie down"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 60,
+        "fields": {
+            "description": "use vein compression"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 61,
+        "fields": {
+            "description": "Consult nearest hospital"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 62,
+        "fields": {
+            "description": "seek help"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 63,
+        "fields": {
+            "description": "remove scabs with wet compressed cloth"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 64,
+        "fields": {
+            "description": "eat fruits and high fiberous food"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 65,
+        "fields": {
+            "description": "cover area with bandage"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 66,
+        "fields": {
+            "description": "avoid open cuts"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 67,
+        "fields": {
+            "description": "keep mosquitos out"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 68,
+        "fields": {
+            "description": "ease back into eating"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 69,
+        "fields": {
+            "description": "soak affected area in warm water"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 70,
+        "fields": {
+            "description": "stop alcohol consumption"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 71,
+        "fields": {
+            "description": "use lemon balm"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 72,
+        "fields": {
+            "description": "lie down on side"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 73,
+        "fields": {
+            "description": "limit alcohol"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 74,
+        "fields": {
+            "description": "have balanced diet"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 75,
+        "fields": {
+            "description": "take probiotics"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 76,
+        "fields": {
+            "description": "keep hydrated"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 77,
+        "fields": {
+            "description": "relax"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 78,
+        "fields": {
+            "description": "try acupuncture"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 79,
+        "fields": {
+            "description": "apply calamine"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 80,
+        "fields": {
+            "description": "use heating pad or cold pack"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 81,
+        "fields": {
+            "description": "use detol or neem in bathing water"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 82,
+        "fields": {
+            "description": "follow up"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 83,
+        "fields": {
+            "description": "avoid lying down after eating"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 84,
+        "fields": {
+            "description": "consult doctor"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 85,
+        "fields": {
+            "description": "consume milk thistle"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 86,
+        "fields": {
+            "description": "use hot and cold therapy"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 87,
+        "fields": {
+            "description": "consume probiotic food"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 88,
+        "fields": {
+            "description": "use poloroid glasses in sun"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 89,
+        "fields": {
+            "description": "chew or swallow asprin"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 90,
+        "fields": {
+            "description": "lie down flat and raise the leg high"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 91,
+        "fields": {
+            "description": "maintain healthy weight"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 92,
+        "fields": {
+            "description": "avoid sudden change in body"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 93,
+        "fields": {
+            "description": "eat high calorie vegitables"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 94,
+        "fields": {
+            "description": "consult nearest hospital"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 95,
+        "fields": {
+            "description": "get away from trigger"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 96,
+        "fields": {
+            "description": "avoid public places"
+        }
+    },
+    {
+        "model": "healthcare.Purifications",
+        "pk": 97,
+        "fields": {
+            "description": "wear ppe if possible"
+        }
+    }
+]

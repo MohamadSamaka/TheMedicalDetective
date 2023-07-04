@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Prefetch
 from django.http import JsonResponse, HttpResponse
-from django.contrib import messages
 from core.healthcare.models import Hospitals, Specializations
 # from .src.forms.forms import BookingFiltersForm, BookingInfoForm
 from .src.forms.booking_filters import BookingFiltersForm
@@ -18,7 +17,7 @@ from datetime import datetime
 
 class BookingView(TemplateView):
     template_name = 'client/pages/booking.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['specelization_map'] = self.get_specializations_map()
@@ -26,12 +25,30 @@ class BookingView(TemplateView):
         context['booking_filters_form'] = BookingFiltersForm()
         context['booking_info_form'] = BookingInfoForm()
         context['url_name'] = self.request.resolver_match.app_name
+        # booking_info = self.request.session.get('booking_info')
+        # if booking_info:
+        #     context['recomanded_doctor_id'] = booking_info.get('recomanded_doctor_id')
         return context
+    
+    # def get_context_data(self, **kwargs):
+    #     # booking_info = self.request.session.get('booking_info')
+    #     context = super().get_context_data(**kwargs)
+    #     context['specelization_map'] = self.get_specializations_map()
+    #     context['hospitals_docs'] =  self.get_docs_per_hospital_info()
+    #     context['booking_filters_form'] = BookingFiltersForm()
+    #     context['booking_info_form'] = BookingInfoForm()
+    #     context['url_name'] = self.request.resolver_match.app_name
+    #     # context['recomanded_doctor_id'] = None if booking_info is None else booking_info['recomanded_doctor_id']
+    #     return context
+    
     
     def post(self, request):
         from django.utils import timezone
         # print("final test:", request.session.pop('flash_data', None))
-        diagnosis_id = self.request.session.pop('flash_data', None)
+        booking_info = request.session.pop('booking_info', None)
+        if booking_info:
+            diagnosis_id = booking_info["diagnosis_id"]
+            recomanded_doctor_id = booking_info["recomanded_doctor_id"]
         if request.method != "POST":
             return JsonResponse({"status": "error", "message": "Invalid request method"}, status=500)
         try:
@@ -39,7 +56,8 @@ class BookingView(TemplateView):
             parsed_date_time = self.parse_date_time(request.POST.get('date-time'))
             form_data = {
                 'doc': doc_id,
-                'appointment_date_time': parsed_date_time
+                'appointment_date_time': parsed_date_time,
+                'recomanded_doctor': recomanded_doctor_id
             }
            
             booking_form = BookingInfoForm(form_data)
@@ -70,6 +88,7 @@ class BookingView(TemplateView):
             # duplicate_rows = Booking.objects.values('appointment_date_time').annotate(count=Count('timestamp')).filter(count__gt=1)
             if minute % stepping != 0:
                 raise ValueError
+            
             
     def book_appointment(self, subject_id, date_time, doc_id, bot_diagnosis_id=None):
         from .models import Booking

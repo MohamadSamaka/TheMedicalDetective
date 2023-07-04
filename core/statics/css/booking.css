@@ -7,40 +7,6 @@
     /* background-color:#08122A */
 }
 
-/* #booking .doctor-wrapper{
-    flex-basis: auto;
-}
-
-
-#booking .doctor-wrapper .basic-info{
-
-}
-
-
-
-#booking .doctor-wrapper .detailed-info{
-    color:white;
-    background-color: #08122A;
-    min-width: 350px;
-} */
-
-/*
-for full width use flex-grow-1 on card more-info
-and the doctor-wrapper of it use flex-basis 100%
-*/
-
-/* #booking .doctor-wrapper .detailed-info.hidden{
-    width: 0;
-    overflow: hidden;
-    visibility: hidden;
-    flex-shrink: 0;
-    display: none !important;
-} */
-
-/*
-add flex-fill or fill-flex to doctor-wrapper when hidden is removed
-
-*/
 
 #booking {
     height: 90%;
@@ -88,6 +54,10 @@ add flex-fill or fill-flex to doctor-wrapper when hidden is removed
     position: relative;
     min-width: 100%;
     background-color: transparent;
+}
+
+.filters-wrapper{
+    max-width: 220px;
 }
 
 /* #booking .doctor-wrapper.active .more-info:before{

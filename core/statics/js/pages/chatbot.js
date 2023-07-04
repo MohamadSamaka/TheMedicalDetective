@@ -32,15 +32,14 @@ function generateMssgElm(content, personal=true) {
     return mssgElm
 }
 
-// function generateResponse(){
-//     const mssgSkeleton = '<div class="mssg new response-message"><ul class="mssg-content m-0"></ul></div>';
-//     const mssgHtmlDoc = parser.parseFromString(mssgSkeleton, 'text/html');
-//     const mssgElm = mssgHtmlDoc.querySelector('.mssg.response-message');
-//     mssgElm.querySelector('.mssg-content').innerHTML = text.replaceAll('\n', '<br>');
-//     return mssgElm
-// }
 
-function generateDiagnosisMssg(symptoms, disease){
+function generateList(elm, items){
+    for (let item of items)
+        elm.appendChild(document.createElement('li')).innerHTML = item.replaceAll('_', ' ')
+}
+
+
+function generateDiagnosisMssg(symptoms, disease, purifications){
     const mssgSkeleton = `
         <div class="mssg new response-message">
             <div class="mssg-content m-0">
@@ -48,7 +47,10 @@ function generateDiagnosisMssg(symptoms, disease){
                 <ul id="symptoms-list">
                 </ul>
                 <h5>Diagnosis: </h5>
-                <p id="diagnosis"></p>
+                <p id="diagnosis" class="ps-3"></p>
+                <h5>Purifications: </h5>
+                <ul id="purifications-list">
+                </ul>
                 <h5><b>Cautions!</b></h5>
                 <p>
                     Please be aware that our symptom checker is intended for informational 
@@ -61,13 +63,14 @@ function generateDiagnosisMssg(symptoms, disease){
             
         </div>
     `
-    let mssgHtmlDoc = parser.parseFromString(mssgSkeleton, 'text/html');
+    const mssgHtmlDoc = parser.parseFromString(mssgSkeleton, 'text/html');
     const mssgElm = mssgHtmlDoc.querySelector('.mssg.response-message');
-    let symptomsList = mssgElm.querySelector('#symptoms-list')
-    let diagnosisMssg = mssgElm.querySelector('#diagnosis')
+    const symptomsList = mssgElm.querySelector('#symptoms-list')
+    const purificaionsList = mssgElm.querySelector('#purifications-list')
+    const diagnosisMssg = mssgElm.querySelector('#diagnosis')
     diagnosisMssg.innerHTML = disease
-    for (let symptom of symptoms)
-        symptomsList.appendChild(document.createElement('li')).innerHTML = symptom.replaceAll('_', ' ')
+    generateList(symptomsList, symptoms)
+    generateList(purificaionsList, purifications)
     return mssgElm
 }
 
@@ -139,7 +142,13 @@ function send_case(userCase){
         };
     }).then(data => {
         let loadingMssgElm = chatLog.querySelector('.mssg.loading')
-        result = generateDiagnosisMssg(data.result.symptoms, data.result.diagnosis)
+        console.log(data)
+        console.log(data.result.purifications)
+        result = generateDiagnosisMssg(
+            data.result.symptoms,
+            data.result.diagnosis,
+            data.result.purifications,
+        )
         loadingMssgElm.replaceWith(result)
         chatLog.scrollTop = chatLog.scrollHeight;   
     }).catch(err => {

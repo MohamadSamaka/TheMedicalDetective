@@ -1,289 +1,644 @@
 [
     {
-        "fields": {
-            "name": "(vertigo) Paroymsal  Positional Vertigo"
-        },
         "model": "healthcare.Diseases",
-        "pk": 1
+        "pk": 1,
+        "fields": {
+            "name": "(vertigo) Paroxysmal Positional Vertigo",
+            "specializations": [
+                1
+            ],
+            "purifications": [41, 59, 77, 92]
+        }
     },
     {
-        "fields": {
-            "name": "AIDS"
-        },
         "model": "healthcare.Diseases",
-        "pk": 2
+        "pk": 2,
+        "fields": {
+            "name": "AIDS",
+            "specializations": [
+                2,
+                3
+            ],
+            "purifications": [
+                66,
+                97,
+                84,
+                82
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Acne"
-        },
         "model": "healthcare.Diseases",
-        "pk": 3
+        "pk": 3,
+        "fields": {
+            "name": "Acne",
+            "specializations": [
+                4
+            ],
+            "purifications": [
+                46,
+                52,
+                1,
+                49
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Alcoholic hepatitis"
-        },
         "model": "healthcare.Diseases",
-        "pk": 4
+        "pk": 4,
+        "fields": {
+            "name": "Alcoholic hepatitis",
+            "specializations": [
+                5
+            ],
+            "purifications": [
+                70,
+                84,
+                35,
+                82
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Allergy"
-        },
         "model": "healthcare.Diseases",
-        "pk": 5
+        "pk": 5,
+        "fields": {
+            "name": "Allergy",
+            "specializations": [
+                6,
+                7
+            ],
+            "purifications": [
+                79,
+                65,
+                45
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Arthritis"
-        },
         "model": "healthcare.Diseases",
-        "pk": 6
+        "pk": 6,
+        "fields": {
+            "name": "Arthritis",
+            "specializations": [
+                8,
+                9
+            ],
+            "purifications": [
+                34,
+                86,
+                78,
+                29
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Bronchial Asthma"
-        },
         "model": "healthcare.Diseases",
-        "pk": 7
+        "pk": 7,
+        "fields": {
+            "name": "Bronchial Asthma",
+            "specializations": [
+                10,
+                11
+            ],
+            "purifications": [
+                15,
+                30,
+                95,
+                62
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Cervical spondylosis"
-        },
         "model": "healthcare.Diseases",
-        "pk": 8
+        "pk": 8,
+        "fields": {
+            "name": "Cervical spondylosis",
+            "specializations": [
+                12
+            ],
+            "purifications": [
+                80,
+                34,
+                7,
+                84
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Chicken pox"
-        },
         "model": "healthcare.Diseases",
-        "pk": 9
+        "pk": 9,
+        "fields": {
+            "name": "Chicken pox",
+            "specializations": [
+                13
+            ],
+            "purifications": [
+                6,
+                42,
+                25,
+                96
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Chronic cholestasis"
-        },
         "model": "healthcare.Diseases",
-        "pk": 10
+        "pk": 10,
+        "fields": {
+            "name": "Chronic cholestasis",
+            "specializations": [
+                14
+            ],
+            "purifications": [
+                32,
+                13,
+                84,
+                50
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Common Cold"
-        },
         "model": "healthcare.Diseases",
-        "pk": 11
+        "pk": 11,
+        "fields": {
+            "name": "Common Cold",
+            "specializations": [
+                15,
+                16
+            ],
+            "purifications": [
+                48,
+                40,
+                24,
+                20
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Dengue"
-        },
         "model": "healthcare.Diseases",
-        "pk": 12
+        "pk": 12,
+        "fields": {
+            "name": "Dengue",
+            "specializations": [
+                17,
+                18
+            ],
+            "purifications": [
+                8,
+                52,
+                58,
+                76
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Diabetes "
-        },
         "model": "healthcare.Diseases",
-        "pk": 13
+        "pk": 13,
+        "fields": {
+            "name": "Diabetes",
+            "specializations": [
+                19,
+                20
+            ],
+            "purifications": []
+        }
     },
     {
-        "fields": {
-            "name": "Dimorphic hemmorhoids(piles)"
-        },
         "model": "healthcare.Diseases",
-        "pk": 14
+        "pk": 14,
+        "fields": {
+            "name": "Dimorphic hemmorhoids(piles)",
+            "specializations": [
+                21
+            ],
+            "purifications": [
+                52,
+                22,
+                39,
+                36
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Drug Reaction"
-        },
         "model": "healthcare.Diseases",
-        "pk": 15
+        "pk": 15,
+        "fields": {
+            "name": "Drug Reaction",
+            "specializations": [
+                22
+            ],
+            "purifications": [
+                5,
+                94,
+                43,
+                82
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Fungal infection"
-        },
         "model": "healthcare.Diseases",
-        "pk": 16
+        "pk": 16,
+        "fields": {
+            "name": "Fungal infection",
+            "specializations": [
+                23
+            ],
+            "purifications": [
+                46,
+                81,
+                56,
+                11
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "GERD"
-        },
         "model": "healthcare.Diseases",
-        "pk": 17
+        "pk": 17,
+        "fields": {
+            "name": "GERD",
+            "specializations": [
+                24
+            ],
+            "purifications": [
+                52,
+                83,
+                91,
+                34
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Gastroenteritis"
-        },
         "model": "healthcare.Diseases",
-        "pk": 18
+        "pk": 18,
+        "fields": {
+            "name": "Gastroenteritis",
+            "specializations": [
+                25
+            ],
+            "purifications": [
+                12,
+                31,
+                38,
+                68
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Heart attack"
-        },
         "model": "healthcare.Diseases",
-        "pk": 19
+        "pk": 19,
+        "fields": {
+            "name": "Heart attack",
+            "specializations": [
+                26
+            ],
+            "purifications": [
+                23,
+                89,
+                16
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Hepatitis B"
-        },
         "model": "healthcare.Diseases",
-        "pk": 20
+        "pk": 20,
+        "fields": {
+            "name": "Hepatitis B",
+            "specializations": [
+                27
+            ],
+            "purifications": [
+                94,
+                26,
+                50,
+                35
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Hepatitis C"
-        },
         "model": "healthcare.Diseases",
-        "pk": 21
+        "pk": 21,
+        "fields": {
+            "name": "Hepatitis C",
+            "specializations": [
+                28
+            ],
+            "purifications": [
+                61,
+                26,
+                50,
+                35
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Hepatitis D"
-        },
         "model": "healthcare.Diseases",
-        "pk": 22
+        "pk": 22,
+        "fields": {
+            "name": "Hepatitis D",
+            "specializations": [
+                29
+            ],
+            "purifications": [
+                84,
+                35,
+                50,
+                82
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Hepatitis E"
-        },
         "model": "healthcare.Diseases",
-        "pk": 23
+        "pk": 23,
+        "fields": {
+            "name": "Hepatitis E",
+            "specializations": [
+                30
+            ],
+            "purifications": [
+                70,
+                38,
+                84,
+                35
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Hypertension "
-        },
         "model": "healthcare.Diseases",
-        "pk": 24
+        "pk": 24,
+        "fields": {
+            "name": "Hypertension",
+            "specializations": [
+                31,
+                32
+            ],
+            "purifications": []
+        }
     },
     {
-        "fields": {
-            "name": "Hyperthyroidism"
-        },
         "model": "healthcare.Diseases",
-        "pk": 25
+        "pk": 25,
+        "fields": {
+            "name": "Hyperthyroidism",
+            "specializations": [
+                33
+            ],
+            "purifications": [
+                50,
+                29,
+                71,
+                19
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Hypoglycemia"
-        },
         "model": "healthcare.Diseases",
-        "pk": 26
+        "pk": 26,
+        "fields": {
+            "name": "Hypoglycemia",
+            "specializations": [
+                34
+            ],
+            "purifications": [
+                72,
+                47,
+                53,
+                84
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Hypothyroidism"
-        },
         "model": "healthcare.Diseases",
-        "pk": 27
+        "pk": 27,
+        "fields": {
+            "name": "Hypothyroidism",
+            "specializations": [
+                35
+            ],
+            "purifications": [
+                10,
+                34,
+                50,
+                27
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Impetigo"
-        },
         "model": "healthcare.Diseases",
-        "pk": 28
+        "pk": 28,
+        "fields": {
+            "name": "Impetigo",
+            "specializations": [
+                36
+            ],
+            "purifications": [
+                69,
+                55,
+                63,
+                84
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Jaundice"
-        },
         "model": "healthcare.Diseases",
-        "pk": 29
+        "pk": 29,
+        "fields": {
+            "name": "Jaundice",
+            "specializations": [
+                37
+            ],
+            "purifications": [
+                1,
+                85,
+                64,
+                35
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Malaria"
-        },
         "model": "healthcare.Diseases",
-        "pk": 30
+        "pk": 30,
+        "fields": {
+            "name": "Malaria",
+            "specializations": [
+                38
+            ],
+            "purifications": [
+                61,
+                4,
+                18,
+                67
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Migraine"
-        },
         "model": "healthcare.Diseases",
-        "pk": 31
+        "pk": 31,
+        "fields": {
+            "name": "Migraine",
+            "specializations": [
+                39
+            ],
+            "purifications": [
+                14,
+                10,
+                88,
+                84
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Osteoarthristis"
-        },
         "model": "healthcare.Diseases",
-        "pk": 32
+        "pk": 32,
+        "fields": {
+            "name": "Osteoarthristis",
+            "specializations": [
+                40
+            ],
+            "purifications": [
+                28,
+                94,
+                82,
+                21
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Paralysis (brain hemorrhage)"
-        },
         "model": "healthcare.Diseases",
-        "pk": 33
+        "pk": 33,
+        "fields": {
+            "name": "Paralysis (brain hemorrhage)",
+            "specializations": [
+                41
+            ],
+            "purifications": [
+                29,
+                50,
+                34,
+                84
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Peptic ulcer diseae"
-        },
         "model": "healthcare.Diseases",
-        "pk": 34
+        "pk": 34,
+        "fields": {
+            "name": "Peptic ulcer disease",
+            "specializations": [
+                42
+            ],
+            "purifications": []
+        }
     },
     {
-        "fields": {
-            "name": "Pneumonia"
-        },
         "model": "healthcare.Diseases",
-        "pk": 35
+        "pk": 35,
+        "fields": {
+            "name": "Pneumonia",
+            "specializations": [
+                43
+            ],
+            "purifications": [
+                84,
+                35,
+                38,
+                82
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Psoriasis"
-        },
         "model": "healthcare.Diseases",
-        "pk": 36
+        "pk": 36,
+        "fields": {
+            "name": "Psoriasis",
+            "specializations": [
+                44
+            ],
+            "purifications": [
+                57,
+                33,
+                84,
+                21
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Tuberculosis"
-        },
         "model": "healthcare.Diseases",
-        "pk": 37
+        "pk": 37,
+        "fields": {
+            "name": "Tuberculosis",
+            "specializations": [
+                45
+            ],
+            "purifications": [
+                3,
+                84,
+                35,
+                38
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Typhoid"
-        },
         "model": "healthcare.Diseases",
-        "pk": 38
+        "pk": 38,
+        "fields": {
+            "name": "Typhoid",
+            "specializations": [
+                46
+            ],
+            "purifications": [
+                93,
+                54,
+                84,
+                35
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Urinary tract infection"
-        },
         "model": "healthcare.Diseases",
-        "pk": 39
+        "pk": 39,
+        "fields": {
+            "name": "Urinary tract infection",
+            "specializations": [
+                47
+            ],
+            "purifications": [
+                1,
+                9,
+                17,
+                75
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "Varicose veins"
-        },
         "model": "healthcare.Diseases",
-        "pk": 40
+        "pk": 40,
+        "fields": {
+            "name": "Varicose veins",
+            "specializations": [
+                48
+            ],
+            "purifications": [
+                90,
+                37,
+                60,
+                2
+            ]
+        }
     },
     {
-        "fields": {
-            "name": "hepatitis A"
-        },
         "model": "healthcare.Diseases",
-        "pk": 41
+        "pk": 41,
+        "fields": {
+            "name": "Hepatitis A",
+            "specializations": [
+                49
+            ],
+            "purifications": [
+                35,
+                51,
+                52,
+                94
+            ]
+        }
     }
 ]

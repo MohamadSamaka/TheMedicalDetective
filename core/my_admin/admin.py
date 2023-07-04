@@ -13,6 +13,7 @@ class MyAdminSite(AdminSite):
     site_title = 'Admin Dashboard'
     index_title = 'Admin Dashboard'
     site_name = 'admin-site'  # Unique namespace for the admin site
+    # login_template = 'authentication/pages/log-in.html'
     
     def get_urls(self):
         # from core.chatbot_models_manager.admin import DiagnoserAdmin

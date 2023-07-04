@@ -1,72 +1,268 @@
 [
-    {
-      "model": "healthcare.Specializations",
-      "pk": 1,
-      "fields": {
-        "name": "Specialization 1"
-      }
-    },
-    {
-      "model": "healthcare.Specializations",
-      "pk": 2,
-      "fields": {
-        "name": "Specialization 2"
-      }
-    },
-    {
-      "model": "healthcare.Specializations",
-      "pk": 3,
-      "fields": {
-        "name": "Specialization 3"
-      }
-    },
-    {
-      "model": "healthcare.Specializations",
-      "pk": 4,
-      "fields": {
-        "name": "Specialization 4"
-      }
-    },
-    {
-      "model": "healthcare.Specializations",
-      "pk": 5,
-      "fields": {
-        "name": "Specialization 5"
-      }
-    },
-    {
-      "model": "healthcare.Specializations",
-      "pk": 6,
-      "fields": {
-        "name": "Specialization 6"
-      }
-    },
-    {
-      "model": "healthcare.Specializations",
-      "pk": 7,
-      "fields": {
-        "name": "Specialization 7"
-      }
-    },
-    {
-      "model": "healthcare.Specializations",
-      "pk": 8,
-      "fields": {
-        "name": "Specialization 8"
-      }
-    },
-    {
-      "model": "healthcare.Specializations",
-      "pk": 9,
-      "fields": {
-        "name": "Specialization 9"
-      }
-    },
-    {
-      "model": "healthcare.Specializations",
-      "pk": 10,
-      "fields": {
-        "name": "Specialization 10"
-      }
+  {
+    "model": "healthcare.Specializations",
+    "pk": 1,
+    "fields": {
+      "name": "Ear, Nose, and Throat"
     }
-  ]
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 2,
+    "fields": {
+      "name": "Infectious Disease"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 3,
+    "fields": {
+      "name": "Dermatologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 4,
+    "fields": {
+      "name": "Gastroenterologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 5,
+    "fields": {
+      "name": "Allergist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 6,
+    "fields": {
+      "name": "Rheumatologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 7,
+    "fields": {
+      "name": "Pulmonologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 8,
+    "fields": {
+      "name": "Orthopedic "
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 9,
+    "fields": {
+      "name": "General Physician"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 10,
+    "fields": {
+      "name": "Pediatrician"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 11,
+    "fields": {
+      "name": "Internist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 12,
+    "fields": {
+      "name": "Endocrinologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 13,
+    "fields": {
+      "name": "General Surgeon"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 14,
+    "fields": {
+      "name": "Proctologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 15,
+    "fields": {
+      "name": "Infectious Disease "
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 16,
+    "fields": {
+      "name": "Neurologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 17,
+    "fields": {
+      "name": "Emergency Medicine "
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 18,
+    "fields": {
+      "name": "Urologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 19,
+    "fields": {
+      "name": "Vascular Surgeon"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 20,
+    "fields": {
+      "name": "Immunologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 21,
+    "fields": {
+      "name": "Physiatrist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 22,
+    "fields": {
+      "name": "Cardiologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 23,
+    "fields": {
+      "name": "Hepatologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 24,
+    "fields": {
+      "name": "Neonatologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 25,
+    "fields": {
+      "name": "Nephrologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 26,
+    "fields": {
+      "name": "Oncologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 27,
+    "fields": {
+      "name": "Hematologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 28,
+    "fields": {
+      "name": "Gynecologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 29,
+    "fields": {
+      "name": "Obstetrician"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 30,
+    "fields": {
+      "name": "Psychiatrist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 31,
+    "fields": {
+      "name": "Psychologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 32,
+    "fields": {
+      "name": "Ophthalmologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 33,
+    "fields": {
+      "name": "Podiatrist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 34,
+    "fields": {
+      "name": "Anesthesiologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 35,
+    "fields": {
+      "name": "Plastic Surgeon"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 36,
+    "fields": {
+      "name": "Radiologist"
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 37,
+    "fields": {
+      "name": "Nuclear Medicine "
+    }
+  },
+  {
+    "model": "healthcare.Specializations",
+    "pk": 38,
+    "fields": {
+      "name": "Physician Assistant"
+    }
+  }
+]

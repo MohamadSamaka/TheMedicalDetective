@@ -18,6 +18,7 @@
         const DJANGO_STATIC_URL = "{% get_static_prefix %}";
         const specelization_map = JSON.parse('{{ specelization_map|escapejs }}');
         const hospitalsInfo = JSON.parse('{{ hospitals_docs|escapejs }}');
+        window.recomanded_doctor = {{recomanded_doctor_id}}
     </script>
     <script src="{% static 'js/htmx/htmx.js' %}"></script>
     <script src="{% static 'js/pages/booking.js' %}"></script>

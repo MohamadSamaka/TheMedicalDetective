@@ -53,18 +53,36 @@ class UsersMeicalRecord(models.Model):
         # print(self.medical_record.first_name)
         return f"{self.user.first_name} {self.user.last_name}"
 
+
 class Symptoms(models.Model):
     name = models.CharField(max_length=30)
 
     def __str__(self):
         return self.name.replace('_', ' ')
 
+
 class Diseases(models.Model):
     name = models.CharField(max_length=45)
+
+    specializations = models.ManyToManyField(
+        'healthcare.Specializations',
+        verbose_name="Treater Specialization"
+    )
+
+    purifications = models.ManyToManyField(
+        'healthcare.Purifications',
+        verbose_name="Purifications"
+    )
 
     def __str__(self):
         return self.name
     
+
+class Purifications(models.Model):
+    description = models.CharField(max_length=45)
+    
+
+
 class Hospitals(models.Model):
     name = models.CharField(max_length=50)
     address = models.CharField(
@@ -89,6 +107,7 @@ class Hospitals(models.Model):
     def __str__(self):
         return self.name
 
+
 class Specializations(models.Model):
     name = models.CharField(
         max_length=100,
@@ -97,6 +116,7 @@ class Specializations(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class DoctorsInformation(models.Model):
     user = models.OneToOneField(
@@ -118,6 +138,13 @@ class DoctorsInformation(models.Model):
         blank=False,
         null=False,
         verbose_name="Specialization"
+    )
+
+    competence = models.DecimalField(
+        blank=False,
+        null=False,
+        max_digits=5,
+        decimal_places=2,
     )
 
     phone = models.CharField(

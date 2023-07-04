@@ -1,4 +1,3 @@
-from django.shortcuts import redirect
 from django.urls import reverse
 from ..utls.helpers import user_belongs_to_group, redirect_to_user_or_doc_page
 

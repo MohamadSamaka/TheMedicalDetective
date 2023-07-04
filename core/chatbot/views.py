@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.views import View
+from django.views.generic import TemplateView
+
 from django.http import JsonResponse
 from django.db import transaction
+from core.my_admin.models import CustomUser
+from core.healthcare.models import DoctorsInformation, UsersMeicalRecord, Diseases, Hospitals, Specializations
 import random
 
-class ChatbotView(View):
+class ChatbotView(TemplateView):
     template_name = 'client/pages/chatbot.html'
 
     responses = {
@@ -16,36 +20,42 @@ class ChatbotView(View):
         "farewell": ["I hope I was able to assist you. Remember, it's always best to consult a healthcare professional for a proper diagnosis and treatment.", "Take care, and if you have any more questions in the future, don't hesitate to reach out."]
     }
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context = {'url_name': self.request.resolver_match.url_name}
+        context['greeting'] = self.get_random_response('greeting')
+        context['url_name'] = self.request.resolver_match.app_name
+        print("appname!: ", self.request.resolver_match.app_name)
+        return context
+
     def get_random_response(self, stage):
         return random.choice(self.responses[stage])
 
-    def get(self, request):
-        context = {'url_name': request.resolver_match.url_name}
-        context['greeting'] = self.get_random_response('greeting')
-        return render(request, self.template_name, context=context)  
-    
     
     def run_diagnosis(self, request):
         from core.chatbot_models_manager.src.models.NER import NERModel, MissingModelOrTokenizer
         from core.chatbot_models_manager.src.models.diagnoser import DiagnoserModel
         from django.apps import apps
-
+        
         if(request.method != "POST"):
             return JsonResponse({"status": "error", "message": "Invalid request method"}, status=500)
         # sent_case = "i have been experiencing a lot of itching on my skin lately and it's driving me crazy i've also noticed some rashes on my skin and these weird nodal skin eruptions that seem to be spreading i'm not sure what's causing it but it's really starting to affect my daily life could you help me figure out what's going on"
+        user_id = request.user.pk
         user_case = request.POST['case']
         try:
             app_config  = apps.get_app_config('chatbot')
             # symptoms = set(NERModel.Model.extract_symptoms(user_case))
             symptoms = set(NERModel.Model.extract_symptoms(user_case, app_config.ner_model, app_config.tokenizer))
-            # symptoms.remove("rash_skin")
-            # symptoms.add("skin_rash")
-            # symptoms[1] = "skin_rash"
             if len(symptoms) < 3:
                 return JsonResponse({"status": "error", "message": "Too few symptoms extracted, please provide me with more information."}, status=500)
             diagnosis_result, normalized_symps = DiagnoserModel.Model.diagnose(symptoms, app_config.diagnoser_model)
-            diagnosis_id = self.log_diagnosis(diagnosis_result, normalized_symps, request.user.id)
-            request.session['flash_data'] = diagnosis_id
+            disease_id, diagnosis_id = self.log_diagnosis(diagnosis_result, normalized_symps, request.user.id)
+            recomanded_doctor_id = self.suggest_doctor_depending_on_disease(user_id, disease_id)
+            pritifications = self.get_purifications_to_disease(disease_id)
+            request.session['booking_info'] = {
+                'diagnosis_id': diagnosis_id,
+                'recomanded_doctor_id': recomanded_doctor_id
+            }
 
         except MissingModelOrTokenizer as e:
             print(str(e))
@@ -54,7 +64,46 @@ class ChatbotView(View):
             print(str(e))
             return JsonResponse({"status": "error", "message": f"Symptom extraction failed: {str(e)}"}, status=500)
         print("success!!!!")
-        return JsonResponse({"status": "success", "result": {"symptoms": list(symptoms), "diagnosis": diagnosis_result}})
+        return JsonResponse({
+            "status": "success",
+            "result": {
+                "symptoms": list(symptoms),
+                "diagnosis": diagnosis_result,
+                "purifications": pritifications,
+                "recomanded_doctor": recomanded_doctor_id
+            },
+        })
+    
+    def get_purifications_to_disease(self, disease_id):
+        disease = Diseases.objects.get(pk=disease_id)
+        purifications = disease.purifications.all()
+        #getting the descitions of the putiricaion
+        return [p.description for p in purifications]
+    
+    def suggest_doctor_depending_on_disease(self, user_id, disease_id):
+        custom_user = CustomUser.objects.get(id=user_id)  # Assuming you have the custom user object
+
+        user_medical_record = UsersMeicalRecord.objects.get(user=custom_user)
+        custom_user_city = user_medical_record.city
+
+        doctors = DoctorsInformation.objects.filter(
+            hospitals__city=custom_user_city
+        )
+
+        if not doctors.exists():
+            return doctors_with_specialization
+        else:
+            doctors = DoctorsInformation.objects.all()
+
+        disease = Diseases.objects.get(id=disease_id)
+        doctors_with_specialization = doctors.filter(specialization__in=disease.specializations.all())
+        if doctors_with_specialization.exists():
+            #returning recomanded doctor id
+            return doctors_with_specialization.order_by('-competence').first().id
+        else:
+            return None
+
+
     
     @transaction.atomic
     def log_diagnosis(self, diags, symps, subject_id):
@@ -75,6 +124,6 @@ class ChatbotView(View):
         )
         bot_diagnosis.symptoms_group.set(symptoms_list)
         bot_diagnosis.save()
-        return bot_diagnosis.id
+        return diagnosis.pk, bot_diagnosis.id
 
 initChatbotView = ChatbotView()
