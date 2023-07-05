@@ -16,14 +16,14 @@
       "fields": {
         "name": "Alrazi",
         "address": "Jenin",
-        "city": 1,
+        "city": 2,
         "phone": "04 250 5055",
         "email": "info@alrazi.ps"
       }
     },
     {
       "model": "healthcare.Hospitals",
-      "pk": 1,
+      "pk": 3,
       "fields": {
         "name": "Rafedia",
         "address": "4070, Raffia St, Bellbowrie",
@@ -34,7 +34,7 @@
     },
     {
       "model": "healthcare.Hospitals",
-      "pk": 3,
+      "pk": 4,
       "fields": {
         "name": "Turkish Govermental",
         "address": "Tubas",
