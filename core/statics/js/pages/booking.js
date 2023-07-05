@@ -47,8 +47,6 @@ function generateDocsCards(){
     for(const hospitalId of Object.keys(hospitalsInfo)){
         for(let i = 0; i < hospitalsInfo[hospitalId].docs.length; i++){
             let doc = hospitalsInfo[hospitalId].docs[i]
-            console.log(window.recomanded_doctor == doc.id)
-
             let generatedDoc = generateCardFromInfo(
                 doc.id,
                 doc.f_name,
