@@ -50,7 +50,7 @@ class ChatbotView(TemplateView):
                 return JsonResponse({"status": "error", "message": "Too few symptoms extracted, please provide me with more information."}, status=500)
             diagnosis_result, normalized_symps = DiagnoserModel.Model.diagnose(symptoms, app_config.diagnoser_model)
             disease_id, diagnosis_id = self.log_diagnosis(diagnosis_result, normalized_symps, request.user.id)
-            recomanded_doctor_id = self.suggest_doctor_depending_on_disease(user_id, disease_id)
+            recomanded_doctor_id, recomanded_doctor_name = self.suggest_doctor_depending_on_disease(user_id, disease_id)
             pritifications = self.get_purifications_to_disease(disease_id)
             request.session['booking_info'] = {
                 'diagnosis_id': diagnosis_id,
@@ -70,7 +70,7 @@ class ChatbotView(TemplateView):
                 "symptoms": list(symptoms),
                 "diagnosis": diagnosis_result,
                 "purifications": pritifications,
-                "recomanded_doctor": recomanded_doctor_id
+                "recomanded_doctor": recomanded_doctor_name
             },
         })
     
@@ -92,14 +92,15 @@ class ChatbotView(TemplateView):
 
         if not doctors.exists():
             return doctors_with_specialization
-        else:
-            doctors = DoctorsInformation.objects.all()
+
 
         disease = Diseases.objects.get(id=disease_id)
         doctors_with_specialization = doctors.filter(specialization__in=disease.specializations.all())
+
         if doctors_with_specialization.exists():
-            #returning recomanded doctor id
-            return doctors_with_specialization.order_by('-competence').first().id
+            recomanded_doctor =  doctors_with_specialization.order_by('-competence').first()
+            #returning recomanded doctor id and it's name
+            return recomanded_doctor.user.id, str(recomanded_doctor)
         else:
             return None
 
