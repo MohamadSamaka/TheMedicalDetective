@@ -118,10 +118,6 @@ function sendMssg(event){
         }, delay*1000)
         generatedMssgElm = generateMssgElm(input)
         chatLog.appendChild(generatedMssgElm)
-        // setTimeout( ()=> {
-        //     chatLog.appendChild(processingMessageElm)
-        //     chatLog.scrollTop = chatLog.scrollHeight;
-        // }, delay * 1000);
         requestAnimationFrame(() => {
             if (!loadingMessageAppended) {
               requestAnimationFrame(() => {
@@ -184,7 +180,6 @@ function send_case(userCase){
             chatLog.scrollTop = chatLog.scrollHeight;   
         })
        
-        // console.log("something went wrong: ", err)
     })
 }
 
