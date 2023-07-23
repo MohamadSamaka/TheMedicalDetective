@@ -49,7 +49,6 @@
 	height: 50px;
 	background: #ecf0f4;
 	border-color: transparent;
-	/* padding: 0 15px; */
 	font-size: 16px;
 
 }
@@ -347,7 +346,7 @@ input[type=number] {
 }
 
 .social span i{
-        cursor:pointer;
+    cursor:pointer;
 }
 
 .heart{
@@ -355,7 +354,7 @@ input[type=number] {
 }
 
 .share{
-        color:red !important;
+    color:red !important;
 }
 
 .user_name{
@@ -366,7 +365,6 @@ input[type=number] {
     display:flex;
     flex-direction:column;
     width:100%;
-    
 } 
 
 .user_name h3{
@@ -386,9 +384,10 @@ input[type=number] {
     text-align: center;
 }
 
-#invalid-code.shake{
+.shake{
     animation: shake 0.2s ease-in-out 0s 2;
-  }
+}
+
   
 @keyframes shake {
     0% {

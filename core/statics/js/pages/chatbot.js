@@ -1,5 +1,6 @@
 const userInput = document.getElementById('user-input')
 const chatLog = document.getElementById('chatlog');
+const sendMessageBtn = document.getElementById('send-mssg-btn')
 const parser = new DOMParser();
 const processingMessageSkeleton = `
                                     <div class="mssg new loading badge badge-primary">
@@ -99,17 +100,18 @@ let loadingMessageAppended = false;
 
 function sendMssg(event){
     const delay = 0.3
-
-    if (event.key === 'Enter') {
+    const isClick = event.type === 'click'
+    console.log(event.type === 'click')
+    if (event.key === 'Enter' || isClick ) {
         event.preventDefault();
         if (event.shiftKey && event.key === 'Enter') {
-            event.target.value += '\n';
+            userInput.value += '\n';
             return;
         }
-        let input = event.target.value;
+        let input = userInput.value;
         if (input == ''){
             // event.preventDefault();
-            event.target.value = '';
+            userInput.value = '';
             adjustInputHeight();
             return;
         }
@@ -132,7 +134,7 @@ function sendMssg(event){
             }
           });
         // chatLog.scrollTop = chatLog.scrollHeight;
-        event.target.value = ''
+        userInput.value = ''
         adjustInputHeight()
     }
 }
@@ -163,12 +165,15 @@ function send_case(userCase){
             data.result.purifications,
             doctorSuggestionExists? data.result.recomanded_doctor: '',
         )
-        if(doctorSuggestionExists)
+        if(doctorSuggestionExists){
+            userInput.disabled = true;
             setTimeout(()=> {
                 chatLog.appendChild(navigationButtonsElm)
                 chatLog.scrollTop = chatLog.scrollHeight;   
             }
             ,500);
+        }
+            
        
         loadingMssgElm.replaceWith(result)
         chatLog.scrollTop = chatLog.scrollHeight;   
@@ -186,6 +191,7 @@ function send_case(userCase){
 
 function detatchRedirectQuestionMessage(){
     $(navigationButtonsElm).addClass('reverse-animation');
+    userInput.disabled = false;
     $(navigationButtonsElm).one('animationend', function() {
         $(navigationButtonsElm).remove();
         $(navigationButtonsElm).removeClass('reverse-animation');
@@ -193,6 +199,8 @@ function detatchRedirectQuestionMessage(){
 }
 
 
+
+sendMessageBtn.addEventListener('click', sendMssg);
 
 userInput.addEventListener('input', adjustInputHeight);
 userInput.addEventListener('keydown', sendMssg);

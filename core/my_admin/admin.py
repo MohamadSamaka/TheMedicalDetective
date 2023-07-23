@@ -1,22 +1,26 @@
 from django.apps import apps
-from django.contrib.admin import AdminSite
 from django.urls import re_path
 from django.http import Http404, FileResponse
-from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 from .models import CustomUser
-import os
+from core.core.admin import BaseAdminSite
+from core.booking.models import Booking
+from django.contrib.admin import ModelAdmin
+from .src.admin_sites.user import UserAdminSite
+
+class BookingAdmin(ModelAdmin):
+    list_display = ('doctor', 'appointment_date_time')
+    def get_queryset(self, request):
+        return Booking.objects.filter(subject=request.user)
 
 
-class MyAdminSite(AdminSite):
+class MyAdminSite(BaseAdminSite):
     site_header = 'Admin Dashboard'
     site_title = 'Admin Dashboard'
     index_title = 'Admin Dashboard'
     site_name = 'admin-site'  # Unique namespace for the admin site
-    # login_template = 'authentication/pages/log-in.html'
     
     def get_urls(self):
-        # from core.chatbot_models_manager.admin import DiagnoserAdmin
         urls = super().get_urls()
 
         custom_urls = [
@@ -27,25 +31,21 @@ class MyAdminSite(AdminSite):
     def protected_files_provider(self, request, file_path):
         from pathlib import Path
         absolute_path = Path.joinpath(settings.PROTECTED_MEDIA_ABSOLUTE_URL, file_path)
-        print('absolute path is: ', absolute_path)
-        # Check if the file exists
-        if os.path.exists(absolute_path):
-            # Open the file and create a FileResponse
+        if absolute_path.exists():
+            file_extension = absolute_path.suffix.lower()
+            if file_extension != '.csv' and file_extension != '.json':
+                raise ValueError(f"Unsupported file extension: {file_extension}")
             file = open(absolute_path, 'rb')
             response = FileResponse(file)
-
-            # Set the appropriate content type
-            file_extension = os.path.splitext(file_path)[1]
-            content_type = f'application/{file_extension}'
+            content_type = f'application/{file_extension[1:]}'
             response['Content-Type'] = content_type
+            # file.close()
             return response
         raise Http404('File not found.')
 
-    
 
-# Create an instance of the custom AdminSite class
+my_user_site = UserAdminSite(name='adminpage-user')
 
-my_user_site = MyAdminSite(name='user-page')
 
 my_admin_site = MyAdminSite(name='adminpage-admin')
 
@@ -61,4 +61,4 @@ for model in all_models:
         my_admin_site.register(model)
 
 my_admin_site.register(CustomUser)
-# my_user_site.register(CustomUser)
+my_user_site.register(Booking, BookingAdmin)

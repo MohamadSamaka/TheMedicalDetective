@@ -24,7 +24,12 @@ class DiagnoserAdmin(admin.ModelAdmin):
         self.change_form_template = "admin/diagnoser/diagnoser_add.html"
         extra_context = extra_context or {}
         extra_context['form'] = self.get_form(request)
+        print(extra_context)
         return super().add_view(request, form_url, extra_context=extra_context)
+    
+    def change_view(self, request, object_id, form_url="", extra_context=None):
+        self.change_form_template = None
+        return super().change_view(request, object_id, form_url, extra_context)
 
     def get_urls(self):
         urls = super().get_urls()
@@ -54,9 +59,13 @@ class DiagnoserAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
+    def delete_model(self, request, obj):
+        path = Path(settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(f"diagnoser/{obj.model_name}"))
+        delete_dir_with_contents(path)
+        obj.delete()
+
     def delete_queryset(self, request, queryset):
         for obj in queryset:
-            print(obj)
             path = Path(settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(f"diagnoser/{obj.model_name}"))
             delete_dir_with_contents(path)
         super().delete_queryset(request, queryset)
@@ -93,7 +102,7 @@ class DiagnoserAdmin(admin.ModelAdmin):
         from pathlib import Path
         import pandas as pd
         csv_file = pd.read_csv(file)
-        model_path = settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(f"diagnoser/{model_name}/{model_name}.csv")
+        model_path = settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(f"diagnoser/{model_name}/{fname}.csv")
         csv_file.to_csv(model_path, index=False)
         file.seek(0)
 
@@ -153,8 +162,11 @@ class DiagnoserAdmin(admin.ModelAdmin):
         print("getting form!")
         form = super().get_form(request, obj, **kwargs)
         if obj:
-            form.base_fields["training_file"].widget = FileDownloadWidget("training.csv", obj.model_name)
-            form.base_fields["testing_file"].widget = FileDownloadWidget("testing.csv", obj.model_name)
+            print("wtf: ", obj.model_name)
+
+            diagnoser_model_path = Path(f"diagnoser/{obj.model_name}")
+            form.base_fields["training_file"].widget = FileDownloadWidget("training.csv", diagnoser_model_path)
+            form.base_fields["testing_file"].widget = FileDownloadWidget("testing.csv", diagnoser_model_path)
             # form.base_fields["testing_file"].widget = FileDownloadWidget(file="test.txt")
             # form.base_fields["training_file"].initial = obj.training_file.name
             form.base_fields["training_file"].required = False

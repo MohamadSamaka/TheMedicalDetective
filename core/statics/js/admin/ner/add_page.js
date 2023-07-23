@@ -25,7 +25,11 @@ function showTrainningProgress(){
 }
 
 function showAddView(){
+    $('#cancel-training-btn').removeClass('d-none')
+    $('#goback-training-btn').addClass('d-none');
     spinner.addClass('d-none')
+    $('.alert-danger').removeClass('show').addClass('d-none')
+    $('.alert-success').removeClass('show').addClass('d-none')
     $('#add-model')
     .addClass('active')
     .addClass('show')
@@ -33,7 +37,7 @@ function showAddView(){
     $('#training')
     .removeClass('show')
     .removeClass('active')
-    .addClass('pe-none')
+    .removeClass('pe-none')
 }
 
 function cancelTraining(){
@@ -59,8 +63,7 @@ function clearProgress(){
 
 
 
-function socketMessageHandler(data){
-    let recievedData = JSON.parse(data.replace(/'/g, '"'))
+function socketMessageHandler(recievedData){
     switch (recievedData.type) {
         case 'progress_update':
             updateTrainingProgress(recievedData)
@@ -78,7 +81,6 @@ function socketMessageHandler(data){
 
 
 function index(){
-    console.log("index")
     let url = `ws://${window.location.host}/ws/socket-server/`
     let socket = new WebSocket(url);
     accuracyElm = $('#accuracy')
@@ -86,30 +88,16 @@ function index(){
     spinner = $('#spinner')
     socket.onmessage = function(e){
         let recievedData = JSON.parse(e.data.replace(/'/g, '"'))
-
-        socketMessageHandler(e.data)
+        socketMessageHandler(recievedData)
     }
-
-    // $('#diagnoser_form .card').removeClass('card')
-    // const saveBtn = $("input[name='_save']")
-    // const testingFile = $('#testing-file')
-    
-    // submitFaker.click(function() {
-    //     $('#diagnoser_form').submit();
-    // });
-
-    // $('#save-button').on('click', function(e){
     $('#go-to-training-btn').on('click', function(){
         spinner.removeClass('d-none')
         $('#add-model').removeClass('show')
         let form = new FormData(document.querySelector('#ner-form'))
         let fileInput = document.querySelector('#id_training_file');
 
-        // Check if a file is selected
         if (fileInput.files.length > 0) {
-            // Get the first selected file
             let file = fileInput.files[0];
-            // Append the file to the form data
             form.append('training_file', file, file.name);
         }
 
@@ -119,18 +107,16 @@ function index(){
             headers: {'X-CSRFToken': $('input[name=csrfmiddlewaretoken]').val() },
             body:form,
             }).then(response => {
-                // console.log(response);
                 return Promise.all([response.text(), response.status])
             })
             .then(async ([rawHtml, statusCode]) => {
-                // console.log(statusCode)
                 if(statusCode == 200){
-                    // $('#training').remove('d-none')
                     spinner.addClass('d-none')
+                    $('.alert-danger').removeClass('show').addClass('d-none')
+                    $('.alert-success').removeClass('d-none').addClass('show')
                     $('#go-to-training-btn').removeClass('active')
                     $('#goback-training-btn').removeClass('d-none')
-                    $('#cancel-training-btn').remove();
-                    console.log("hello mf!!")
+                    $('#cancel-training-btn').addClass('d-none');
                     return;
                 }
                 let myDoc = new DOMParser();
@@ -139,13 +125,10 @@ function index(){
                 document.querySelector("#ner-form").replaceWith(form)
                 showAddView()
 
-                // index()
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 console.log("closing socket now!")
-                // socket.close(); 
             })
             .catch(error => {
-                
                 $('#go-to-add-info-btn').click()
             })
    });
@@ -164,7 +147,7 @@ function index(){
 
 
 function setEventListeners(){
-    $('#goback-training-btn').on('click', location.reload)
+    $('#go-to-add-info-btn').on('click', showAddView)
     $('#cancel-training-btn').on('click', cancelTraining)
 }
 

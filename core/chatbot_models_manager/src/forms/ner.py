@@ -1,6 +1,7 @@
 
 from django import forms
 from ...models import NER
+from core.core.src.utls.helpers import validate_model_filename
 
 class NERInfoForm(forms.ModelForm):
     neurons_first_layer = forms.IntegerField(
@@ -22,3 +23,10 @@ class NERInfoForm(forms.ModelForm):
     class Meta:
         model = NER
         fields = '__all__' 
+
+    def clean_model_name(self):
+        filename = self.cleaned_data.get('model_name')
+        if filename:
+            if not validate_model_filename(filename):
+                raise forms.ValidationError('Invalid filename. Only letters (uppercase and lowercase), underscore symbols, and numbers are allowed.')
+        return filename

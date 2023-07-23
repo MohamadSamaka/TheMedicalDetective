@@ -5,7 +5,7 @@ from django.contrib import admin
 from core.healthcare.admin import my_doctor_site
 from core.my_admin.admin import my_admin_site
 from .models import Booking
-from core.healthcare.models import UsersMeicalRecord
+from core.healthcare.models import UsersMedicalRecord
 
 class BookingAdmin(admin.ModelAdmin):
     change_form_template = 'admin/booking_change.html'
@@ -16,14 +16,15 @@ class BookingAdmin(admin.ModelAdmin):
         qs = super().get_queryset(request)
         if request.user.is_superuser:
             return qs  # Superusers can see all diagnostic corrections
-
-        # Filter diagnostic corrections based on the related booking's doctor
-        return qs.filter(bot_diagnosis__booking__doctor=request.user)
-
+        current_doctor = request.user
+        if current_doctor:
+            return qs.filter(doctor_id=current_doctor.id)
+        return qs.none()  # Return an empty queryset if the user is not a doctor or doesn't have any bookings
+    
     def change_view(self, request, object_id, form_url='', extra_context=None):
         booking = self.get_object(request, object_id)
-        if hasattr(booking.subject, "usersmeicalrecord"):
-            users_medical_record = booking.subject.usersmeicalrecord
+        if hasattr(booking.subject, "UsersMedicalRecord"):
+            users_medical_record = booking.subject.UsersMedicalRecord
         
             # Add the UsersMedicalRecord to the extra_context
             extra_context = extra_context or {}
@@ -65,11 +66,13 @@ class BookingAdmin(admin.ModelAdmin):
 
 
 #admin site
-my_admin_site.register(UsersMeicalRecord)
+my_admin_site.register(UsersMedicalRecord)
 my_admin_site.register(Booking)
 
 
 
 #doctor site
+# my_doctor_site.register(Booking)
+
 my_doctor_site.register(Booking, BookingAdmin)
 

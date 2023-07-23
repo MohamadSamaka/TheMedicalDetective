@@ -38,8 +38,7 @@ class Booking(models.Model):
         null=False,
         blank=False,
     )
-    # appointment_date = models.DateField(null=False, blank=False)
-    # appointment_time = models.TimeField(null=False, blank=False)
+    
     appointment_completion_time = models.TimeField(
         null=True,
         blank=False,

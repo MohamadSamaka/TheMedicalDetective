@@ -5,6 +5,7 @@
     "fields": {
       "user": 2,
       "competence": 50,
+      "image": "images/doctors/default_doctor.png",
       "hospitals": 1,
       "specialization": 23,
       "phone": "1111111111"
@@ -15,6 +16,7 @@
     "pk": 2,
     "fields": {
       "user": 3,
+      "image": "images/doctors/default_doctor.png",
       "competence": 100,
       "hospitals": 1,
       "specialization": 23,
@@ -37,6 +39,7 @@
     "pk": 4,
     "fields": {
       "user": 5,
+      "image": "images/doctors/default_doctor.png",
       "competence":55,
       "hospitals": 3,
       "specialization": 2,
@@ -48,6 +51,7 @@
     "pk": 5,
     "fields": {
       "user": 6,
+      "image": "images/doctors/default_doctor.png",
       "competence": 12,
       "hospitals": 1,
       "specialization": 3,
@@ -59,6 +63,7 @@
     "pk": 6,
     "fields": {
       "user": 7,
+      "image": "images/doctors/default_doctor.png",
       "competence": 100,
       "hospitals": 3,
       "specialization": 2,
@@ -70,6 +75,7 @@
     "pk": 7,
     "fields": {
       "user": 8,
+      "image": "images/doctors/default_doctor.png",
       "competence": 100,
       "hospitals": 2,
       "specialization": 1,
@@ -81,6 +87,7 @@
     "pk": 8,
     "fields": {
       "user": 9,
+      "image": "images/doctors/default_doctor.png",
       "competence": 100,
       "hospitals": 3,
       "specialization": 3,
@@ -92,6 +99,7 @@
     "pk": 9,
     "fields": {
       "user": 10,
+      "image": "images/doctors/default_doctor.png",
       "competence": 100,
       "hospitals": 2,
       "specialization": 2,

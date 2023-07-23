@@ -1,13 +1,12 @@
-from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
-from django.http import HttpResponseNotAllowed, HttpResponseBadRequest
+from django.http import HttpResponseBadRequest
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView
 from django.core.cache import cache
 from ..services.email import EmailVerificationManager
 from core.my_admin.models import CustomUser
-from core.core.src.utls.helpers import redirect_to_user_or_doc_page
+from core.core.src.utls.helpers import redirect_to_match_site
 
 
 
@@ -20,7 +19,7 @@ class MyLoginView(LoginView, EmailVerificationManager):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated and request.user.is_superuser or request.user.is_staff:
-            return redirect_to_user_or_doc_page(request.user)
+            return redirect_to_match_site(request.user)
         elif request.user.is_authenticated:
             return HttpResponseRedirect(reverse('home'))
         # else:
@@ -31,13 +30,18 @@ class MyLoginView(LoginView, EmailVerificationManager):
         # Custom form submission handling code here
         username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password')
+        next_url = self.request.POST.get('next')
+        print("next url is: ", next_url)
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(self.request, user)
+            if next_url and next_url != "null":
+                return HttpResponseRedirect(next_url)
             if not user.is_superuser and not user.is_staff and not user.is_admin:
                 return HttpResponseRedirect(reverse('home'))
-            return redirect_to_user_or_doc_page(user)
+            return redirect_to_match_site(user)
         else:
+            print("hello noooo")
             # Authentication failed
             return self.form_invalid(form)
         
@@ -49,7 +53,6 @@ class MyLoginView(LoginView, EmailVerificationManager):
             return HttpResponseRedirect(reverse('home'))
         session_key = request.session.session_key
         email = request.POST.get('email')
-        # email = "mhmd_dragon1@hotmail.com"
         if not session_key:
             request.session.cycle_key()
         cache.set(session_key, {'email': email}, timeout=180)
@@ -66,8 +69,8 @@ class MyLoginView(LoginView, EmailVerificationManager):
         if not session_key:
             return HttpResponseBadRequest("Session key not found.")
         cached_email = cache.get(session_key).get('email')
-        print("new pass: ", new_pass)
         user = CustomUser.objects.get(email=cached_email)
         user.set_password(new_pass)
         user.save()
         return HttpResponse("password changed successfully")
+    

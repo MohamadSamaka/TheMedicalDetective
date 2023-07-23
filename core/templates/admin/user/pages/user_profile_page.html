@@ -1,0 +1,75 @@
+{% extends "admin/base_site.html" %}
+
+{% load static %}
+
+
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'css/one_time_code.css' %}">
+{% endblock %}
+  
+
+{% block sidebar %}
+    {{ block.super }}
+{% endblock %}
+
+{% load crispy_forms_filters %}
+{% block  content %}
+  {% if messages %}
+    <div class="message {% if messages.first.tags %}{{ messages.first.tags }}{% endif %}">
+      {{ messages.first }}
+    </div>
+  {% endif %}
+  <div class="card col">
+    <div class="card-body">
+      <form action="" method="post" id="profile-form">
+        {% csrf_token %}
+        {% crispy form %}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{% block extrajs %}
+  {% load static %}
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <script src="{% static 'js/admin/user/index.js' %}"></script>
+{% endblock%}
+  
+
+
+{% block extraend %}
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Verification</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-secondary ps-4 pe-4">
+          <p class="pt-3 text-dark">A verification code has been sent to your email.</p>
+          <form action="POST" class="pb-3">
+            {% csrf_token %}
+            {% include 'components/one_time_code.html' %}
+          </form>
+          <div>
+            <span id="verification-timer" class="text-muted pb-2 d-block">you have 5 minutes to verify your code.</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          {% comment %} data-bs-dismiss="modal" {% endcomment %}
+          <button type="button" class="btn btn-secondary" id="close-modal-btn" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirm-code">verify</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock extraend %}
+  
+
+

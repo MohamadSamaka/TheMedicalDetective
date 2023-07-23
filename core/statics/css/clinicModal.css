@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.clinic-modal-dialog{
+    width: 200rem !important;
+}
+
+.clinic-modal-content {
+    border-radius: 32px !important;
+    background: #151A25 !important;
+    box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.21);
+    font-family: 'Roboto', sans-serif;
+    padding: 1.5rem;
+}
+
+.clinic-modal-body > :first-child{
+    padding-bottom: 2rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+    align-self: center;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.modal-img {
+    max-width: 20rem !important;    
+    height: 10rem;
+    border-radius: 2rem !important;
+}
+
+.clinic-modal-info{
+    margin-top: auto !important;
+    margin-bottom: auto;
+    margin-left: 0.5rem;
+}
+
+.clinic-modal-location{
+    margin-top: 1.5rem;
+}
+
+.clinic-modal-location, .clinic-modal-number{
+    color: #D5D7DA;
+    font-size: 0.7rem;
+}
+
+.clinic-modal-location > span, .clinic-modal-number > span{
+    margin-left: 0.2rem;
+}
+
+.staff-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.staff-header{
+    color: white;
+    margin-top: 1.2rem !important;
+}
+
+.arrow{
+    width: 3rem;
+    height: 3rem;
+    background-color: #1B212F;
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.03));
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.staff{
+    background: #1B212F;
+    width: fit-content !important;
+    min-width: 10rem;
+    color: white;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    padding: 0 !important;
+}
+
+.staff-info{
+    padding-left: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.staff-img{
+    border-radius: 0.5rem 0.5rem 0rem 0rem;
+    height: 6.25rem;
+    min-width: 100%;
+}
+
+.s-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,5 +1,4 @@
 
-
 let docsCardsList = [];
 let docsPerSpecializaiton = {};
 let docsPerHospital = {};
@@ -10,15 +9,57 @@ let confirmingAppointmentBtn = $('#confirm-appointment-btn')
 let ConfirmingAppointmentBtnInfo = confirmingAppointmentBtn.find('.btn-text')
 let appointmentFailMssg = $('#exampleModal .alert-danger')
 let appointmentSuccessMssg = $('#exampleModal .alert-success')
-let dateTimeInputFeild = $('#id_appointment_date_time')
+let dateTimeInputFeild = $('#datetimepicker')
+
+
+function parseTime(timeString) {
+    var timeComponents = timeString.split(":");
+    var hours = parseInt(timeComponents[0]);
+    var minutes = parseInt(timeComponents[1]);
+    var seconds = parseInt(timeComponents[2]);
+    return new Date(0, 0, 0, hours, minutes, seconds);
+  }
+
+
+let intst = $("#datetimepicker").flatpickr({
+    enableTime: true,
+    time_24hr: true,
+    // dateFormat: "Y-m-d H:i:S",
+    minuteIncrement: 30,
+    minDate: "today",
+    onOpen: function(selectedDates, dateStr, instance) {
+        instance.set("disable", [
+        function(date) {
+            var dayOfWeek = date.getDay();
+            let selectedDoc = $('.doctor-wrapper.active')
+            let hospitalId = selectedDoc.attr('hospital')
+            let doctorId = selectedDoc[0].id.split(/[- ]+/).pop();
+            let schedule = hospitalsInfo[hospitalId].docs.find(doc => doc.id == doctorId).unavailabilities
+            return schedule.includes(dayOfWeek);
+        }
+        ]);
+      },
+});
+
+
+function parseTime(timeString) {
+    var timeComponents = timeString.split(":");
+    var hours = parseInt(timeComponents[0]);
+    var minutes = parseInt(timeComponents[1]);
+    var seconds = timeComponents.length > 2 ? parseInt(timeComponents[2]) : 0;
+    return new Date(0, 0, 0, hours, minutes, seconds);
+  }
 
 
 // Generate a doctor card from the provided information
-function generateCardFromInfo(id, fname, lname, spec, hospital, isRecomanded){
+function generateCardFromInfo(id, image, fname, lname, spec, hospital, isRecomanded){
+    console.log(hospital)
     const doctorBluePrint = `
-    <div id="doctor-id-${id}" class="doctor-wrapper pt-3 pb-3 card flex-row justify-content-center ${ !isRecomanded? 'd-none': 'active'}">
+    <div id="doctor-id-${id}" hospital="${hospital}" class="doctor-wrapper pt-3 pb-3 card flex-row justify-content-center ${ !isRecomanded? 'd-none': 'active'}">
         <div class="basic-info card text-center border-0">
-            <img class="doctor-image shadow-lg rounded-circle card-img-top align-self-center" src="${DJANGO_STATIC_URL}images/default_doctor.png" alt="doctor">
+            <img class="doctor-image shadow-lg rounded-circle card-img-top align-self-center" src="${
+                image? MEDIA_URL + image: STATIC_URL + 'images/default_doctor.png'
+            }" alt="doctor">
             <h5 class="card-title">${fname} ${lname}</h5>
             <p class="card-text">${spec}</p>
         </div>
@@ -47,8 +88,10 @@ function generateDocsCards(){
     for(const hospitalId of Object.keys(hospitalsInfo)){
         for(let i = 0; i < hospitalsInfo[hospitalId].docs.length; i++){
             let doc = hospitalsInfo[hospitalId].docs[i]
+            console.log(hospitalsInfo[hospitalId])
             let generatedDoc = generateCardFromInfo(
                 doc.id,
+                doc.image,
                 doc.f_name,
                 doc.l_name,
                 specelization_map[doc.specialization], 
@@ -120,6 +163,10 @@ $('#booking .doctor-wrapper').click( function(event) {
 formCheckInputs.change(function(){
     let hospitalId = $('#id_hospitals').val()
     let {cardsShouldAppear, checkedBoxesCount} =  getAppliedSpecFilter()
+    if(hospitalId == ""){
+        showSuitableDocCards(cardsShouldAppear)
+        return;
+    }
     let appliedHospitalFilter = docsPerHospital[hospitalId] || []
     if(cardsShouldAppear.length > 0)
         cardsShouldAppear = intersectedDocs(appliedHospitalFilter, cardsShouldAppear)
@@ -134,7 +181,6 @@ $('#div_id_hospitals .form-select').change(function(){
     let hospitalId = $(this).val()
     let cardsShouldAppear = docsPerHospital[hospitalId] || []
     let appliedSpecFilter =  getAppliedSpecFilter()
-
     if(appliedSpecFilter.length > 0){
         cardsShouldAppear = intersectedDocs(appliedSpecFilter, cardsShouldAppear)
     }
@@ -170,6 +216,7 @@ function putInState(state){
             .addClass('btn-danger')
             appointmentFailMssg.removeClass('d-none')
             confirmingAppointmentBtn.click(bookAppointment);
+            $('.modal-dialog .alert-danger').addClass('ahashakeheartache')
             break;
     }
 }
@@ -194,9 +241,12 @@ function bookAppointment(){
     const csrftoken = myModal.find('form input[name=csrfmiddlewaretoken]').val()
     let docId = $('.doctor-wrapper.active')[0].id.split(/[- ]+/).pop();
     let dateTimeVal = dateTimeInputFeild.val()
+    // console.log(dateTimeVal)
+    // putInState(200)
     let formData = new FormData();
     formData.append('doc-id', docId)
     formData.append('date-time', dateTimeVal)
+    
     fetch('/booking/',{
         method: 'POST',
         headers: {'X-CSRFToken': csrftoken},
@@ -217,3 +267,9 @@ function bookAppointment(){
         })
     })
 }
+
+
+
+$('.modal-dialog .alert-danger').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+    $('.modal-dialog .alert-danger').delay(200).removeClass('ahashakeheartache');
+});

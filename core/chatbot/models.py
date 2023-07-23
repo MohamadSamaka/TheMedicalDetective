@@ -6,13 +6,25 @@ class BotDiagnoses(models.Model):
         'healthcare.Symptoms',
     )
 
+    user_case = models.TextField(
+        max_length=100,
+        null=False,
+        blank=False
+    )
+
     diagnosis = models.ForeignKey(
         'healthcare.Diseases',
         on_delete=models.CASCADE,
     )
 
-    diagnosis_date = models.DateField(null=False, blank=False)
-    diagnosis_time = models.TimeField(null=False, blank=False)
+    diagnosis_date = models.DateField(
+        null=False, 
+        blank=False
+    )
+    diagnosis_time = models.TimeField(
+        null=False, 
+        blank=False
+        )
 
     subject = models.ForeignKey(
         settings.AUTH_USER_MODEL,

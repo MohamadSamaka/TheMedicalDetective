@@ -9,7 +9,10 @@ from django.db import transaction
 from django.db.utils import IntegrityError
 from asgiref.sync import async_to_sync
 from core.chatbot_models_manager.src.tasks.tasks import set_cancel_flag
-from core.core.src.utls.helpers import delete_dir_with_contents_if_canceled, delete_dir_with_contents
+from core.core.src.utls.helpers import (
+    delete_dir_with_contents_if_canceled,
+    delete_dir_with_contents,
+    )
 from ..forms.ner import NERInfoForm
 from ..widgets.file_download import FileDownloadWidget
 from pathlib import Path
@@ -26,10 +29,17 @@ class NERAdmin(admin.ModelAdmin):
         extra_context['form'] = self.get_form(request)
         return super().add_view(request, form_url, extra_context=extra_context)
     
+
+    def change_view(self, request, object_id, form_url="", extra_context=None):
+        self.change_form_template = None
+        return super().change_view(request, object_id, form_url, extra_context)
+
+    
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         if obj:
-            form.base_fields["training_file"].widget = FileDownloadWidget("training.csv", obj.model_name)
+            ner_model_path = Path(f"ner/{obj.model_name}")
+            form.base_fields["training_file"].widget = FileDownloadWidget("training.json", ner_model_path)
             form.base_fields["training_file"].required = False
             form.base_fields["iterations"].disabled = True
             form.base_fields["neurons_first_layer"].disabled = True
@@ -40,14 +50,17 @@ class NERAdmin(admin.ModelAdmin):
             form.base_fields["training_file"].widget = FileInput()
         return form
 
+
     def get_urls(self):
         urls = super().get_urls()
         my_urls = [
             path('validate_ner_form/', self.ner_form_validator, name='ner-form-validator'),
             path('train_ner_model/', self.ner_trainer, name="ner-trainer"),
+            path('cancel_training/', self.cancel_training, name="cancel-ner-trainer")
         ]
         return my_urls + urls
     
+
     def save_model(self, request, obj, form, change):
         if change:
             old_model_name = form.initial['model_name']
@@ -66,10 +79,14 @@ class NERAdmin(admin.ModelAdmin):
 
         super().save_model(request, obj, form, change)
 
+    def delete_model(self, request, obj):
+        path = Path(settings.PROTECTED_MEDIA_ABSOLUTE_URL) / Path(f"ner/{obj.model_name}")
+        delete_dir_with_contents(path)
+        obj.delete()
+
 
     def delete_queryset(self, request, queryset):
         for obj in queryset:
-            print(obj)
             path = Path(settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(f"ner/{obj.model_name}"))
             delete_dir_with_contents(path)
         super().delete_queryset(request, queryset)
@@ -110,12 +127,25 @@ class NERAdmin(admin.ModelAdmin):
         return render(request, 'admin/ner/ner_add.html', context, status = status_code)
     
 
+    def store_annotations(self, training_file, model_name , fname):
+        import json
+        model_path = settings.PROTECTED_MEDIA_ABSOLUTE_URL / Path(f"ner/{model_name}/{fname}.json")
+        try:
+            file_contents = training_file.read().decode('utf-8')
+            print("content is: ", file_contents)
+            json_data = json.loads(file_contents)
+            with open(model_path, 'w') as f:
+                json.dump(json_data, f)
+            return True
+        except Exception as e:
+            print(f"An error occurred while saving the file: {e}")
+            return False
 
+    
     @transaction.atomic
     def process_model(self, request, form):
         try:
             iterations = form.cleaned_data['iterations']
-            iterations = 300
             model_name = form.cleaned_data['model_name']
             layer1_neurons = form.cleaned_data['neurons_first_layer']
             max_input_len = 100
@@ -129,6 +159,7 @@ class NERAdmin(admin.ModelAdmin):
             self.ner_trainer(user_id, model_name, training_file, layer1_neurons, iterations, max_input_len)
             if delete_dir_with_contents_if_canceled(path, user_id):
                 return 200
+            self.store_annotations(training_file, model_name, "training")
             # self.store_csv_file(testing_file, model_name, "testing")
             if delete_dir_with_contents_if_canceled(path, user_id):
                 return 200
@@ -145,6 +176,7 @@ class NERAdmin(admin.ModelAdmin):
         trainer = NERModel.Trainer(training_file, layer1_nuerons, iterations, max_input_len)
         set_cancel_flag.apply_async(args=(user_id, False))
         trainer.train_model(user_id)
+        training_file.seek(0)
         if not cache.get(user_id).get('cancel_flag'):
             trainer.save_model(model_name)
             trainer.save_tokenizer(model_name)

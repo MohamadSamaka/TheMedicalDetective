@@ -40,7 +40,7 @@ validationRules = {
 class SignUpForm(forms.Form):
     from core.core.models import City
     from core.my_admin.models import CustomUser
-    from core.healthcare.models import UsersMeicalRecord, BLOOD_TYPE_CHOICES
+    from core.healthcare.models import UsersMedicalRecord, BLOOD_TYPE_CHOICES
     email = forms.EmailField()
     password = forms.CharField(min_length=10, widget=forms.PasswordInput)
     first_name = forms.CharField(max_length=25, validators=[validate_unicode_slug], required=True)
@@ -75,7 +75,7 @@ class SignUpForm(forms.Form):
                 password=make_password(self.cleaned_data['password']), # Hash password before saving,
             )
             # create a new medical record object
-            self.UsersMeicalRecord.objects.create(
+            self.UsersMedicalRecord.objects.create(
                 user=user,
                 phone_num=self.cleaned_data['phone_num'],
                 height=self.cleaned_data['height'],

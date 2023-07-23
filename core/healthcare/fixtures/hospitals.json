@@ -4,6 +4,7 @@
       "pk": 1,
       "fields": {
         "name": "Governmental",
+        "image": "images/hospitals_images/default_hospital.png",
         "address": "Jenin camp",
         "city": 1,
         "phone": "2501057",
@@ -15,6 +16,7 @@
       "pk": 2,
       "fields": {
         "name": "Alrazi",
+        "image": "images/hospitals_images/default_hospital.png",
         "address": "Jenin",
         "city": 2,
         "phone": "04 250 5055",
@@ -26,6 +28,7 @@
       "pk": 3,
       "fields": {
         "name": "Rafedia",
+        "image": "images/hospitals_images/default_hospital.png",
         "address": "4070, Raffia St, Bellbowrie",
         "city": 2,
         "phone": "2501057",
@@ -37,6 +40,7 @@
       "pk": 4,
       "fields": {
         "name": "Turkish Govermental",
+        "image": "images/hospitals_images/default_hospital.png",
         "address": "Tubas",
         "city": 4,
         "phone": "5555555555",

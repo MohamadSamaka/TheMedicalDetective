@@ -1,6 +1,8 @@
 
 from django import forms
 from ...models import Diagnoser
+from core.core.src.utls.helpers import validate_model_filename
+
 
 class DiagnoserInfoForm(forms.ModelForm):
     neurons_first_layer = forms.IntegerField(
@@ -33,3 +35,10 @@ class DiagnoserInfoForm(forms.ModelForm):
     class Meta:
         model = Diagnoser
         fields = '__all__'  # Or specify the fields you want to include
+
+    def clean_model_name(self):
+        filename = self.cleaned_data.get('model_name')
+        if filename:
+            if not validate_model_filename(filename):
+                raise forms.ValidationError('Invalid filename. Only letters (uppercase and lowercase), underscore symbols, and numbers are allowed.')
+        return filename

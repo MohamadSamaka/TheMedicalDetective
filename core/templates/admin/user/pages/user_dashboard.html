@@ -1,0 +1,23 @@
+{% extends "admin/base_site.html" %}
+
+{% comment %} {% block sidebar %}
+    {{ block.super }}
+{% endblock %}
+
+{% load crispy_forms_filters %}
+{% block  content %}
+  {% if messages %}
+    <div class="message {% if messages.first.tags %}{{ messages.first.tags }}{% endif %}">
+      {{ messages.first }}
+    </div>
+  {% endif %}
+  <div class="card col">
+    <div class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        {% crispy form %}
+      </form>
+    </div>
+  </div>
+{% endblock %} {% endcomment %}
+

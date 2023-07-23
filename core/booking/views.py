@@ -3,18 +3,19 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Prefetch
 from django.http import JsonResponse, HttpResponse
-from core.healthcare.models import Hospitals, Specializations
+from core.healthcare.models import Hospitals, Specializations, DoctorSchedule, DoctorUnavailable, DoctorsInformation
 # from .src.forms.forms import BookingFiltersForm, BookingInfoForm
 from .src.forms.booking_filters import BookingFiltersForm
 from .src.forms.booking_info import BookingInfoForm
-# from .forms import BookingFiltersForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from itertools import groupby
 from operator import itemgetter
 import json
 from datetime import datetime
 
 
-
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class BookingView(TemplateView):
     template_name = 'client/pages/booking.html'
 
@@ -25,9 +26,6 @@ class BookingView(TemplateView):
         context['booking_filters_form'] = BookingFiltersForm()
         context['booking_info_form'] = BookingInfoForm()
         context['url_name'] = self.request.resolver_match.app_name
-        # booking_info = self.request.session.get('booking_info')
-        # if booking_info:
-        #     context['recomanded_doctor_id'] = booking_info.get('recomanded_doctor_id')
         return context
     
     # def get_context_data(self, **kwargs):
@@ -44,11 +42,9 @@ class BookingView(TemplateView):
     
     def post(self, request):
         from django.utils import timezone
-        # print("final test:", request.session.pop('flash_data', None))
         booking_info = request.session.pop('booking_info', None)
-        if booking_info:
-            diagnosis_id = booking_info["diagnosis_id"]
-            recomanded_doctor_id = booking_info["recomanded_doctor_id"]
+        diagnosis_id = booking_info["diagnosis_id"] if booking_info else None
+        # recomanded_doctor_id = booking_info["recomanded_doctor_id"] if booking_info else None
         if request.method != "POST":
             return JsonResponse({"status": "error", "message": "Invalid request method"}, status=500)
         try:
@@ -57,7 +53,7 @@ class BookingView(TemplateView):
             form_data = {
                 'doc': doc_id,
                 'appointment_date_time': parsed_date_time,
-                'recomanded_doctor': recomanded_doctor_id
+                # 'recomanded_doctor': recomanded_doctor_id
             }
            
             booking_form = BookingInfoForm(form_data)
@@ -75,7 +71,7 @@ class BookingView(TemplateView):
     
 
     def parse_date_time(self, date_time):
-        date_time = datetime.strptime(date_time, '%Y-%m-%d %I:%M %p').replace(second=0, microsecond=0)
+        date_time = datetime.strptime(date_time, '%Y-%m-%d %H:%M').replace(second=0, microsecond=0)
         return date_time
     
     def validate_date_time(self, sent_date_time):
@@ -88,6 +84,7 @@ class BookingView(TemplateView):
             # duplicate_rows = Booking.objects.values('appointment_date_time').annotate(count=Count('timestamp')).filter(count__gt=1)
             if minute % stepping != 0:
                 raise ValueError
+        print("cool!")
             
             
     def book_appointment(self, subject_id, date_time, doc_id, bot_diagnosis_id=None):
@@ -124,6 +121,10 @@ class BookingView(TemplateView):
     
 
     def get_docs_per_hospital_info(self):
+        from django.core.serializers import serialize
+        from django.core.serializers.json import DjangoJSONEncoder
+
+        from datetime import time  # Import the time class from datetime module
         hospital_doctors = Hospitals.objects.prefetch_related(
             Prefetch(
                 'doctorsinformation',
@@ -136,8 +137,9 @@ class BookingView(TemplateView):
         ).filter(
             num_doctors__gt=0).values_list(
             'id',
-            'doctorsinformation__hospitals__name',
             'city',
+            'doctorsinformation__hospitals__name',
+            'doctorsinformation__image',
             'doctorsinformation__user',
             'doctorsinformation__user__first_name',
             'doctorsinformation__user__last_name',
@@ -145,28 +147,54 @@ class BookingView(TemplateView):
             
         )
 
-        #grouping by hospital id and city
         grouped_data = groupby(hospital_doctors, itemgetter(0, 1, 2)) 
-        # grouped_data2 = groupby(hospital_doctors, itemgetter(2)) 
-        # print([(i,list(j)) for i,j in grouped_data2])
+        print(hospital_doctors[0])
+        def serialize_time(obj):
+            if isinstance(obj, time):
+                return obj.strftime('%H:%M:%S')
+            raise TypeError(f"Object of type {obj.__class__.__name__} is not JSON serializable")
 
-        docs_per_hospitals = {
-            hospital_id: {
+
+        docs_per_hospitals = {}
+        for (hospital_id, city_id, hospital_name), values in grouped_data:
+            docs_per_hospitals[hospital_id] = {
                 'hospital_name': hospital_name,
-                'city':  city_id,
-                'docs':[
-                   { #the first 2 i gnored are the hospital id and city id
-                       'id': doc_info[3],
-                       'f_name': doc_info[4],
-                       'l_name': doc_info[5],
-                       'specialization': doc_info[6]
-                   } 
-                   for doc_info in values
-                ]
+                'city': city_id,
+                'docs': []
             }
-            for (hospital_id, hospital_name, city_id), values in grouped_data
-        }
-        return json.dumps(docs_per_hospitals)
-    
+            for doc_info in values:
+                doctor = {
+                    'id': doc_info[4],
+                    'image': doc_info[3],
+                    'f_name': doc_info[5],
+                    'l_name': doc_info[6],
+                    'specialization': doc_info[7],
+                    'schedules': [],
+                    'unavailabilities': []
+                }
+
+                schedules = DoctorSchedule.objects.filter(
+                    doctor=doc_info[4]
+                ).only('day_of_week', 'start_time', 'end_time')
+                for schedule in schedules:
+                    doctor['schedules'].append({
+                        'day_of_week': schedule.day_of_week,
+                        'start_time': schedule.start_time,
+                        'end_time': schedule.end_time,
+                    })
+
+                unavailabilities = DoctorUnavailable.objects.filter(
+                    doctor=doc_info[4]
+                ).only('day_of_week')
+                for unavailability in unavailabilities:
+                    doctor['unavailabilities'].append(unavailability.day_of_week)
+
+                docs_per_hospitals[hospital_id]['docs'].append(doctor)
+
+
+        serialized_data = json.dumps(docs_per_hospitals, default=serialize_time)
+
+        return serialized_data
+        # return json.dumps(docs_per_hospitals)    
 
 initBookingView = BookingView()

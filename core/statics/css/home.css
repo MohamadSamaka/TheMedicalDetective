@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.title{
+    color: white;
+}
+
+
+#main-content{
+    overflow-x: hidden;
+}
+
+.main-page-header {
+    background: linear-gradient(180deg, #00DCA7 0%, #5FFFEF 100%);
+    font-family: 'Roboto', sans-serif;
+    padding: 5.5rem;
+    border-radius: 32px;
+    margin-left: auto;
+    display: flex;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.header-main-text {
+    font-weight: 700;
+    font-size: 2.25rem;
+}
+
+.header-secondry-text {
+    font-size: 1.375rem;
+    max-width: 25rem;
+}
+
+.header-chat-now-btn {
+    border-radius: 7px;
+    border: none;
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.40));
+    background: #151A25;
+    padding: 0.25rem 1.1rem;
+}
+
+.header-chat-now-btn-text {
+    font-weight: 600;
+    background: linear-gradient(180deg, #01FFC2 0%, #5DFFEE 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.main-page-header-doctor {
+    position: relative;
+}
+
+.header-img {
+    position: absolute;
+    width: 45.6875rem;
+    height: 30.4375rem;
+    bottom: -105%;
+}
+
+.header-heart-singal {
+    position: absolute;
+    top: 60%;
+}
+
+.hospitals-container {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6rem;
+}
+
+.hospitals-container> :first-child {
+    color: #fff;
+    font-weight: 600;
+}
+
+.hospitals-list {
+    border-radius: 1.5625rem;
+    background: #1B212F;
+    padding: 1.3rem 3rem;
+}
+
+.see-more-hospitals {
+    margin-bottom: 0.5rem;
+    margin-left: 3rem;
+    width: fit-content;
+    background: linear-gradient(180deg, #00D1BD 0%, #5DFFEE 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-image: linear-gradient(180deg, #00D1BD 0%, #5DFFEE 100%) 30;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    line-height: 1;
+}
+
+.hospital {
+    background: #151A25;
+    background-clip: padding-box;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.13);
+    padding: 0 !important;
+    border: 4px solid #5DFFEE;
+    border-radius: 1.3125rem;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 2rem;
+    padding: 3rem;
+    min-width: 25%;
+    max-width: 25%;
+}
+
+
+.hospital-img {
+    width: 100%;
+    height: 10rem;
+    flex-shrink: 0;
+}
+
+.hospital-info {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 1.5rem 1.3rem 1.5rem;
+}
+
+.hospital-name {
+    color: #5DFFEE;
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: -6px;
+}
+
+.hospital-specialty {
+    color: #D5D7DA;
+    font-size: 0.7rem;
+    margin-left: 0.1rem;
+}
+
+.hospital-info> :last-child {
+    margin-left: 3rem;
+}
+
+.hospital-location {
+    margin-top: 0.2rem;
+}
+
+.hospital-location,
+.hospital-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hospital-location>span,
+.hospital-number>span {
+    color: rgba(255, 255, 255, 0.81);
+    font-size: 0.7rem;
+    margin-left: 0.3rem;
+}
+
+@media screen and (max-width: 1400px) {
+    .main-page-header {
+        padding: 5rem;
+    }
+
+    .header-img {
+        bottom: -79.5%;
+        left: -5rem !important;
+    }
+
+    .hospital{
+        min-width: 30% !important;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .main-page-header-doctor {
+        display: none;
+        }
+        
+
+    .main-page-header-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .header-chat-now-btn {
+        width: fit-content;
+    }
+
+    .hospital {
+        display: flex;
+        flex-direction: column;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: 20rem !important;
+    }
+
+    .hospital-img {
+        width: 100%;
+    }
+}
+
+
+
+

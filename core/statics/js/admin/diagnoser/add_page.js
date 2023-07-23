@@ -25,7 +25,11 @@ function showTrainningProgress(){
 }
 
 function showAddView(){
+    $('#cancel-training-btn').removeClass('d-none')
+    $('#goback-training-btn').addClass('d-none');
     spinner.addClass('d-none')
+    $('.alert-danger').removeClass('show').addClass('d-none')
+    $('.alert-success').removeClass('show').addClass('d-none')
     $('#add-model')
     .addClass('active')
     .addClass('show')
@@ -33,7 +37,7 @@ function showAddView(){
     $('#training')
     .removeClass('show')
     .removeClass('active')
-    .addClass('pe-none')
+    .removeClass('pe-none')
 }
 
 function cancelTraining(){
@@ -90,26 +94,14 @@ function index(){
         socketMessageHandler(e.data)
     }
 
-    // $('#diagnoser_form .card').removeClass('card')
-    // const saveBtn = $("input[name='_save']")
-    // const testingFile = $('#testing-file')
-    
-    // submitFaker.click(function() {
-    //     $('#diagnoser_form').submit();
-    // });
-
-    // $('#save-button').on('click', function(e){
     $('#go-to-training-btn').on('click', function(){
         spinner.removeClass('d-none')
         $('#add-model').removeClass('show')
         let form = new FormData(document.querySelector('#diagnoser-form'))
         let fileInput = document.querySelector('#id_training_file');
 
-        // Check if a file is selected
         if (fileInput.files.length > 0) {
-            // Get the first selected file
             let file = fileInput.files[0];
-            // Append the file to the form data
             form.append('training_file', file, file.name);
         }
 
@@ -123,14 +115,13 @@ function index(){
                 return Promise.all([response.text(), response.status])
             })
             .then(async ([rawHtml, statusCode]) => {
-                // console.log(statusCode)
                 if(statusCode == 200){
-                    // $('#training').remove('d-none')
                     spinner.addClass('d-none')
+                    $('.alert-danger').removeClass('show').addClass('d-none')
+                    $('.alert-success').removeClass('d-none').addClass('show')
                     $('#go-to-training-btn').removeClass('active')
                     $('#goback-training-btn').removeClass('d-none')
-                    $('#cancel-training-btn').remove();
-                    console.log("hello mf!!")
+                    $('#cancel-training-btn').addClass('d-none');
                     return;
                 }
                 let myDoc = new DOMParser();
@@ -139,36 +130,23 @@ function index(){
                 document.querySelector("#diagnoser-form").replaceWith(form)
                 showAddView()
 
-                // index()
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 console.log("closing socket now!")
-                // socket.close(); 
             })
             .catch(error => {
-                
+                $('.alert-danger').removeClass('d-none').addClass('show')
+                $('.alert-success').removeClass('show').addClass('d-none')
                 $('#go-to-add-info-btn').click()
             })
    });
-
-    $('#go-to-add-info-btn').on('click', function(){
-      $(this).removeClass('active')
-    });
-
-
-    // testingFile.on('change', function(){
-    //     if(this.files.length != 0)
-    //         saveBtn.val("Train and Test")
-    // });
 }
 
 
 
 function setEventListeners(){
-    $('#goback-training-btn').on('click', location.reload)
+    $('#go-to-add-info-btn').on('click', showAddView)
     $('#cancel-training-btn').on('click', cancelTraining)
 }
-
-
 
 
 

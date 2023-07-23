@@ -29,7 +29,7 @@ const validationRules = {
 	'lname': /^[a-zA-Z]{1,25}$/,
 	'email': /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
 	// 'pass': /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/,
-	'pass': /^.{10,}/,
+	// 'pass': /^.{10,}/,
 	// 'confirm-pass': /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{10,}$/,
 	'confirm-pass': /^.{10,}/,
 	'phone-num': /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
@@ -282,3 +282,4 @@ in1.addEventListener('input', splitNumber);
 invalidCodeWarnning.addEventListener("animationend", () => {
 	invalidCodeWarnning.classList.remove('shake');
 });
+

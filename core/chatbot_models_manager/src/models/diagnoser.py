@@ -147,7 +147,7 @@ class DiagnoserModel:
             pass
             
 
-        def diagnose(extracted_symptoms, pickle):
+        def diagnose(extracted_symptoms, pickle, gender):
             import numpy as np
             # pickle = DiagnoserModel.Model.load_model(model_name)
             model = pickle['model']
@@ -164,6 +164,7 @@ class DiagnoserModel:
 
             normalized_symps = DiagnoserModel.Model.normalize_symptoms(extracted_symptoms, original_symptoms)
             encoded_symptoms = DiagnoserModel.Model.onehot_encoded_symptoms(normalized_symps, original_symptoms)
+            encoded_symptoms[-1] = gender
             prediction = model.predict(np.array(encoded_symptoms).reshape((1, len(original_symptoms)))).argmax()
             return id_to_diease[prediction], normalized_symps
         

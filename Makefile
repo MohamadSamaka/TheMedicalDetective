@@ -19,6 +19,8 @@ init-data:
 	python3 -m core.manage loaddata hospitals
 	python3 -m core.manage loaddata specilaizations
 	python3 -m core.manage loaddata doctors_information
+	python3 -m core.manage loaddata doctors_schedule
+
 
 .PHONY: run-server
 run-server:

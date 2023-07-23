@@ -1,16 +1,16 @@
 [
-    {
-      "model": "auth.group",
-      "pk": 1,
-      "fields": {
-        "name": "Doctor"
-      }
-    },
-    {
-      "model": "auth.group",
-      "pk": 2,
-      "fields": {
-        "name": "User"
-      }
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "Doctor"
     }
-  ]
+  },
+  {
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+      "name": "User"
+    }
+  }
+]

@@ -66,7 +66,6 @@ class MyRegistrationView(TemplateView, EmailVerificationManager):
     
     # @transaction.atomic
     def create_user_with_medical_record(self, request):
-    # def create_user_with_medical_record(self, request):
         session_key = request.session.session_key
         cached_user_info = cache.get(session_key)
         form = SignUpForm(cached_user_info)

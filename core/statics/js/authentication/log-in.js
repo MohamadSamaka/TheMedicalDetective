@@ -1,6 +1,7 @@
 // const forgotPasswordBtn = document.querySelector('#forgot-password-btn')
 const firstSignupBtn = document.querySelector('#signup-btn-1');
 const resetPasswordBtn = document.querySelector('#reset-password-btn');
+const invalidLoginWarning = document.querySelector('#invalid-login-error')
 
 async function dedicatedValidation(textInputs, selectMenus){
 	let valid = true;
@@ -27,14 +28,14 @@ async function dedicatedValidation(textInputs, selectMenus){
 }
 
 
-
-
 async function login(e) {
+	const queryParams = new URLSearchParams(window.location.search);
+	const nextParam = queryParams.get('next');
     e.preventDefault();
     if (!(await sharedFormValidation())) return false;
     var emailInput = document.querySelector('#email');
     var passwordInput = document.querySelector('#pass');
-
+	rawInputs.append('next', nextParam)
     rawInputs.append('username', emailInput.value);
     rawInputs.append('password', passwordInput.value);
 
@@ -43,14 +44,24 @@ async function login(e) {
         headers: {'X-CSRFToken': csrftoken},
         body: rawInputs,
     }).then(res => {
-        if (res.ok) 
+		console.log(res)
+        if (res.ok || res.status === 404) 
 			window.location.href = res.url
         else if (res.status === 400)
             return res.json(); // Parse response data as JSON
 		else
             throw new Error('Request failed with status ' + res.status);
     }).then(res => {
+		
         console.log(res);
+		let errors = JSON.parse(res.errors)
+		t = JSON.parse(res.errors)
+		invalidLoginWarning.innerText = errors.__all__[0].message
+		invalidLoginWarning.classList.remove('d-none')
+		invalidLoginWarning.classList.remove('opacity-0')
+		invalidLoginWarning.classList.add('shake')
+		
+		console.log();
     }).catch(error => {
 		if (error.name === 'FetchError' && error.message === 'Failed to fetch') {
             console.error('Request failed: CSRF token missing');
@@ -156,3 +167,7 @@ function RegexTest(input) {
 redirectButton.addEventListener('click', goBackToFirstForm)
 resetPasswordBtn.addEventListener('click', resetPassword)
 
+invalidLoginWarning.addEventListener("animationend", () => {
+	invalidLoginWarning.classList.remove('shake');
+
+});

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.conf import settings
 
 
@@ -15,12 +16,37 @@ BLOOD_TYPE_CHOICES = {
 }
 
 
-class UsersMeicalRecord(models.Model):
+DAYS_MAP = {
+    1 : 'Monday',
+    2 : 'Tuesday',
+    3 : 'Wednesday',
+    4 : 'Thursday',
+    5 : 'Friday',
+    6 : 'Saturday',
+    7 : 'Sunday',
+}
+
+
+class UsersMedicalRecord(models.Model):
     """
     Model to store the personal medical information of the user
     """
-    height = models.DecimalField(max_digits=5, decimal_places=2, blank=False, null=False, verbose_name="Height in meters")
-    weight = models.DecimalField(max_digits=5, decimal_places=2, blank=False, null=False,verbose_name="Weight in kilograms")
+    height = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        blank=False,
+        null=False,
+        verbose_name="Height in meters",
+        validators=[MinValueValidator(24.0), MaxValueValidator(251.0)]
+    )
+    weight = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        blank=False, 
+        null=False,
+        verbose_name="Weight in kilograms",
+        validators=[MinValueValidator(20.0), MaxValueValidator(635.0)]
+    )
     blood_type = models.IntegerField(choices=BLOOD_TYPE_CHOICES.items(), blank=False, null=False, verbose_name="Blood Type")
     bdate = models.DateField(verbose_name="Date of Birth")
     gender = models.BooleanField(blank=False, null=False, verbose_name="Gender")
@@ -48,6 +74,11 @@ class UsersMeicalRecord(models.Model):
     def save(self, *args, **kwargs):
         self.validate_blood_type()
         super().save(*args, **kwargs)
+
+    # def clean(self):
+    #     print("the height is: ", self.height)
+    #     if self.height < 0.0 or self.height > 100.0:
+    #         raise ValidationError("Height must be between 0.0 and 100.0.")
 
     def __str__(self):
         # print(self.medical_record.first_name)
@@ -90,6 +121,13 @@ class Hospitals(models.Model):
         verbose_name="Address"
     )
 
+    image = models.ImageField(
+        null=True,
+        blank=True,
+        default="images/hospitals/default_hospital.png",
+        upload_to="images/hospitals"
+    )
+
     city = models.ForeignKey(
         'core.City',
         on_delete=models.CASCADE,
@@ -124,6 +162,13 @@ class DoctorsInformation(models.Model):
         on_delete=models.CASCADE,
     )
 
+    image = models.ImageField(
+        null=True,
+        blank=True,
+        default="images/doctors/default_doctor.png",
+        upload_to="images/doctors"
+    )
+
     hospitals = models.ForeignKey(
         Hospitals,
         on_delete=models.CASCADE,
@@ -154,3 +199,43 @@ class DoctorsInformation(models.Model):
     
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
+    
+class DoctorSchedule(models.Model):
+    doctor = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+
+    day_of_week = models.IntegerField(choices=DAYS_MAP.items())
+
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    class Meta:
+        unique_together = ('doctor', 'day_of_week')
+
+    def clean(self):
+        if self.start_time >= self.end_time:
+            raise ValidationError("Start time must be before end time.")
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{str(self.doctor)} | {DAYS_MAP[self.day_of_week]}"
+
+
+class DoctorUnavailable(models.Model):
+    doctor = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
+    day_of_week = models.IntegerField(choices=DAYS_MAP.items())
+
+    class Meta:
+        unique_together = ('doctor', 'day_of_week')
+
+    def __str__(self):
+        return f"{str(self.doctor)} | {DAYS_MAP[self.day_of_week]}"

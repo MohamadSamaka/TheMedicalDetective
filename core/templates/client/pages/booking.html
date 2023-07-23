@@ -5,8 +5,15 @@
 
 {% block head %}
     {{ block.super }}
-    
-    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+    <!-- Popperjs -->
+    {% comment %} <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.7.11/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.7.11/dist/css/tempus-dominus.min.css" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="{% static 'tempus-dominus/css/tempus-dominus.min.css' %}">{% endcomment %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 {% endblock %}
 
 {% block title %}ChatBot{% endblock %}
@@ -15,15 +22,15 @@
 {% block scripts %}
     {{block.super}}
     <script>
-        const DJANGO_STATIC_URL = "{% get_static_prefix %}";
+        const STATIC_URL = "{% get_static_prefix %}";
+        const MEDIA_URL = "{% get_media_prefix %}";
         const specelization_map = JSON.parse('{{ specelization_map|escapejs }}');
         const hospitalsInfo = JSON.parse('{{ hospitals_docs|escapejs }}');
-        window.recomanded_doctor = {{recomanded_doctor_id}}
+        console.log(hospitalsInfo)
+        window.recomanded_doctor = {{ recomanded_doctor_id|default:"undefined" }};
     </script>
-    <script src="{% static 'js/htmx/htmx.js' %}"></script>
     <script src="{% static 'js/pages/booking.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/booking.css' %}">
-    <script></script>
     
 {% endblock %}
 
@@ -44,57 +51,37 @@
                 </div>   
             </div>
         </div>
-          
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Schedule Information</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Schedule Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="POST">
+                  {% csrf_token %}
+                  <input type="text" name="" class="form-control" id="datetimepicker">
+                </form>
+                <div class="alert alert-danger d-none" role="alert">
+                  Something went wrong, please try again.
                 </div>
-                <div class="modal-body">
-                  <form action="POST">
-                    {% csrf_token %}
-                    {{ booking_info_form.media }}
-                    {{ booking_info_form.appointment_date_time |as_crispy_field  }}
-                  </form>
-                  <div class="alert alert-danger d-none" role="alert">
-                    Something went wrong, please try again.
-                  </div>
-                  <div class="alert alert-success d-none" role="alert">
-                    You are all set up!, you may close this window now.
-                  </div>
+                <div class="alert alert-success d-none" role="alert">
+                  You are all set up!, you may close this window now.
                 </div>
+              </div>
 
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button id="confirm-appointment-btn" class="btn btn-primary overflow-hidden text-nowrap" type="button">
-                    <i class="bi bi-check-circle"></i>
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    <span class="overflow-hidden d-inline-flex btn-text">Confirm</span>
-                  </button>
-                </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="confirm-appointment-btn" class="btn btn-primary overflow-hidden text-nowrap" type="button">
+                  <i class="bi bi-check-circle"></i>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  <span class="overflow-hidden d-inline-flex btn-text">Confirm</span>
+                </button>
               </div>
             </div>
           </div>
-
-          {% comment %} <form action="" method="post">
-            {{ booking_info_form.as_p }}
-          </form>
-           {% endcomment %}
-
-           
-
-        {% comment %} <div class="input-group" id="kt_td_picker_simple" data-td-target-input="nearest" data-td-target-toggle="nearest">
-          <input id="kt_td_picker_basic_input" type="text" class="form-control" data-td-target="#kt_td_picker_basic"/>
-          <span class="input-group-text" data-td-target="#kt_td_picker_basic" data-td-toggle="datetimepicker">
-            <i class="bi bi-calendar"></i><span class="path1"></span><span class="path2"></span></i>
-          </span>
-        </div> {% endcomment %}
-
-
-
-
+        </div>
 {% endblock %}
 
     

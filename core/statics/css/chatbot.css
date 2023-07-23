@@ -52,13 +52,11 @@ background-color: #ccc;
 
 #chatbot .mssg {
     width: fit-content;
-
-
-
     max-width: 60%;
     padding: 15px 10px 15px;
     border-radius: 10px;
-    background: #2572874d;
+    /* background: #2572874d; */
+    background: var(--bot-bg-message);
     margin: 8px 0;
     position: relative;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -82,7 +80,7 @@ background-color: #ccc;
     bottom: 0;
     right: 0;
     left:0;
-    background: var(--bot-bg-message);
+    background: var(--bot-input-bg);
 }
 
 

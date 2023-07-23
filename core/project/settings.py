@@ -72,6 +72,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware", # Here
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -106,6 +107,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.core.src.context_processors.extended_main_nav_bar.customize_main_sidebar'
             ],
         },
     },
@@ -217,3 +219,14 @@ PROTECTED_MEDIA_ABSOLUTE_URL = MEDIA_ROOT /  Path("protected")
 DATASETS_DIR = MEDIA_ROOT / 'datasets'
 MODELS_DIR = MEDIA_ROOT / 'models'
 TOKENIZERS_DIR = MEDIA_ROOT / 'tokenizers'
+
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "The Medical Detective",
+
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "The Medical Detective",
+
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "The Medical Detective",
+    }
